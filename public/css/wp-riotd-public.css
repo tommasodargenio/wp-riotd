@@ -1,0 +1,24 @@
+#reddit-iotd {
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+
+#ig-main {
+    width: 100%;
+}
+ 
+#ig-iotd {
+    margin: 0.5em;
+} 
+
+#ig-iotd:hover {
+    outline: 2px solid #f00 !important;
+}
+
+#ig-title {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    line-height: 1.5em;
+}

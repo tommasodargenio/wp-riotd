@@ -38,6 +38,23 @@
      * @var     string              $plugin_version        The current version of this plugin
      */
     protected $plugin_version;
+    /**
+     * The shortcode to use in widgets and posts
+     * 
+     * @since   1.0.1
+     * @access  protected
+     * @var     string              $plugin_shortcode       The plugin shortcode to use in posts and widgets
+     */
+    protected $plugin_shortcode;
+
+    /**
+     * The Reddit json export url to fetch the images from
+     * 
+     * @since   1.0.1   
+     * @access  protected
+     * @var     string              $reddit_url             The reddit json export url to fetch the images from
+     */
+    protected $reddit_url;
 
     /**
      * The list of class dependencies to load
@@ -65,16 +82,28 @@
      * @since   1.0.1
      */
     public function __construct() {        
-        if ( defined( 'WP_RIOTD_PLUGIN_NAME' ) ) {
-            $this->plugin_name = WP_RIOTD_PLUGIN_NAME;
+        if ( defined( '\WP_RIOTD_PLUGIN_NAME' ) ) {
+            $this->plugin_name = \WP_RIOTD_PLUGIN_NAME;
         } else {
             $this->plugin_name = 'WP-Reddit-IOTD';
         }
 
-        if ( defined( 'WP_RIOTD_VERSION' ) ) {
-            $this->plugin_version = WP_RIOTD_VERSION;
+        if ( defined( '\WP_RIOTD_VERSION' ) ) {
+            $this->plugin_version = \WP_RIOTD_VERSION;
         } else {
             $this->plugin_version = '1.0.0';
+        }
+
+        if ( defined( '\WP_RIOTD_SHORTCODE' ) ) {
+            $this->plugin_shortcode = \WP_RIOTD_SHORTCODE;
+        } else {
+            $this->plugin_shortcode = 'reddit-iotd';
+        }
+
+        if ( defined( '\WP_RIOTD_REDDIT_URL' ) ) {            
+            $this->reddit_url = \WP_RIOTD_REDDIT_URL;
+        } else {                        
+            $this->reddit_url = 'https://www.reddit.com/r/%reddit_channel%.json';
         }
 
         // define the dependencies
@@ -88,7 +117,9 @@
                              // the class responsible for creating all settings definitions
                              'WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS' => 'admin/class-wp-riotd-admin-settings-definitions.php',
                              // the class responsible for defining all actions that occur in the public side of the site
-                             'WP_RIOTD_Public' => 'public/class-wp-riotd-public.php'
+                             'WP_RIOTD_Public' => 'public/class-wp-riotd-public.php',
+                             // the class used to actually scrape reddit and extract the image
+                             'WP_RIOTD_Scraper' => 'includes/class-wp-riotd-scraper.php',
                             );
 
         // load settings from db
@@ -183,7 +214,8 @@
 
             $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
             $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );    
-         
+            
+            add_shortcode( $this->plugin_shortcode, array($plugin_public, 'render_view') );
         }
     }
 

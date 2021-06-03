@@ -21,18 +21,28 @@
  * Text Domain:         wp-riotd
  */
 
- // check if this file is called within WP, if not abort
- if ( !defined( 'WPINC' ) ) {
-     die;
- }
+// check if this file is called within WP, if not abort
+if ( !defined( 'WPINC' ) ) {
+    die;
+}
 
- // Plugin version
- define ('WP_RIOTD_VERSION', '1.0.1' );
+// Plugin version
+define ('WP_RIOTD_VERSION', '1.0.1' );
 
- // Plugin name
- define ( 'WP_RIOTD_PLUGIN_NAME', 'WP-Reddit-IOTD' );
+// Plugin name
+define ( 'WP_RIOTD_PLUGIN_NAME', 'WP-Reddit-IOTD' );
 
+// Short code
+define ( 'WP_RIOTD_SHORTCODE', 'reddit-iotd' );
+
+// Reddit main url
+define ('WP_RIOTD_REDDIT_MAIN', 'httpw://www.reddit.com');
  
+// Reddit url to fecth data
+define ('WP_RIOTD_REDDIT_URL', 'https://www.reddit.com/r/%reddit_channel%.json');
+
+
+
  /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-plugin-name-activator.php

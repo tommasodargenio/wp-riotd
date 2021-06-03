@@ -49,7 +49,7 @@ class WP_RIOTD_Public {
 
 	}	
     /**
-	 * Register the stylesheets for the admin area.
+	 * Register the stylesheets for the public area.
 	 *
 	 * @since    1.0.1
 	 */
@@ -58,7 +58,7 @@ class WP_RIOTD_Public {
 	}
 
 	/**
-	 * Register the JavaScript for the admin area.
+	 * Register the JavaScript for the public area.
 	 *
 	 * @since    1.0.1
 	 */
@@ -66,5 +66,32 @@ class WP_RIOTD_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-riotd-public.js', array( 'jquery' ), $this->version, false );
 	}
 
+	/**
+	 * Render the final view to be output on the public site
+	 * 
+	 * @since	1.0.1
+	 * @return	string		$view		The html code that will be pasted in the public site where the plugin shortcut has been used
+	 */
+	public function render_view() {
+		$view = '';
+
+		$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-single.php";
+		
+		$scraper = new WP_RIOTD_Scraper("mapporn");
+		$scraped = 'nothing to see here!';
+		if ( $scraper->scrape() ) {
+			$scraped = $scraper->get_scraped_content();			
+		}
+
+		var_dump($scraped);
+
+		if ( file_exists( $view_template ) ) {
+			include_once $view_template;
+		} else {
+			return $view;
+		}
+
+		// return $view;
+	}
 
 }
