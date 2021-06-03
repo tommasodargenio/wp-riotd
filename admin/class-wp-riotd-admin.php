@@ -55,6 +55,13 @@ class WP_RIOTD_Admin {
 	protected $settings_definitions;
 
 	/**
+	 * Define the default tab to show when opening the setting page
+	 * @since	1.0.1
+	 * @access	protected
+	 * @var		string				$default_setting_tab				The default section associated with the tab to show, must be an existing section as defined in $settings_definitions
+	 */
+	protected $default_setting_tab;
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.1
@@ -71,6 +78,7 @@ class WP_RIOTD_Admin {
 			$this->settings_definitions = new WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS();			
 		}
 
+		$this->default_setting_tab = 'wp_riotd_section_welcome';
 	}	
     /**
 	 * Register the stylesheets for the admin area.
@@ -111,7 +119,12 @@ class WP_RIOTD_Admin {
 	 * @since	1.0.1
 	 * @access	private
 	 */
-	public function load_admin_page() {
+	public function load_admin_page() {		
+		// check user capabilities
+		if ( !current_user_can( 'manage_options' )) {
+			return;
+		}
+
 		include_once plugin_dir_path( __FILE__ )."partials/wp-riotd-admin-menu.php";
 	}
 
@@ -123,13 +136,13 @@ class WP_RIOTD_Admin {
 
 		// register a new section in the group
 		foreach($this->settings_definitions->get_settings_sections() as $section) {
-			add_settings_section( $section['uid'], $section['label'], array($this, 'section_renderer' ), 'wp_riotd' );			
+			add_settings_section( $section['uid'], $section['label'], array($this, 'section_renderer' ), $section['uid'] );			
 		}
 		
 		// register fields
 		foreach($this->settings_definitions->get_settings_definitions() as $field) {
-			add_settings_field($field['uid'], $field['label'], array($this, 'fields_renderer'), 'wp_riotd', $field['section'], $field );
-			register_setting('wp_riotd', $field['uid']);
+			add_settings_field($field['uid'], $field['label'], array($this, 'fields_renderer'), $field['section'], $field['section'], $field );
+			register_setting($field['section'], $field['uid']);
 		}
 	}
 
@@ -149,9 +162,11 @@ class WP_RIOTD_Admin {
 	 */
 	public function fields_renderer( $args ) {
 		$value = get_option( $args['uid'] ); // Get the current value, if there is one
-
 		 if( $value === null ) { // If no value exists
 		 	$value = $args['default']; // Set to our default
+		 }
+		 if ($value === false && $args['type'] != 'bool') {
+			 $value = $args['default'];
 		 }
 		 
 		// Check which type of field we want
@@ -167,7 +182,7 @@ class WP_RIOTD_Admin {
 			case 'multiselect':
 				if ( !empty( $args['options'] ) && is_array( $args['options']) ) {
 					$attributes = '';
-					$options_markup = '';
+					$options_markup = '';					
 					foreach( $args['options'] as $key => $label ) {
 						$options_markup .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', $key, selected( $value[array_search($key, $value, false)], $key, false ), $label );
 					}
@@ -192,5 +207,20 @@ class WP_RIOTD_Admin {
 			printf( '<p class="description">%s</p>', $supplimental ); // Show it
 		}		
 	}
-
+	/**
+	 * Render the various setting tabs
+	 * @since	1.0.1 
+	 */
+	public function do_tabs($active_tab) {		
+		foreach($this->settings_definitions->get_settings_sections() as $section) {
+			include plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-section-tabs.php';
+		}
+	}
+	/**
+	 * Render the welcome tab only
+	 * @since	1.0.1
+	 */
+	public function welcome_tab() {
+		include_once plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-welcome.php';
+	}
 }

@@ -41,6 +41,10 @@
 	public function __construct() {
         $this->settings_sections = array(
             array(
+                'uid'   => 'wp_riotd_section_welcome',
+                'label' => __('Welcome','wp_riotd')
+            ),
+            array(
                 'uid'   => 'wp_riotd_section_general',
                 'label' => __('General Settings', 'wp_riotd' )
             ),
@@ -48,9 +52,25 @@
                 'uid'   => 'wp_riotd_section_reddit_channel',
                 'label' => __('Configure Reddit Channel', 'wp_riotd' )
             ),
+            array(
+                'uid'   => 'wp_riotd_section_image_preferences',
+                'label' => __('Image Preferences', 'wp_riotd') 
+            ),
         );
 
-        $this->settings_definitions = array (
+        $this->settings_definitions = array (            
+            array(
+                'uid' => 'wp_riotd_aspect_ratio',
+                'label' => __( 'Image aspect', 'wp_riotd' ),
+                'section' => 'wp_riotd_section_image_preferences',
+                'type' => 'select',
+                'options' => array( 'landscape' => __('Landscape', 'wp_riotd'), 'portrait'=> __('Portrait', 'wp_riotd') ),
+                'placeholder' => '',
+                'helper' => '',
+                'supplemental' => __('Select the preferred aspect ratio when selecting the image', 'wp_riotd'),
+                'default' => array('landscape')
+            ),
+
             array(
                 'uid' => 'wp_riotd_channel',
                 'label' => __( 'Reddit Channel', 'wp_riotd' ),
@@ -61,6 +81,17 @@
                 'helper' => '',
                 'supplemental' => __('Set a valid subreddit channel you want to download images from', 'wp_riotd'),
                 'default' => 'images'
+            ),
+            array(
+                'uid' => 'wp_riotd_download_limit',
+                'label' => __( 'Download limits', 'wp_riotd' ),
+                'section' => 'wp_riotd_section_reddit_channel',
+                'type' => 'text',
+                'options' => false,
+                'placeholder' => '50',
+                'helper' => '',
+                'supplemental' => __('Set a download limit, lower numbers results in less images but faster processing', 'wp_riotd'),
+                'default' => '50'
             ),
             array(
                 'uid' => 'wp_riotd_nsfw_switch',
@@ -74,31 +105,49 @@
                 'default' => 1
             ),
             array(
+                'uid' => 'wp_riotd_author_switch',
+                'label' => __( 'Author\'s name', 'wp_riotd' ),
+                'section' => 'wp_riotd_section_general',
+                'type' => 'bool',
+                'options' => false,
+                'placeholder' => '',
+                'helper' => '',
+                'supplemental' => __('Display the author\'s name in the caption', 'wp_riotd'),
+                'default' => 1
+            ),
+            array(
+                'uid' => 'wp_riotd_title_switch',
+                'label' => __( 'Image\'s title', 'wp_riotd' ),
+                'section' => 'wp_riotd_section_general',
+                'type' => 'bool',
+                'options' => false,
+                'placeholder' => '',
+                'helper' => '',
+                'supplemental' => __('Display the image\'s title', 'wp_riotd'),
+                'default' => 1
+            ),
+            array(
                 'uid' => 'wp_riotd_image_selection',
                 'label' => __( 'Image selection option', 'wp_riotd' ),
                 'section' => 'wp_riotd_section_general',
                 'type' => 'select',
-                'options' => array('random_rotation' => 'Always random', 'daily_rotation' => 'Same daily' ),
+                'options' => array('random_rotation' => __('Always random','wp_riotd'), 'daily_rotation' => __('Same daily', 'wp_riotd') ),
                 'placeholder' => '',
                 'helper' => '',
                 'supplemental' => __('Select if you want to pick a random image every time the page is loaded or keep the same image for the day', 'wp_riotd'),
-                'default' => 'random_rotation'
+                'default' => array('random_rotation')
             ),
             array(
                 'uid' => 'wp_riotd_image_scraping',
                 'label' => __( 'Image scraping mode', 'wp_riotd' ),
                 'section' => 'wp_riotd_section_general',
                 'type' => 'select',
-                'options' => array('random_update' => 'Random', 'last_update' => 'Last posted' ),
+                'options' => array('random_update' => __('Random','wp_riotd'), 'last_update' => __('Last posted','wp_riotd') ),
                 'placeholder' => '',
                 'helper' => '',
                 'supplemental' => __('Indicate if you want to pick a random image, or the last one uploaded', 'wp_riotd'),
-                'default' => 'random_update'
-            ),
-
-
-
-            
+                'default' => array('random_update')
+            ),            
         );
     }
 
