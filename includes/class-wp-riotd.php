@@ -199,7 +199,11 @@
         if ( $this->validate_loader() ) {
             $plugin_public = new WP_RIOTD_Public( $this->get_plugin_name(), $this->get_version() );
 
-            $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+            // load the css if enabled
+            if ( WP_RIOTD_Settings::get("wp_riotd_css_switch") ) {
+                $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+            }
+            
             $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );    
             
             add_shortcode( $this->plugin_shortcode, array($plugin_public, 'render_view') );
