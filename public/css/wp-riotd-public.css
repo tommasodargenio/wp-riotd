@@ -3,6 +3,55 @@
     display: block;
     width: 100%;
     margin-bottom: 1.5em;
+    border: thin silver solid;
+    text-align: center;
+}
+
+#reddit-iotd-title-header {
+    background-color: antiquewhite;
+}
+
+#reddit-iotd-title {
+    font-size: larger;
+    font-weight: bolder;
+}
+
+#reddit-iotd-subtitle { 
+    font-size: medium;
+    font-weight: lighter;
+    font-style: italic;
+}
+#reddit-iotd-full-size {
+    display: none;
+    position: fixed; 
+    top: 50%;
+    left: 50%;    
+    transform: translate(-50%, -50%);
+    border: 3px solid #f1f1f1;
+    width: 90vw;
+    height: 90vh;
+    padding: 1%;
+    margin-right: -50%; 
+    
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+
+    /* Add the blur and shadow effect */
+    backdrop-filter: blur(8px);
+    /* Safari compatibility line */
+    -webkit-backdrop-filter:  blur(8px);
+    /* Shadow */
+    box-shadow: 0 0 24px 10px rgba(0,0,0,.25);
+}
+
+#reddit-iotd-close-button, #reddit-iotd-link-button{
+    text-align: right;       
+    color: #f1f1f1;    
+    top: 0%;
+    right: 0%;
+}
+#reddit-iotd-close-button span:hover, #reddit-iotd-link-button span:hover{
+    color: #000;    
 }
 
 #ig-main {
@@ -11,14 +60,23 @@
  
 #ig-iotd {
     margin: 0.5em;
-} 
+    padding: 0.5em;
+    width: 300px;    
+}
 
-#ig-iotd:hover {
-    outline: 2px solid #f00 !important;
+#ig-iotd-full {
+    width: auto;
+    top: 50%;
+    left: 50%;    
+    transform: translate(-50%, -50%);
+    position: absolute;    
 }
 
 #ig-title {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     line-height: 1.5em;
+    font-style: italic;
+    font-size: smaller;
 }
+

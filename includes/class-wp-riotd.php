@@ -120,6 +120,8 @@
                              'WP_RIOTD_Public' => 'public/class-wp-riotd-public.php',
                              // the class used to actually scrape reddit and extract the image
                              'WP_RIOTD_Scraper' => 'includes/class-wp-riotd-scraper.php',
+                             // the class used to get settings from the db
+                             'WP_RIOTD_Settings' => 'includes/class-wp-riotd-settings.php'
                             );
 
         // load settings from db
@@ -145,20 +147,6 @@
      * @access  private
      */
     private function load_dependencies() {
-        /*
-        // The class responsible to orchestrate the actions and filters of the core plugin
-        require_once plugin_dir_path( dirname( __FILE__ ) ).'includes/class-wp-riotd-loader.php';
-        
-        // the class responsible for defining internationalisation functionality
-        require_once plugin_dir_path( dirname( __FILE__ ) ).'includes/class-wp-riotd-i18n.php';
-
-        // the class responsible for defining all actions that occur in the admin area
-        require_once plugin_dir_path( dirname( __FILE__ ) ).'admin/class-wp-riotd-admin.php';
-        
-        // the class responsible for defining all actions that occur in the public side of the site
-        require_once plugin_dir_path( dirname( __FILE__) ).'public/class-wp-riotd-public.php';
-        */
-
         if ( count($this->dependencies) > 0 ) {
             foreach ($this->dependencies as $class => $path) {
                 $class_path = plugin_dir_path( dirname( __FILE__ ) ).$path;
@@ -167,7 +155,6 @@
                     if ( !class_exists($class, false) ) {
                         trigger_error(__("Unable to load required dependency", "wp-riotd").": $class", E_USER_ERROR);
                     }
-
                 } else {
                     trigger_error(__("Unable to load required dependency", "wp-riotd").": $class", E_USER_ERROR);
                 }

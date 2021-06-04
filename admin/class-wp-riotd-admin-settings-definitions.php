@@ -70,6 +70,28 @@
                 'supplemental' => __('Select the preferred aspect ratio when selecting the image', 'wp_riotd'),
                 'default' => array('landscape')
             ),
+            array(
+                'uid' => 'wp_riotd_image_max_width',
+                'label' => __( 'Max image width', 'wp_riotd' ),
+                'section' => 'wp_riotd_section_image_preferences',
+                'type' => 'text',
+                'options' => '',
+                'placeholder' => '',
+                'helper' => '',
+                'supplemental' => __('Indicate the max width of the image', 'wp_riotd'),
+                'default' => '640'
+            ),       
+            array(
+                'uid' => 'wp_riotd_image_max_height',
+                'label' => __( 'Max image height', 'wp_riotd' ),
+                'section' => 'wp_riotd_section_image_preferences',
+                'type' => 'text',
+                'options' => '',
+                'placeholder' => '',
+                'helper' => '',
+                'supplemental' => __('Indicate the max height of the image', 'wp_riotd'),
+                'default' => '360'
+            ),                     
 
             array(
                 'uid' => 'wp_riotd_channel',
@@ -105,8 +127,19 @@
                 'default' => 1
             ),
             array(
+                'uid' => 'wp_riotd_zoom_switch',
+                'label' => __( 'Allow Zoom on mouse over', 'wp_riotd' ),
+                'section' => 'wp_riotd_section_general',
+                'type' => 'bool',
+                'options' => false,
+                'placeholder' => '',
+                'helper' => '',
+                'supplemental' => __('If enabled, when the mouse is over the image it will overlay a window with the image in a bigger resolution.', 'wp_riotd'),
+                'default' => 1
+            ),            
+            array(
                 'uid' => 'wp_riotd_author_switch',
-                'label' => __( 'Author\'s name', 'wp_riotd' ),
+                'label' => __( 'Display author\'s name', 'wp_riotd' ),
                 'section' => 'wp_riotd_section_general',
                 'type' => 'bool',
                 'options' => false,
@@ -116,8 +149,19 @@
                 'default' => 1
             ),
             array(
+                'uid' => 'wp_riotd_channel_switch',
+                'label' => __( 'Display channel\'s name', 'wp_riotd' ),
+                'section' => 'wp_riotd_section_general',
+                'type' => 'bool',
+                'options' => false,
+                'placeholder' => '',
+                'helper' => '',
+                'supplemental' => __('Display the subreddit channel\'s name in the header title?', 'wp_riotd'),
+                'default' => 1
+            ),            
+            array(
                 'uid' => 'wp_riotd_title_switch',
-                'label' => __( 'Image\'s title', 'wp_riotd' ),
+                'label' => __( 'Display image\'s title', 'wp_riotd' ),
                 'section' => 'wp_riotd_section_general',
                 'type' => 'bool',
                 'options' => false,
@@ -127,25 +171,25 @@
                 'default' => 1
             ),
             array(
-                'uid' => 'wp_riotd_image_selection',
-                'label' => __( 'Image selection option', 'wp_riotd' ),
+                'uid' => 'wp_riotd_link_switch',
+                'label' => __( 'Add link to reddit post?', 'wp_riotd' ),
                 'section' => 'wp_riotd_section_general',
-                'type' => 'select',
-                'options' => array('random_rotation' => __('Always random','wp_riotd'), 'daily_rotation' => __('Same daily', 'wp_riotd') ),
+                'type' => 'bool',
+                'options' => false,
                 'placeholder' => '',
                 'helper' => '',
-                'supplemental' => __('Select if you want to pick a random image every time the page is loaded or keep the same image for the day', 'wp_riotd'),
-                'default' => array('random_rotation')
-            ),
+                'supplemental' => __('If enabled, the image will have a link to the related reddit post, this will open in a new tab', 'wp_riotd'),
+                'default' => 1
+            ),            
             array(
                 'uid' => 'wp_riotd_image_scraping',
                 'label' => __( 'Image scraping mode', 'wp_riotd' ),
                 'section' => 'wp_riotd_section_general',
                 'type' => 'select',
-                'options' => array('random_update' => __('Random','wp_riotd'), 'last_update' => __('Last posted','wp_riotd') ),
+                'options' => array('daily_update'=>__('Same daily', 'wp_riotd'), 'random_update' => __('Random','wp_riotd'), 'last_update' => __('Last posted','wp_riotd') ),
                 'placeholder' => '',
                 'helper' => '',
-                'supplemental' => __('Indicate if you want to pick a random image, or the last one uploaded', 'wp_riotd'),
+                'supplemental' => __('Indicate if you want to change image every load (random), or use the same daily, or always use the last uploaded (this may change throughout the day)', 'wp_riotd'),
                 'default' => array('random_update')
             ),            
         );

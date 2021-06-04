@@ -34,6 +34,21 @@ class WP_RIOTD_Public {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
+	/**
+	 * Image scraped from reddit
+	 * @since	1.0.1	
+	 * @access	protected
+	 * @var    array[thumbnail_url: string, full_res_url: string, width:int, height: int, title: string, post_url: string, author: string, nsfw: bool ]    $scraped_content    array containing the images scraped 
+	 */
+	protected $scraped;
+
+	/**
+	 * Reddit channel being scraped
+	 * @since 	1.0.1
+	 * @access	proteced
+	 * @var		string	$reddit_channel		the reddit channel being scraped
+	 */
+	protected $reddit_channel;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -46,7 +61,15 @@ class WP_RIOTD_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		
+		if ( !class_exists( 'WP_RIOTD_Scraper', false ) ) {
+			trigger_error(__("Can't find the scraper class", "wp-riotd"), E_USER_ERROR);    
+		}
 
+		$scraper = new WP_RIOTD_Scraper();
+		$scraper->scrape();
+		$this->scraped = $scraper->get_image();
+		$this->reddit_channel = $scraper->get_reddit_channel();
 	}	
     /**
 	 * Register the stylesheets for the public area.
@@ -65,7 +88,6 @@ class WP_RIOTD_Public {
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-riotd-public.js', array( 'jquery' ), $this->version, false );
 	}
-
 	/**
 	 * Render the final view to be output on the public site
 	 * 
@@ -73,17 +95,44 @@ class WP_RIOTD_Public {
 	 * @return	string		$view		The html code that will be pasted in the public site where the plugin shortcut has been used
 	 */
 	public function render_view() {
-		$view = '';
-
-		$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-single.php";
+		$view = 'Template not available :(';
+		$scraped = 'No images availabe :(';
+		$reddit_channel = "";
+		$reddit_channel_url = "";
+		$author = "";
+		$title = "";
+		$post_url = "";
+		$full_res_url = "";
+		$overlay = WP_RIOTD_Settings::get('wp_riotd_zoom_switch');
+			
 		
-		$scraper = new WP_RIOTD_Scraper("mapporn");
-		$scraped = 'nothing to see here!';
-		if ( $scraper->scrape() ) {
-			$scraped = $scraper->get_scraped_content();			
-		}
 
-		var_dump($scraped);
+
+		if ( sizeof($this->scraped) <= 0 ) {			
+			$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-empty.php";
+		} else {			
+			
+			$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-single.php";
+			
+			if ( WP_RIOTD_Settings::get("wp_riotd_channel_switch") ) {
+				$reddit_channel = $this->reddit_channel;
+				$reddit_channel_url = \WP_RIOTD_REDDIT_MAIN.'/r/'.$reddit_channel;	
+			} 
+		
+			if ( WP_RIOTD_Settings::get("wp_riotd_author_switch") ) {
+				$author = $this->scraped["author"];
+			} 
+
+			if ( WP_RIOTD_Settings::get("wp_riotd_title_switch") ) {
+				$title = $this->scraped["title"];
+			}
+
+			if ( WP_RIOTD_Settings::get("wp_riotd_link_switch") ) {
+				$post_url = $this->scraped["post_url"];
+			}
+
+			$full_res_url = $this->scraped["full_res_url"];
+		}
 
 		if ( file_exists( $view_template ) ) {
 			include_once $view_template;
@@ -92,6 +141,15 @@ class WP_RIOTD_Public {
 		}
 
 		// return $view;
+	}
+
+	/**
+	 *  Release the image URL if any found
+	 * 	@since	1.0.1
+	 * 	@return	string	$url 	the url of the image
+	 */
+	public function get_image_url() {
+
 	}
 
 }

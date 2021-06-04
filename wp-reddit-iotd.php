@@ -36,10 +36,10 @@ define ( 'WP_RIOTD_PLUGIN_NAME', 'WP-Reddit-IOTD' );
 define ( 'WP_RIOTD_SHORTCODE', 'reddit-iotd' );
 
 // Reddit main url
-define ('WP_RIOTD_REDDIT_MAIN', 'httpw://www.reddit.com');
+define ('WP_RIOTD_REDDIT_MAIN', 'https://www.reddit.com');
  
 // Reddit url to fecth data
-define ('WP_RIOTD_REDDIT_URL', 'https://www.reddit.com/r/%reddit_channel%.json');
+define ('WP_RIOTD_REDDIT_URL', 'https://www.reddit.com/r/%reddit_channel%/new.json');
 
 
 
