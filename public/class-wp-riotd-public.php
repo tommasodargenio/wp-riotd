@@ -45,7 +45,7 @@ class WP_RIOTD_Public {
 	/**
 	 * Reddit channel being scraped
 	 * @since 	1.0.1
-	 * @access	proteced
+	 * @access	protected
 	 * @var		string	$reddit_channel		the reddit channel being scraped
 	 */
 	protected $reddit_channel;
@@ -104,13 +104,13 @@ class WP_RIOTD_Public {
 		$post_url = "";
 		$full_res_url = "";
 		$overlay = WP_RIOTD_Settings::get('wp_riotd_zoom_switch');
-			
-		
 
-
+		// If no images were found, load the empty template
 		if ( sizeof($this->scraped) <= 0 ) {			
 			$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-empty.php";
 		} else {			
+
+			// check which layout the user prefer, if not set we will use the full one
 			$layout = WP_RIOTD_Settings::get("wp_riotd_layout")[0];			
 			
 			if ($layout == "full") {
@@ -119,38 +119,37 @@ class WP_RIOTD_Public {
 				$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-minimal.php";
 			}
 			
-			
+			// check if the user wants the reddit channel displayed
 			if ( WP_RIOTD_Settings::get("wp_riotd_channel_switch") ) {
 				$reddit_channel = $this->reddit_channel;
 				$reddit_channel_url = \WP_RIOTD_REDDIT_MAIN.'/r/'.$reddit_channel;	
 			} 
-		
+			// check if the user wants the post's author displayed
 			if ( WP_RIOTD_Settings::get("wp_riotd_author_switch") ) {
 				$author = $this->scraped["author"];
 			} 
-
+			// check if the user wants the post's title displayed
 			if ( WP_RIOTD_Settings::get("wp_riotd_title_switch") ) {
 				$title = $this->scraped["title"];
 			}
-
+			// check if the user wants a link to the post on the image
 			if ( WP_RIOTD_Settings::get("wp_riotd_link_switch") ) {
 				$post_url = $this->scraped["post_url"];
 			}
-
+			// setting the full resolution image URL
 			$full_res_url = $this->scraped["full_res_url"];
 		}
 
+		// output the template
 		if ( file_exists( $view_template ) ) {
 			include_once $view_template;
 		} else {
 			return $view;
 		}
-
-		// return $view;
 	}
 
 	/**
-	 *  Return any key from the scraped image if any
+	 *  Return any key from the scraped image if any, this is used with the shortcode reddit-iotd-data
 	 * 	@since	1.0.1
 	 *  @var	string	$attr	contains the key requested
 	 * 	@return	string	$value 	the value from the scraped image dataset corresponding to the requested key if it exists, otherwise an empty string
