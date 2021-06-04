@@ -203,6 +203,7 @@
             $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );    
             
             add_shortcode( $this->plugin_shortcode, array($plugin_public, 'render_view') );
+            add_shortcode( "reddit-iotd-data", array($plugin_public, 'get_image_info')  );
         }
     }
 

@@ -144,12 +144,22 @@ class WP_RIOTD_Public {
 	}
 
 	/**
-	 *  Release the image URL if any found
+	 *  Return any key from the scraped image if any
 	 * 	@since	1.0.1
-	 * 	@return	string	$url 	the url of the image
+	 *  @var	string	$attr	contains the key requested
+	 * 	@return	string	$value 	the value from the scraped image dataset corresponding to the requested key if it exists, otherwise an empty string
 	 */
-	public function get_image_url() {
-
+	public function get_image_info($attr) {
+		if (array_key_exists('key', $attr)) {
+			$key = $attr["key"];
+			if ( sizeof($this->scraped) > 0 && array_key_exists($key, $this->scraped) ) {		
+				return $this->scraped[$key];
+			} else {
+				return "";
+			}	
+		} else {
+			return "";
+		}
 	}
 
 }
