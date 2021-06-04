@@ -191,7 +191,18 @@
                 'helper' => '',
                 'supplemental' => __('Indicate if you want to change image every load (random), or use the same daily, or always use the last uploaded (this may change throughout the day)', 'wp_riotd'),
                 'default' => array('random_update')
-            ),            
+            ),    
+            array(
+                'uid' => 'wp_riotd_layout',
+                'label' => __( 'Layout mode', 'wp_riotd' ),
+                'section' => 'wp_riotd_section_general',
+                'type' => 'select',
+                'options' => array('minimal'=>__('Minimalistic', 'wp_riotd'), 'full' => __('Full','wp_riotd') ),
+                'placeholder' => '',
+                'helper' => '',
+                'supplemental' => __('Select which layout you prefer. Minimialistic will only show the image, full will show all the available information', 'wp_riotd'),
+                'default' => array('full')
+            ),                      
         );
     }
 

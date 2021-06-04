@@ -111,8 +111,14 @@ class WP_RIOTD_Public {
 		if ( sizeof($this->scraped) <= 0 ) {			
 			$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-empty.php";
 		} else {			
+			$layout = WP_RIOTD_Settings::get("wp_riotd_layout")[0];			
 			
-			$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-single.php";
+			if ($layout == "full") {
+				$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-single.php";
+			} else {
+				$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-minimal.php";
+			}
+			
 			
 			if ( WP_RIOTD_Settings::get("wp_riotd_channel_switch") ) {
 				$reddit_channel = $this->reddit_channel;
