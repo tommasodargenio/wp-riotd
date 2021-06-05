@@ -19,6 +19,8 @@
         <?php 
             if ( $active_tab == $this->default_setting_tab ) {
                 $this->welcome_tab();    
+            } elseif ( $active_tab == 'wp_riotd_section_usage' ) {
+                $this->usage_tab();
             } else {
                 settings_fields( $active_tab );
                 do_settings_sections( $active_tab );

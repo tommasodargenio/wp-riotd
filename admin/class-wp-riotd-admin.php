@@ -223,4 +223,12 @@ class WP_RIOTD_Admin {
 	public function welcome_tab() {
 		include_once plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-welcome.php';
 	}
+	/**
+	 * Render the usage tab only
+	 * @since	1.0.1
+	 */
+	public function usage_tab() {
+		$shortcode = \WP_RIOTD_SHORTCODE;
+		include_once plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-usage.php';
+	}
 }
