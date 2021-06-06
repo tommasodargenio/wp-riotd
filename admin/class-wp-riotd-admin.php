@@ -62,6 +62,14 @@ class WP_RIOTD_Admin {
 	 */
 	protected $default_setting_tab;
 	/**
+	 * Define the menu slug to use in the admin page setup
+	 * @since	1.0.1
+	 * @access	protected
+	 * @var		string				$menu_slug							The slug to identify the admin page
+	 */
+	protected $menu_slug;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.1
@@ -73,6 +81,8 @@ class WP_RIOTD_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		$this->settings = $settings;
+
+		$this->menu_slug = strtolower($this->plugin_name);
 
 		if ( class_exists('WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS', false) ) {
 			$this->settings_definitions = new WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS();			
@@ -104,15 +114,44 @@ class WP_RIOTD_Admin {
 	 * @since	1.0.1
 	 */
 	public function create_admin_menu() {
+	
 		add_menu_page(
 			'Reddit Image Of The Day - Settings',
 			'Reddit-IOTD',
 			'manage_options',
-			'wp-reddit-iotd',
+			$this->menu_slug,
 			array($this, 'load_admin_page')
 		);
 	}
-	
+	/**
+	 * Create a link to access a specific tab within the admin section, if the requested tab exists in the defined sections
+	 * @since	1.0.1
+	 * @param	string		$tab_include	the tab to search for (this can be the full tab name or a portion of it)
+	 * @param	bool		$echo			if true it will echo the url otherwise not
+	 * @return	string		$tab_url		the admin url 
+	 */
+	public function get_tab_url($tab_include, $echo = false) {
+		$tab_name = "";
+		$tab_url = "";		
+
+		foreach($this->settings_definitions->get_settings_sections() as $section) {
+			if ( stristr( $section['uid'],$tab_include ) ) {
+				$tab_name = $section['uid'];
+				break;
+			}
+		}	
+		
+		if ( $tab_name != "" ) {
+			$tab_url = menu_page_url($this->menu_slug , false)."&tab=".$tab_name;
+		}		
+
+		if ($echo) {
+			echo esc_url($tab_url);
+		}
+
+		return esc_url($tab_url);
+	}
+
 	/**
 	 * Used by create_admin_menu as callback to laod the view template
 	 * 
@@ -213,8 +252,7 @@ class WP_RIOTD_Admin {
 	 */
 	public function do_tabs($active_tab) {		
 		foreach($this->settings_definitions->get_settings_sections() as $section) {
-			include plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-section-tabs.php';
-			include_once plugin_dir_path( __FILE__ ).'partials/wp-riotd-admin-social-sharing.php';
+			include plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-section-tabs.php';		
 		}
 	}
 	/**
@@ -232,7 +270,6 @@ class WP_RIOTD_Admin {
 	public function usage_tab() {
 		$shortcode = \WP_RIOTD_SHORTCODE;
 		$shortcode_data = \WP_RIOTD_SHORTCODE_DATA;
-		include_once plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-usage.php';
-		include_once plugin_dir_path( __FILE__ ).'partials/wp-riotd-admin-social-sharing.php';
+		include_once plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-usage.php';		
 	}
 }
