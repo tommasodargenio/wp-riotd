@@ -7,5 +7,34 @@
     border: 1px solid #ccc;
     background: rgba(255,255,255,0.5);
     border-radius: 5px;  
+}
 
+#reddit_iotd_admin_table {
+    display: table;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: #999;
+    border-collapse: collapse;
+}
+
+#reddit_iotd_admin_table th {
+    background-color: rgba(0,0,0,0.1);
+}
+#reddit_iotd_admin_table th, #reddit_iotd_admin_table td {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+} 
+
+#social_sharing_box {
+    position: absolute;
+    bottom: -8%;    
+    width: 100%;
+}
+
+hr {
+    width: 100%;
+    border-top: 1px solid #dcdcde;
+    border-bottom: 1px solid #f6f7f7;
 }

@@ -32,8 +32,11 @@ define ('WP_RIOTD_VERSION', '1.0.1' );
 // Plugin name
 define ( 'WP_RIOTD_PLUGIN_NAME', 'WP-Reddit-IOTD' );
 
-// Short code
+// Short code for full UI
 define ( 'WP_RIOTD_SHORTCODE', 'reddit-iotd' );
+
+// Short code for data only
+define ( 'WP_RIOTD_SHORTCODE_DATA', 'reddit-iotd-data' );
 
 // Reddit main url
 define ('WP_RIOTD_REDDIT_MAIN', 'https://www.reddit.com');

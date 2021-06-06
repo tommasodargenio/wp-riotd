@@ -73,7 +73,13 @@
      * @var     string[]            $settings               Associative array listing all settings (setting->value)
      */
     protected $settings;
-
+    /**
+     *  The data shortcode
+     *  @since  1.0.1   
+     *  @access protected
+     *  @var    string              $plugin_shortcode_data  The plugin shortcode for data only extraction
+     */
+    protected $plugin_shortcode_data;
     /**
      * Class Constructor
      * 
@@ -104,6 +110,12 @@
             $this->reddit_url = \WP_RIOTD_REDDIT_URL;
         } else {                        
             $this->reddit_url = 'https://www.reddit.com/r/%reddit_channel%.json';
+        }
+
+        if ( defined ('\WP_RIOTD_SHORTCODE_DATA') ) {
+            $this->plugin_shortcode_data = \WP_RIOTD_SHORTCODE_DATA;        
+        } else {
+            $this->plugin_shortcode_data = 'reddit-iotd-data';
         }
 
         // define the dependencies
@@ -207,7 +219,7 @@
             $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );    
             
             add_shortcode( $this->plugin_shortcode, array($plugin_public, 'render_view') );
-            add_shortcode( "reddit-iotd-data", array($plugin_public, 'get_image_info')  );
+            add_shortcode( $this->plugin_shortcode_data, array($plugin_public, 'get_image_info')  );
         }
     }
 

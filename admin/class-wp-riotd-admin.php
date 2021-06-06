@@ -214,6 +214,7 @@ class WP_RIOTD_Admin {
 	public function do_tabs($active_tab) {		
 		foreach($this->settings_definitions->get_settings_sections() as $section) {
 			include plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-section-tabs.php';
+			include_once plugin_dir_path( __FILE__ ).'partials/wp-riotd-admin-social-sharing.php';
 		}
 	}
 	/**
@@ -222,6 +223,7 @@ class WP_RIOTD_Admin {
 	 */
 	public function welcome_tab() {
 		include_once plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-welcome.php';
+		include_once plugin_dir_path( __FILE__ ).'partials/wp-riotd-admin-social-sharing.php';
 	}
 	/**
 	 * Render the usage tab only
@@ -229,6 +231,8 @@ class WP_RIOTD_Admin {
 	 */
 	public function usage_tab() {
 		$shortcode = \WP_RIOTD_SHORTCODE;
+		$shortcode_data = \WP_RIOTD_SHORTCODE_DATA;
 		include_once plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-usage.php';
+		include_once plugin_dir_path( __FILE__ ).'partials/wp-riotd-admin-social-sharing.php';
 	}
 }
