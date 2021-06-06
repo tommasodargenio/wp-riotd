@@ -117,7 +117,7 @@ class WP_RIOTD_Admin {
 	
 		add_menu_page(
 			'Reddit Image Of The Day - Settings',
-			'Reddit-IOTD',
+			'Reddit IOTD',
 			'manage_options',
 			$this->menu_slug,
 			array($this, 'load_admin_page')
