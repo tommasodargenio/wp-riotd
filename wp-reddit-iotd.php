@@ -27,7 +27,7 @@ if ( !defined( 'WPINC' ) ) {
 }
 
 // Plugin version
-define ('WP_RIOTD_VERSION', '1.0.1' );
+define ( 'WP_RIOTD_VERSION', '1.0.1' );
 
 // Plugin name
 define ( 'WP_RIOTD_PLUGIN_NAME', 'WP-Reddit-IOTD' );
@@ -39,12 +39,13 @@ define ( 'WP_RIOTD_SHORTCODE', 'reddit-iotd' );
 define ( 'WP_RIOTD_SHORTCODE_DATA', 'reddit-iotd-data' );
 
 // Reddit main url
-define ('WP_RIOTD_REDDIT_MAIN', 'https://www.reddit.com');
+define ('WP_RIOTD_REDDIT_MAIN', 'https://www.reddit.com' );
  
 // Reddit url to fecth data
-define ('WP_RIOTD_REDDIT_URL', 'https://www.reddit.com/r/%reddit_channel%/new.json');
+define ( 'WP_RIOTD_REDDIT_URL', 'https://www.reddit.com/r/%reddit_channel%/new.json' );
 
-
+// Github Repository link
+define ( 'WP_RIOTD_GITHUB', 'https://github.com/tommasodargenio/wp-reddit-iotd' );
 
  /**
  * The code that runs during plugin activation.

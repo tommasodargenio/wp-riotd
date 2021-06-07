@@ -272,4 +272,19 @@ class WP_RIOTD_Admin {
 		$shortcode_data = \WP_RIOTD_SHORTCODE_DATA;
 		include_once plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-usage.php';		
 	}
+	/**
+	 * Return the Github repository link
+	 * @since	1.0.1
+	 * @param	bool	$echo				True will echo the link to the screen
+	 * @return	string	WP_RIOTD_GITHUB		The value defined in the constant WP_RIOTD_GITHUB
+	 */
+	public function get_github_link($echo = false) {
+		if ( defined('WP_RIOTD_GITHUB') ) {
+			if ($echo) {
+				echo \WP_RIOTD_GITHUB;
+			}
+
+			return \WP_RIOTD_GITHUB;
+		}
+	}
 }
