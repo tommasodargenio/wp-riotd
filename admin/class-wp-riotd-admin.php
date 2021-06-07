@@ -116,12 +116,37 @@ class WP_RIOTD_Admin {
 	public function create_admin_menu() {
 	
 		add_menu_page(
-			'Reddit Image Of The Day - Settings',
-			'Reddit IOTD',
+			__('Reddit IOTD', 'wp-riotd'),
+			__('Reddit IOTD', 'wp-riotd'),
 			'manage_options',
 			$this->menu_slug,
 			array($this, 'load_admin_page')
 		);
+		add_submenu_page(
+			$this->menu_slug,
+			__('Reddit IOTD - Settings', 'wp-riotd'),
+			__('Settings', 'wp-riotd'),
+			'manage_options',
+			$this->menu_slug,
+			array($this, 'load_admin_page')
+		);
+		add_submenu_page(
+			$this->menu_slug,
+			__('Reddit IOTD - Usage instructions', 'wp-riotd'),
+			__('How To Use', 'wp-riotd'),
+			'manage_options',
+			$this->menu_slug.'-usage',
+			array($this, 'load_usage_page')
+		);
+		add_submenu_page(
+			$this->menu_slug,
+			__('Reddit IOTD - About Us', 'wp-riotd'),
+			__('About Us', 'wp-riotd'),
+			'manage_options',
+			$this->menu_slug.'-aboutus',
+			array($this, 'load_aboutus_page')
+		);
+
 	}
 	/**
 	 * Create a link to access a specific tab within the admin section, if the requested tab exists in the defined sections
@@ -264,13 +289,20 @@ class WP_RIOTD_Admin {
 		include_once plugin_dir_path( __FILE__ ).'partials/wp-riotd-admin-social-sharing.php';
 	}
 	/**
-	 * Render the usage tab only
+	 * Render the usage page
 	 * @since	1.0.1
 	 */
-	public function usage_tab() {
+	public function load_usage_page() {
 		$shortcode = \WP_RIOTD_SHORTCODE;
 		$shortcode_data = \WP_RIOTD_SHORTCODE_DATA;
 		include_once plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-usage.php';		
+	}
+	/**
+	 * Render the about us page
+	 * @since	1.0.1
+	 */
+	public function load_aboutus_page() {
+		include_once plugin_dir_path( __FILE__ ).'partials/wp-riotd-admin-aboutus.php';		
 	}
 	/**
 	 * Return the Github repository link

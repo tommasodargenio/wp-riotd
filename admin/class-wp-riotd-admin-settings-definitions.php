@@ -60,10 +60,6 @@
                 'uid'   => 'wp_riotd_section_image_preferences',
                 'label' => __('Image Preferences', 'wp_riotd') 
             ),
-            array(
-                'uid'   => 'wp_riotd_section_usage',
-                'label' => __('How to use', 'wp_riotd') 
-            ),
         );
 
         $this->settings_definitions = array (            
