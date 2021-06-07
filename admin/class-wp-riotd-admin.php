@@ -267,8 +267,8 @@ class WP_RIOTD_Admin {
 		}
 	
 		// If there is supplemental text
-		if( $supplimental = $args['supplemental'] ){
-			printf( '<p class="description">%s</p>', $supplimental ); // Show it
+		if( $supplemental = $args['supplemental'] ){
+			printf( '<p class="description">%s</p>', $supplemental ); // Show it
 		}		
 	}
 	/**
