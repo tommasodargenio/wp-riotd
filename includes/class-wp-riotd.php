@@ -121,19 +121,21 @@
         // define the dependencies
         $this->dependencies = array(
                              // The class responsible to orchestrate the actions and filters of the core plugin
-                             'WP_RIOTD_Loader' => 'includes/class-wp-riotd-loader.php',
+                             'WP_RIOTD_Loader'                     => 'includes/class-wp-riotd-loader.php',
                              // the class responsible for defining internationalisation functionality                     
-                             'WP_RIOTD_i18n'   => 'includes/class-wp-riotd-i18n.php',
+                             'WP_RIOTD_i18n'                       => 'includes/class-wp-riotd-i18n.php',
                              // the class responsible for defining all actions that occur in the admin area                      
-                             'WP_RIOTD_Admin'  => 'admin/class-wp-riotd-admin.php',
+                             'WP_RIOTD_Admin'                      => 'admin/class-wp-riotd-admin.php',
                              // the class responsible for creating all settings definitions
                              'WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS' => 'admin/class-wp-riotd-admin-settings-definitions.php',
                              // the class responsible for defining all actions that occur in the public side of the site
-                             'WP_RIOTD_Public' => 'public/class-wp-riotd-public.php',
+                             'WP_RIOTD_Public'                     => 'public/class-wp-riotd-public.php',
                              // the class used to actually scrape reddit and extract the image
-                             'WP_RIOTD_Scraper' => 'includes/class-wp-riotd-scraper.php',
+                             'WP_RIOTD_Scraper'                    => 'includes/class-wp-riotd-scraper.php',
                              // the class used to get settings from the db
-                             'WP_RIOTD_Settings' => 'includes/class-wp-riotd-settings.php'
+                             'WP_RIOTD_Settings'                   => 'includes/class-wp-riotd-settings.php',
+                             // the class used to manage the cache
+                             'WP_RIOTD_Cache'                      =>  'includes/class-wp-riotd-cache.php'
                             );
 
         // load settings from db
