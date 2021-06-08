@@ -49,11 +49,11 @@ define ( 'WP_RIOTD_GITHUB', 'https://github.com/tommasodargenio/wp-reddit-iotd' 
 
 // Prefix for settings
 define ( 'WP_RIODT_SETTING_PREFIX', 'wp_riotd' );
+
  /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-plugin-name-activator.php
+ * This action is documented in includes/class-wp-riotd-activator.php
  */
-
 function activate_wp_riotd() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-riotd-activator.php';
 	WP_RIOTD_Activator::activate();
@@ -63,16 +63,15 @@ register_activation_hook( __FILE__, 'activate_wp_riotd' );
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-plugin-name-deactivator.php
+ * This action is documented in includes/class-wp-riotd-deactivator.php
  */
-/**function deactivate_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-deactivator.php';
-	Plugin_Name_Deactivator::deactivate();
+function deactivate_wp_riotd() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-riotd-deactivator.php';
+	WP_RIOTD_Deactivator::deactivate();
 }
 
+register_deactivation_hook( __FILE__, 'deactivate_wp_riotd' );
 
-register_deactivation_hook( __FILE__, 'deactivate_plugin_name' );
-*/
 
  // Core plugin classes
  require plugin_dir_path(__FILE__) . 'includes/class-wp-riotd.php';

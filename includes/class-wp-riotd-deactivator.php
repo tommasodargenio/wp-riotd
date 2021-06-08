@@ -1,36 +1,29 @@
 <?php
-
 /**
  * Fired during plugin deactivation
  *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @link       https://github.com/tommasodargenio/wp-reddit-iodt/includes/class-wp-riotd-deactivator.php
+ * @since      1.0.1
+ * 
+ * @package    WP-Reddit-IOTD
+ * @subpackage WP-Reddit-IOTD/includes
+ * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
 
-/**
- * Fired during plugin deactivation.
- *
- * This class defines all code necessary to run during the plugin's deactivation.
- *
- * @since      1.0.0
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
- * @author     Your Name <email@example.com>
- */
-class Plugin_Name_Deactivator {
+class WP_RIOTD_Deactivator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
+	 * Run all the processes required to deactivate the plugin such as
+	 * - remove all settings from wp_options table
+	 * - purge and remove any residual cache
 	 *
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
+		// remove all settings from option table
+		WP_RIOTD_Settings::purge();
+		// remove cache
+		WP_RIOTD_Cache::purge_cache( \WP_RIODT_SETTING_PREFIX.'_cache' );
 	}
 
 }
