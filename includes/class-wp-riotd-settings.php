@@ -53,4 +53,19 @@
             }
         }
      }
+
+     /**
+      * Go through all the setting definitions and remove the related option from the database
+      * this method should only be called in the plugin de-activation phase
+      * @since  1.0.1
+      */
+     public static function purge() {
+        if ( class_exists('WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS', false) ) {
+			$settings_definitions = new WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS();
+            $settings = $settings_definitions->get_settings_definitions();            
+            foreach($settings as $field) { 
+                delete_option( $field['uid'] );
+            }
+        }
+     }
  }
