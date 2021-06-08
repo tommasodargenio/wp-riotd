@@ -30,7 +30,7 @@
         if ( class_exists('WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS', false) ) {
 			$settings_definitions = new WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS();
             $settings = $settings_definitions->get_settings_definitions();            
-            foreach($settings_definitions->get_settings_definitions() as $field) { 
+            foreach($settings as $field) { 
                 if ( $key != null && $key != "" && $field['uid'] == $key ) {
                     return get_option( $field['uid'], $field['default']);
                 }                    
