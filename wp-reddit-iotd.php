@@ -53,11 +53,13 @@ define ( 'WP_RIODT_SETTING_PREFIX', 'wp_riotd' );
  * The code that runs during plugin activation.
  * This action is documented in includes/class-plugin-name-activator.php
  */
-/*
-function activate_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-activator.php';
-	Plugin_Name_Activator::activate();
-}*/
+
+function activate_wp_riotd() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-riotd-activator.php';
+	WP_RIOTD_Activator::activate();
+}
+
+register_activation_hook( __FILE__, 'activate_wp_riotd' );
 
 /**
  * The code that runs during plugin deactivation.
@@ -68,7 +70,7 @@ function activate_plugin_name() {
 	Plugin_Name_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_plugin_name' );
+
 register_deactivation_hook( __FILE__, 'deactivate_plugin_name' );
 */
 

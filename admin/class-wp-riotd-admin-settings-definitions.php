@@ -84,7 +84,7 @@
         $this->cache_definitions = array (
             array(
                 'uid'       =>  \WP_RIODT_SETTING_PREFIX.'_cache',
-                'label'     =>  '',
+                'label'     =>  __( 'Image Cache', 'wp_riotd' ),
                 'default'   =>  '',
                 'payload'   =>  '',
             ),
