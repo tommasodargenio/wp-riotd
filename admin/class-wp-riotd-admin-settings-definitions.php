@@ -18,7 +18,7 @@
      * 
      * @since   1.0.1
      * @access  protected
-     * @var     array['uid'             => Unique identifier, 
+     * @var     array[]['uid'             => Unique identifier, 
      *                'label'           => description, 
      *                'section'         => parent section, 
      *                'type'            => type of setting (bool, text, password, number, textarea, select, multiselect),
@@ -34,7 +34,11 @@
      * 
      * @since   1.0.1
      * @access  protected
-     * @var     string[]            $cache_definitions               Array listing all cacheable data
+     * @var     array[]['uid'       =>  Unique identifier
+     *                'label'     =>  description
+     *                'default'   =>  default value 
+     *                'payload'   =>  cached data
+     *               ]            $cache_definitions               Array listing all cacheable data
      */
     protected $cache_definitions;
      /**
@@ -76,6 +80,16 @@
                 'label' => __('Image Preferences', 'wp_riotd') 
             ),
         );
+
+        $this->cache_definitions = array (
+            array(
+                'uid'       =>  \WP_RIODT_SETTING_PREFIX.'_cache',
+                'label'     =>  '',
+                'default'   =>  '',
+                'payload'   =>  '',
+            ),
+        );
+
         
         $this->settings_definitions = array (            
             array(
@@ -135,7 +149,7 @@
                 'default'       => '50'
             ),
             array(
-                'uid'           => \WP_RIODT_SETTING_PREFIX'_nsfw_switch',
+                'uid'           => \WP_RIODT_SETTING_PREFIX.'_nsfw_switch',
                 'label'         => __( 'Allow NSFW content', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_general',
                 'type'          => 'bool',
@@ -209,8 +223,20 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => __('Indicate if you want to change image every load (random), or use the same daily, or always use the last uploaded (this may change throughout the day)', 'wp_riotd'),
-                'default'       => array('random_update')
+                'default'       => array('daily_update')
             ),    
+            array(
+                'uid'           => \WP_RIODT_SETTING_PREFIX.'_cache_lifetime',
+                'label'         => __( 'Cache duration', 'wp_riotd' ),
+                'section'       => \WP_RIODT_SETTING_PREFIX.'_section_general',
+                'type'          => 'seconds',
+                'options'       => false,
+                'placeholder'   => '',
+                'helper'        => '',
+                'supplemental'  => __( '', 'wp_riotd' ),
+                'default'       => DAY_IN_SECONDS
+
+            ),            
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_css_switch',
                 'label'         => __( 'Use plugin\'s css?', 'wp_riotd' ),
@@ -255,10 +281,33 @@
     /**
      * Return the cache definitions array
      * @since   1.0.1
-     * @return  string[]         $cache_definitions              Array listing all cache fields
+     * @return  array[]['uid'       =>  Unique identifier
+     *                'label'     =>  description
+     *                'default'   =>  default value 
+     *                'payload'   =>  cached data
+     *                ]         $cache_definitions               Array containing all definitions for the cache elements
      */
     public function get_cache_definitions() {
         return $this->cache_definitions;
+    }
+    /**
+     * Return the requested element from the cache definitions array if it exists
+     * @since   1.0.1
+     * @param   string          $uid        Unique Idenfier of the cache definition to retrieve
+     * @return  array['uid'       =>  Unique identifier
+     *                'label'     =>  description
+     *                'default'   =>  default value 
+     *                'payload'   =>  cached data
+     *                ]         $cache_definition               Array detailing the cache definition
+     * @return  null            if no definition was found
+     */
+    public function get_cache_definition($uid) {
+        foreach($cache as $field) { 
+            if ( $uid != null && $uid != "" && $field['uid'] == $uid ) {
+                return $field;
+            } 
+        }
+        return null;
     }
 
  }
