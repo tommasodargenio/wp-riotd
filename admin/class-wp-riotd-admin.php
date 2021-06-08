@@ -206,7 +206,7 @@ class WP_RIOTD_Admin {
 		// register fields
 		foreach($this->settings_definitions->get_settings_definitions() as $field) {
 			add_settings_field($field['uid'], $field['label'], array($this, 'fields_renderer'), $field['section'], $field['section'], $field );
-			register_setting($field['section'], $field['uid']);
+			register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => 'sanitize_text_field' ));			
 		}
 	}
 
