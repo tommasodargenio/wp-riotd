@@ -47,6 +47,8 @@ define ( 'WP_RIOTD_REDDIT_URL', 'https://www.reddit.com/r/%reddit_channel%/new.j
 // Github Repository link
 define ( 'WP_RIOTD_GITHUB', 'https://github.com/tommasodargenio/wp-reddit-iotd' );
 
+// Prefix for settings
+define ( 'WP_RIODT_SETTING_PREFIX', 'wp_riotd' );
  /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-plugin-name-activator.php
