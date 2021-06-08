@@ -34,13 +34,7 @@
                 if ( $key != null && $key != "" && $field['uid'] == $key ) {
                     return get_option( $field['uid'], $field['default']);
                 }                    
-            }
-            $cache = $settings_definitions->get_cache_definitions();            
-            foreach($cache as $field) { 
-                if ( $key != null && $key != "" && $field['uid'] == $key ) {
-                    return get_option( $field['uid'], $field['default']);
-                }                    
-            }            
+            }           
         }
         return "";
      }
@@ -57,10 +51,6 @@
             foreach($settings as $field) { 
                 update_option( $field['uid'], $field['default']);
             }
-            $cache = $settings_definitions->get_cache_definitions();            
-            foreach($cache as $field) { 
-                update_option( $field['uid'], '' );
-            }            
         }
      }
 
@@ -75,25 +65,6 @@
             $settings = $settings_definitions->get_settings_definitions();            
             foreach($settings as $field) { 
                 delete_option( $field['uid'] );
-            }
-            $cache = $settings_definitions->get_cache_definitions();            
-            foreach($cache as $field) { 
-                delete_option( $field['uid'] );
-            }            
-        }
-     }
-     /**
-      * Go through all the cache setting definitions and clear the values, though the setting stays in the database
-      * use the purge() method to remove all cache settings from the database
-      * @since  1.0.1
-      *
-      */
-     public static function clear_cache() {
-        if ( class_exists('WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS', false) ) {
-			$settings_definitions = new WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS();
-            $cache = $settings_definitions->get_cache_definitions();            
-            foreach($cache as $field) { 
-                update_option( $field['uid'], '' );
             }
         }
      }
