@@ -206,10 +206,37 @@ class WP_RIOTD_Admin {
 		// register fields
 		foreach($this->settings_definitions->get_settings_definitions() as $field) {
 			add_settings_field($field['uid'], $field['label'], array($this, 'fields_renderer'), $field['section'], $field['section'], $field );
-			register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => 'sanitize_text_field' ));			
+			// use a different callback if the field is of type seconds, as this would require some data post-processing
+			if ( $field['type'] == 'seconds' ) {
+				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => array($this, 'sanitize_time_field') ));				
+			} else {
+				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => 'sanitize_text_field' ));			
+			}			
 		}
 	}
+	/**
+	 * Callback used to transform a time value from hours/minutes/days in seconds before being stored in the database
+	 * @since	1.0.1
+	 * @param	string		$value The value submitted through the option form
+	 * @return	int			$value The value converted in seconds (integer)	if time_unit was sent otherwise return the same value unchanged.
+	 */
+	public function sanitize_time_field( $value ) {
+		if ( isset ( $_POST['time_unit'] ) ) {
+			switch($_POST['time_unit']) {
+				case 'minutes':
+					$value *= MINUTE_IN_SECONDS;					
+					break;
+				case 'hours':
+					$value *= HOUR_IN_SECONDS;
+					break;
+				case 'days':
+					$value *= DAY_IN_SECONDS;
+					break;
+			}
+		}
 
+		return $value;
+	}
 	/**
 	 * Callback used to display configuration section information
 	 * @since	1.0.1
@@ -232,9 +259,36 @@ class WP_RIOTD_Admin {
 		 if ($value === false && $args['type'] != 'bool') {
 			 $value = $args['default'];
 		 }
+		 if ( $value === "" ) {
+			 $value = $args['default'];
+		 }
 		 
 		// Check which type of field we want
 		switch( $args['type'] ){
+			case 'seconds':
+				$options_markup = '<option value="minutes" %minutes%>Minutes</option>
+								   <option value="hours" %hours%>Hours</option>
+								   <option value="days" %days%>Days</option>';
+				
+				if ( $value >= DAY_IN_SECONDS ) {
+					$value = floor( $value / DAY_IN_SECONDS );		
+					$options_markup = str_replace("%minutes%","", $options_markup);			
+					$options_markup = str_replace("%hours%","", $options_markup);			
+					$options_markup = str_replace("%days%","selected", $options_markup);			
+				} elseif ( $value >= HOUR_IN_SECONDS ) {
+					$value = floor( $value / HOUR_IN_SECONDS );
+					$options_markup = str_replace("%minutes%","", $options_markup);			
+					$options_markup = str_replace("%hours%","selected", $options_markup);			
+					$options_markup = str_replace("%days%","", $options_markup);			
+				} elseif ( $value >= MINUTE_IN_SECONDS ) {					
+					$value = floor( $value / MINUTE_IN_SECONDS );
+					$options_markup = str_replace("%minutes%","selected", $options_markup);			
+					$options_markup = str_replace("%hours%","", $options_markup);			
+					$options_markup = str_replace("%days%","", $options_markup);			
+				}				
+				printf('<input name="%1$s" id="%1$s" placeholder="%2$s" value="%3$s" />', $args['uid'], $args['placeholder'], $value);
+				printf('<select name="time_unit" id="time_unit">%1$s</select>',$options_markup);
+				break;
 			case 'text': // If it is a text field
 			case 'password':
 			case 'number':
@@ -246,7 +300,8 @@ class WP_RIOTD_Admin {
 			case 'multiselect':
 				if ( !empty( $args['options'] ) && is_array( $args['options']) ) {
 					$attributes = '';
-					$options_markup = '';					
+					$options_markup = '';							
+								
 					foreach( $args['options'] as $key => $label ) {
 						$options_markup .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', $key, selected( $value[array_search($key, $value, false)], $key, false ), $label );
 					}
