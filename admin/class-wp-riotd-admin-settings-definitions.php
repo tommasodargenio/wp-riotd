@@ -41,32 +41,32 @@
 	public function __construct() {
         $this->settings_sections = array(
             array(
-                'uid'   => 'wp_riotd_section_welcome',
+                'uid'   => \WP_RIODT_SETTING_PREFIX.'_section_welcome',
                 'label' => __('Welcome','wp_riotd')
             ),
             array(
-                'uid'   => 'wp_riotd_section_general',
+                'uid'   => \WP_RIODT_SETTING_PREFIX.'_section_general',
                 'label' => __('General Settings', 'wp_riotd' )
             ),
             array(
-                'uid'   => 'wp_riotd_section_layout',
+                'uid'   => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'label' => __('Theme Layout', 'wp_riotd')
             ),
             array(
-                'uid'   => 'wp_riotd_section_reddit_channel',
+                'uid'   => \WP_RIODT_SETTING_PREFIX.'_section_reddit_channel',
                 'label' => __('Configure Reddit Channel', 'wp_riotd' )
             ),
             array(
-                'uid'   => 'wp_riotd_section_image_preferences',
+                'uid'   => \WP_RIODT_SETTING_PREFIX.'_section_image_preferences',
                 'label' => __('Image Preferences', 'wp_riotd') 
             ),
         );
 
         $this->settings_definitions = array (            
             array(
-                'uid' => 'wp_riotd_aspect_ratio',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_aspect_ratio',
                 'label' => __( 'Image aspect', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_image_preferences',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_image_preferences',
                 'type' => 'select',
                 'options' => array( 'landscape' => __('Landscape', 'wp_riotd'), 'portrait'=> __('Portrait', 'wp_riotd') ),
                 'placeholder' => '',
@@ -75,9 +75,9 @@
                 'default' => array('landscape')
             ),
             array(
-                'uid' => 'wp_riotd_image_max_width',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_image_max_width',
                 'label' => __( 'Max image width', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_image_preferences',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_image_preferences',
                 'type' => 'text',
                 'options' => '',
                 'placeholder' => '',
@@ -86,9 +86,9 @@
                 'default' => '640'
             ),       
             array(
-                'uid' => 'wp_riotd_image_max_height',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_image_max_height',
                 'label' => __( 'Max image height', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_image_preferences',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_image_preferences',
                 'type' => 'text',
                 'options' => '',
                 'placeholder' => '',
@@ -98,9 +98,9 @@
             ),                     
 
             array(
-                'uid' => 'wp_riotd_channel',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_channel',
                 'label' => __( 'Reddit Channel', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_reddit_channel',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_reddit_channel',
                 'type' => 'text',
                 'options' => false,
                 'placeholder' => '',
@@ -109,9 +109,9 @@
                 'default' => 'images'
             ),
             array(
-                'uid' => 'wp_riotd_download_limit',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_download_limit',
                 'label' => __( 'Download limits', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_reddit_channel',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_reddit_channel',
                 'type' => 'text',
                 'options' => false,
                 'placeholder' => '50',
@@ -120,9 +120,9 @@
                 'default' => '50'
             ),
             array(
-                'uid' => 'wp_riotd_nsfw_switch',
+                'uid' => \WP_RIODT_SETTING_PREFIX'_nsfw_switch',
                 'label' => __( 'Allow NSFW content', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_general',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_general',
                 'type' => 'bool',
                 'options' => false,
                 'placeholder' => '',
@@ -131,9 +131,9 @@
                 'default' => 1
             ),
             array(
-                'uid' => 'wp_riotd_zoom_switch',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_zoom_switch',
                 'label' => __( 'Allow Zoom on mouse over', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_layout',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type' => 'bool',
                 'options' => false,
                 'placeholder' => '',
@@ -142,9 +142,9 @@
                 'default' => 1
             ),            
             array(
-                'uid' => 'wp_riotd_author_switch',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_author_switch',
                 'label' => __( 'Display author\'s name', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_layout',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type' => 'bool',
                 'options' => false,
                 'placeholder' => '',
@@ -153,9 +153,9 @@
                 'default' => 1
             ),
             array(
-                'uid' => 'wp_riotd_channel_switch',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_channel_switch',
                 'label' => __( 'Display channel\'s name', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_layout',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type' => 'bool',
                 'options' => false,
                 'placeholder' => '',
@@ -164,9 +164,9 @@
                 'default' => 1
             ),            
             array(
-                'uid' => 'wp_riotd_title_switch',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_title_switch',
                 'label' => __( 'Display image\'s title', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_layout',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type' => 'bool',
                 'options' => false,
                 'placeholder' => '',
@@ -175,9 +175,9 @@
                 'default' => 1
             ),
             array(
-                'uid' => 'wp_riotd_link_switch',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_link_switch',
                 'label' => __( 'Add link to reddit post?', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_layout',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type' => 'bool',
                 'options' => false,
                 'placeholder' => '',
@@ -186,9 +186,9 @@
                 'default' => 1
             ),            
             array(
-                'uid' => 'wp_riotd_image_scraping',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_image_scraping',
                 'label' => __( 'Image scraping mode', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_general',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_general',
                 'type' => 'select',
                 'options' => array('daily_update'=>__('Same daily', 'wp_riotd'), 'random_update' => __('Random','wp_riotd'), 'last_update' => __('Last posted','wp_riotd') ),
                 'placeholder' => '',
@@ -197,9 +197,9 @@
                 'default' => array('random_update')
             ),    
             array(
-                'uid' => 'wp_riotd_css_switch',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_css_switch',
                 'label' => __( 'Use plugin\'s css?', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_layout',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type' => 'bool',
                 'options' => false,
                 'placeholder' => '',
@@ -208,9 +208,9 @@
                 'default' => 1
             ),                
             array(
-                'uid' => 'wp_riotd_layout',
+                'uid' => \WP_RIODT_SETTING_PREFIX.'_layout',
                 'label' => __( 'Layout mode', 'wp_riotd' ),
-                'section' => 'wp_riotd_section_layout',
+                'section' => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type' => 'select',
                 'options' => array('minimal'=>__('Minimalistic', 'wp_riotd'), 'full' => __('Full','wp_riotd') ),
                 'placeholder' => '',
