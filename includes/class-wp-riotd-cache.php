@@ -72,7 +72,7 @@
 
             $payload = get_transient( $uid );
 
-            return $payload
+            return $payload;
         }
         return;
     }
