@@ -301,6 +301,12 @@
      * @return  null            if no definition was found
      */
     public function get_setting_definition($uid) {
+        if ( defined( 'WP_RIODT_SETTING_PREFIX' ) ) {
+            // add SETTING_PREFIX to the key if not in it already
+            if ( !stristr( $uid, \WP_RIODT_SETTING_PREFIX ) ) {
+                $uid = \WP_RIODT_SETTING_PREFIX.'_'.$uid;
+            }            
+        }        
         foreach($this->settings_definitions as $field) { 
             if ( $uid != null && $uid != "" && $field['uid'] == $uid ) {
                 return $field;
@@ -340,6 +346,12 @@
      * @return  null            if no definition was found
      */
     public function get_cache_definition($uid) {
+        if ( defined( 'WP_RIODT_SETTING_PREFIX' ) ) {
+            // add SETTING_PREFIX to the key if not in it already
+            if ( !stristr( $uid, \WP_RIODT_SETTING_PREFIX ) ) {
+                $uid = \WP_RIODT_SETTING_PREFIX.'_'.$uid;
+            }            
+        }
         foreach($this->cache_definitions as $field) { 
             if ( $uid != null && $uid != "" && $field['uid'] == $uid ) {
                 return $field;
