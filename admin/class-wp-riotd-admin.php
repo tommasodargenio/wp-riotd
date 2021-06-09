@@ -208,12 +208,63 @@ class WP_RIOTD_Admin {
 			add_settings_field($field['uid'], $field['label'], array($this, 'fields_renderer'), $field['section'], $field['section'], $field );
 			// use a different callback if the field is of type seconds, as this would require some data post-processing
 			if ( $field['type'] == 'seconds' ) {
-				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => array($this, 'sanitize_time_field') ));				
+				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => array($this, 'sanitize_time_field') ) );				
 			} else {
-				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => 'sanitize_text_field' ));			
+				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => 'sanitize_text_field' ) );			
 			}			
 		}
 	}
+	/**
+	 * Draft method to validate and sanitize setting based on allowable type and content
+	 * TODO: Integrate in post operation without breaking WP somehow
+	 */
+	public function sanitize_me( $value ) {
+		
+		foreach($this->settings_definitions->get_settings_definitions() as $field) {
+			if ( isset($_POST[$field['uid']]) ) {
+				$value = $_POST[$field['uid']];
+				if ( is_array($field['allowed']) ) {
+					$type = gettype($field['allowed'][0]);
+					$allowed_values = '';
+					if ( sizeof($field['allowed']) == 2 ) {
+						$allowed_values = $field['allowed'][1];
+					}
+
+					switch($type) {
+						case 'boolean':
+							if ( true !== $value || false !== $value || 1 !== $value || 0 !== $value) {
+								$value = WP_RIOTD_Settings::get( $field['uid'] );
+							}
+							break;
+						case 'integer':
+							if (! is_numeric($value) ) {
+								$value = WP_RIOTD_Settings::get( $field['uid'] );
+								break;
+							}
+							if ( is_array($allowed_values) && sizeof($allowed_values) == 2 ) {
+								 if ( $value <= $allowed_values[0] || $value >= $allowed_values[1] ) {
+									$value = WP_RIOTD_Settings::get( $field['uid'] );
+								 }
+							}
+							break;
+						case 'string':
+							$value = sanitize_text_field( $value );
+							if ( is_array($allowed_values) && sizeof($allowed_values) > 0 ) {
+								if ( !in_array( $value, $allowed_values ) ) {
+									$value = WP_RIOTD_Settings::get( $field['uid'] );
+								}
+							}
+							break;
+						default:						
+							$value = sanitize_text_field( $value );
+					}
+					 
+				}
+				update_option( $field['uid'], $value);
+			}
+		}
+	}
+
 	/**
 	 * Callback used to transform a time value from hours/minutes/days in seconds before being stored in the database
 	 * @since	1.0.1

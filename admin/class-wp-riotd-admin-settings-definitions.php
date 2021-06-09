@@ -109,7 +109,7 @@
                 'label'         => __( 'Max image width', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_image_preferences',
                 'type'          => 'text',
-                'allowed'       => array(0)
+                'allowed'       => array(0),
                 'options'       => '',
                 'placeholder'   => '',
                 'helper'        => '',
