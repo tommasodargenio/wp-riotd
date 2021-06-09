@@ -286,6 +286,29 @@
         return $this->settings_definitions;
     }
     /**
+     * Return the requested element from the setting definitions array if it exists
+     * @since   1.0.1
+     * @param   string          $uid        Unique Idenfier of the setting definition to retrieve
+     * @return  array           ['uid'             => Unique identifier, 
+     *                'label'           => description, 
+     *                'section'         => parent section, 
+     *                'type'            => type of setting (bool, text, password, number, textarea, select, multiselect),
+     *                'options'         => if type is select or multiselect, this contains the option to display in a key=>value pair
+     *                'placeholder'     => placeholder value for the field
+     *                'helper'          => helper text displayed to the right of the field
+     *                'supplemental'    => helper text displayed below the field
+     *                'default'         => default value  ]            $setting_definition               Array listing all parameters of the requested setting definition
+     * @return  null            if no definition was found
+     */
+    public function get_setting_definition($uid) {
+        foreach($this->settings_definitions as $field) { 
+            if ( $uid != null && $uid != "" && $field['uid'] == $uid ) {
+                return $field;
+            } 
+        }
+        return null;
+    }    
+    /**
      * Return the settings sections array
      * @since   1.0.1
      * @return  string[]         $settings_sections              Array listing all sections  
@@ -317,7 +340,7 @@
      * @return  null            if no definition was found
      */
     public function get_cache_definition($uid) {
-        foreach($cache as $field) { 
+        foreach($this->cache_definitions as $field) { 
             if ( $uid != null && $uid != "" && $field['uid'] == $uid ) {
                 return $field;
             } 
