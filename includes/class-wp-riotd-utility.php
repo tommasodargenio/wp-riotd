@@ -16,6 +16,7 @@
  class WP_RIOTD_Utility {
      /**
       * Convert seconds in human readable format
+      * @author https://stackoverflow.com/a/19680778/3310134
       * @since  1.0.1
       * @param  int     $seconds        Seconds to convert
       * @return string  $human_str      Readable version of seconds in format: xx days, xx hours, xx minutes and xx seconds
@@ -25,6 +26,9 @@
           $seconds = intval($seconds);
           $dtf = new \DateTime('@0');
           $dtT = new \DateTime("@$seconds");
-          return $dtf->diff($dtT)->format('%a days, %h hours, %i minutes and %s seconds');
+          return $dtf->diff($dtT)->format('%a '.__('days','wp_riotd').
+                                          ', %h '.__('hours', 'wp_riotd').
+                                          ', %i '.__('minutes','wp_riotd').
+                                          ' '.__('and','wp_riotd').' %s '.__('seconds', 'wp_riotd'));
       }
  }
