@@ -337,16 +337,16 @@ class WP_RIOTD_Admin {
 					$options_markup = str_replace("%hours%","", $options_markup);			
 					$options_markup = str_replace("%days%","", $options_markup);			
 				}				
-				printf('<input name="%1$s" id="%1$s" placeholder="%2$s" value="%3$s" />', $args['uid'], $args['placeholder'], $value);
+				printf('<input name="%1$s" id="%1$s" placeholder="%2$s" value="%3$s" />', $args['uid'], $args['placeholder'], esc_attr($value));
 				printf('<select name="time_unit" id="time_unit">%1$s</select>',$options_markup);
 				break;
 			case 'text': // If it is a text field
 			case 'password':
 			case 'number':
-				printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $args['uid'], $args['type'], $args['placeholder'], $value );
+				printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $args['uid'], $args['type'], $args['placeholder'], esc_attr($value) );
 				break;
 			case 'textarea':
-				printf( '<textarea name="%1$s" id="%1$s" placeholder="%2$s" rows="5" cols="50">%3$s</textarea>', $args['uid'], $args['placeholder'], $value );
+				printf( '<textarea name="%1$s" id="%1$s" placeholder="%2$s" rows="5" cols="50">%3$s</textarea>', $args['uid'], $args['placeholder'], esc_attr($value) );
 			case 'select':
 			case 'multiselect':
 				if ( !empty( $args['options'] ) && is_array( $args['options']) ) {
@@ -369,12 +369,12 @@ class WP_RIOTD_Admin {
 	
 		// If there is help text
 		if( $helper = $args['helper'] ){
-			printf( '<span class="helper"> %s</span>', $helper ); // Show it
+			printf( '<span class="helper"> %s</span>', esc_html($helper) ); // Show it
 		}
 	
 		// If there is supplemental text
 		if( $supplemental = $args['supplemental'] ){
-			printf( '<p class="description">%s</p>', $supplemental ); // Show it
+			printf( '<p class="description">%s</p>', esc_html($supplemental) ); // Show it
 		}		
 	}
 	/**
