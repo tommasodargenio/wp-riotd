@@ -135,7 +135,9 @@
                              // the class used to get settings from the db
                              'WP_RIOTD_Settings'                   => 'includes/class-wp-riotd-settings.php',
                              // the class used to manage the cache
-                             'WP_RIOTD_Cache'                      =>  'includes/class-wp-riotd-cache.php'
+                             'WP_RIOTD_Cache'                      => 'includes/class-wp-riotd-cache.php',
+                             // Utility class with various generic static utility methods
+                             'WP_RIOTD_Utility'                    => 'includes/class-wp-riotd-utility.php',
                             );
 
         // load settings from db
