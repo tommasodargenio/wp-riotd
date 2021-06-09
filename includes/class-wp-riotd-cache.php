@@ -41,7 +41,7 @@
             }
 
             // get the default expiration setting
-            $expiration = WP_RIOTD_Settings::get(\WP_RIODT_SETTING_PREFIX.'_cache_lifetime');
+            $expiration = WP_RIOTD_Settings::get('cache_lifetime');
 
             // set the cache
             set_transient( $entity['uid'], $entity['payload'], $expiration );
@@ -104,4 +104,34 @@
         }
         return;
     }
+
+    /**
+     *  Get the time left in seconds before expiration of the requested cache
+     *  @since  1.0.1
+     *  @param  string  $uid        Unique idenfitier of the chace to check the expiration time for
+     *  @return int     $time_left  The time left in seconds before the cache expires
+     */
+     public static function get_cache_expiration($uid) {
+        if ( class_exists( 'WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS', false ) ) {
+			$settings_definitions = new WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS();
+            $cache = $settings_definitions->get_cache_definition( $uid );
+
+            // if cache is null or empty then the definition doesn't exist, so we assume cache expired and never re-created
+            if ( $cache === null || sizeof($cache) <= 0 ) {
+                return 0;
+            }
+
+            $expires = (int) get_option( '_transient_timeout_'.$cache['uid'], 0 );
+            if ( $expires === 0  ) {
+                // can't find the expiration setting or cache expired already
+                return 0;
+            }
+            
+            $time_left = $expires - time();
+            return $time_left;
+        }
+        
+
+     }
+
  }
