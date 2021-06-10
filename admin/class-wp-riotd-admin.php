@@ -68,7 +68,6 @@ class WP_RIOTD_Admin {
 	 * @var		string				$menu_slug							The slug to identify the admin page
 	 */
 	protected $menu_slug;
-
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -88,7 +87,7 @@ class WP_RIOTD_Admin {
 			$this->settings_definitions = new WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS();			
 		}
 
-		$this->default_setting_tab = 'wp_riotd_section_welcome';
+		$this->default_setting_tab = 'wp_riotd_section_welcome';		
 	}	
     /**
 	 * Register the stylesheets for the admin area.
@@ -210,59 +209,80 @@ class WP_RIOTD_Admin {
 			if ( $field['type'] == 'seconds' ) {
 				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => array($this, 'sanitize_time_field') ) );				
 			} else {
-				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => 'sanitize_text_field' ) );			
+				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => array($this, 'sanitize_me') ) );			
 			}			
 		}
 	}
 	/**
-	 * Draft method to validate and sanitize setting based on allowable type and content
-	 * TODO: Integrate in post operation without breaking WP somehow
+	 * Sanitisation callback to validate and sanitize data before saving to DB
+	 * @since	1.0.1	
+	 * @param	string	$value		value being submitted from the form
+	 * @return	string	$value		sanitized value	 
 	 */
 	public function sanitize_me( $value ) {
-		
-		foreach($this->settings_definitions->get_settings_definitions() as $field) {
-			if ( isset($_POST[$field['uid']]) ) {
-				$value = $_POST[$field['uid']];
-				if ( is_array($field['allowed']) ) {
-					$type = gettype($field['allowed'][0]);
-					$allowed_values = '';
-					if ( sizeof($field['allowed']) == 2 ) {
-						$allowed_values = $field['allowed'][1];
-					}
-
-					switch($type) {
-						case 'boolean':
-							if ( true !== $value || false !== $value || 1 !== $value || 0 !== $value) {
-								$value = WP_RIOTD_Settings::get( $field['uid'] );
-							}
-							break;
-						case 'integer':
-							if (! is_numeric($value) ) {
-								$value = WP_RIOTD_Settings::get( $field['uid'] );
-								break;
-							}
-							if ( is_array($allowed_values) && sizeof($allowed_values) == 2 ) {
-								 if ( $value <= $allowed_values[0] || $value >= $allowed_values[1] ) {
-									$value = WP_RIOTD_Settings::get( $field['uid'] );
-								 }
-							}
-							break;
-						case 'string':
-							$value = sanitize_text_field( $value );
-							if ( is_array($allowed_values) && sizeof($allowed_values) > 0 ) {
-								if ( !in_array( $value, $allowed_values ) ) {
-									$value = WP_RIOTD_Settings::get( $field['uid'] );
-								}
-							}
-							break;
-						default:						
-							$value = sanitize_text_field( $value );
-					}
-					 
-				}
-				update_option( $field['uid'], $value);
-			}
+		// retrieve the setting definition based on the filter
+		$def = null;
+		if (stristr(current_filter(),'sanitize_option_')) {
+			$uid = substr(current_filter(), strlen('sanitize_option_'));				
+			$def = $this->settings_definitions->get_setting_definition($uid);		
 		}
+
+		// the definition has not been found, return the value sanitized anyway
+		if ( null === $def ) {
+			return sanitize_text_field( $value );
+		}
+
+		// check if admin has chosen to reset everything
+		if (isset($_POST['reset'])) {
+				$value = $def['default'];								 	
+		}
+		
+		// data validation
+		if ( is_array($def['allowed']) ) {
+			$type = current($def['allowed']);
+			$allowed_values = '';
+			if ( is_array( current( $def['allowed'] ) ) ) {
+				$type = array_key_first( $def['allowed'] );
+				$allowed_values = current( $def['allowed'] );
+			}
+		
+			
+			switch($type) {
+				case 'boolean':	
+					// when using checkboxes input, if this is unchecked it won't be sent therefore it will be a null value
+					if ( null === $value ) {
+						$value = '0';						
+					} else {				
+						if ( true !== $value && false !== $value && 1 !== $value && 0 !== $value && '1' !== $value && '0' !== $value) {
+							$value = WP_RIOTD_Settings::get( $def['uid'] );	
+						}
+					}
+					break;
+				case 'integer':
+					if (! is_numeric($value) ) {
+						$value = WP_RIOTD_Settings::get( $def['uid'] );
+						break;
+					}
+					if ( is_array($allowed_values) && sizeof($allowed_values) == 2 ) {
+							if ( $value <= $allowed_values[0] || $value >= $allowed_values[1] ) {
+								$value = WP_RIOTD_Settings::get( $def['uid'] );
+								add_settings_error( $uid, 'wp_riotd_error', __($def['label'].' must be between '.$allowed_values[0].' and '.$allowed_values[1],'wp_riotd'), 'error' );
+							}
+					}
+					break;
+				case 'string':
+					if ( is_array($allowed_values) && sizeof($allowed_values) > 0 ) {
+						if ( !in_array( $value, $allowed_values ) ) {
+							$value = WP_RIOTD_Settings::get( $def['uid'] );
+						}
+					}
+					break;
+				default:						
+					$value = sanitize_text_field( $value );
+			}
+
+		}
+		return $value;
 	}
 
 	/**
@@ -352,18 +372,17 @@ class WP_RIOTD_Admin {
 				if ( !empty( $args['options'] ) && is_array( $args['options']) ) {
 					$attributes = '';
 					$options_markup = '';							
-								
 					foreach( $args['options'] as $key => $label ) {
-						$options_markup .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', $key, selected( $value[array_search($key, $value, false)], $key, false ), $label );
+						$options_markup .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', $key, selected( $value, $key, false ), $label );
 					}
 					if ( $args['type'] === 'multiselect' ) {
 						$attributes = ' multiple="multiple" ';
 					}
-					printf('<select name="%1$s[]" id="%1$s" %2$s>%3$s</select>', $args['uid'], $attributes, $options_markup );
+					printf('<select name="%1$s" id="%1$s" %2$s>%3$s</select>', $args['uid'], $attributes, $options_markup );
 				}
 				break;
 			case 'bool': // single checkbox button				
-				printf( '<label for="%1$s"><input id="%1$s" name="%1$s" type="checkbox" value="1" %3$s /></label>', $args['uid'], $value, checked( "1", $value, false) );
+				printf( '<label for="%1$s"><input id="%1$s" name="%1$s" type="checkbox" value="1" %3$s /></label>', $args['uid'], $value, checked( $value, "1", false ) );
 				break;
 		}
 	
@@ -376,6 +395,25 @@ class WP_RIOTD_Admin {
 		if( $supplemental = $args['supplemental'] ){
 			printf( '<p class="description">%s</p>', esc_html($supplemental) ); // Show it
 		}		
+	}
+	/**
+	 * Render the cache information and clear cache button
+	 * @since	1.0.1
+	 */
+	public function do_cache() {
+		$cache = WP_RIOTD_Cache::get_cache( 'cache' );		
+		$expires_in = WP_RIOTD_Cache::get_cache_expiration( 'cache' );
+		
+		if ( $expires_in > 0 ) {
+			$expires_in = WP_RIOTD_Utility::seconds_to_human($expires_in);
+			$expired = false;
+		} else {
+			$expires_in = __('Expired', 'wp_riotd');
+			$expired = true;
+		}
+		
+		
+		include plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-cache.php';
 	}
 	/**
 	 * Render the various setting tabs
