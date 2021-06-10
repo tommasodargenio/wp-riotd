@@ -23,7 +23,7 @@ class WP_RIOTD_Deactivator {
 		// remove all settings from option table
 		WP_RIOTD_Settings::purge();
 		// remove cache
-		WP_RIOTD_Cache::purge_cache( \WP_RIODT_SETTING_PREFIX.'_cache' );
+		WP_RIOTD_Cache::purge_cache( 'cache' );
 	}
 
 }
