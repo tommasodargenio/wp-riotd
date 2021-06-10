@@ -203,6 +203,7 @@
             $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );    
             $this->loader->add_action( 'admin_menu', $plugin_admin, 'create_admin_menu' );
             $this->loader->add_action( 'admin_init', $plugin_admin, 'register_admin_settings' );
+            $this->loader->add_action( 'wp_ajax_riotd_reset_settings', $plugin_admin, 'riotd_reset_settings');
         }
     }
 

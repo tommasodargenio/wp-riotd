@@ -31,9 +31,10 @@
                 ?>
                 <table class="form-table" role="presentation" style="width:5%">
                     <tr>
-                        <td><?php submit_button( __( 'Save Settings', 'wp_riotd' ) ); ?></td>
+                        <td><?php submit_button( __( 'Save Settings', 'wp_riotd' ), 'primary', 'submit', false ); ?></td>
                         <td>
-                            <?php submit_button( __( 'Reset All Settings', 'wp_riotd'), 'secondary', 'reset', true, 'title="'.__('Click to reset all settings to default', 'wp_riotd').'"'); ?>
+                            <?php submit_button( __( 'Reset All Settings', 'wp_riotd'), 'secondary', 'riotd_reset', false, 'id="wp_riotd" title="'.__('Click to reset all settings to default', 'wp_riotd').'"'); ?>
+                            <img src="<?php echo admin_url('/images/wpspin_light.gif') ?>" id="reddit_iotd_icon_loading" style="display:none" />                            
                         </td>
     <?php  }  ?>
                     </tr>

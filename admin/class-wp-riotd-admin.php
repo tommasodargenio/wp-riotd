@@ -105,6 +105,10 @@ class WP_RIOTD_Admin {
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-riotd-admin.js', array( 'jquery' ), $this->version, false );
+		// create the nonce
+		wp_localize_script($this->plugin_name, 'wp_riotd_data', array(
+				'nonce' => wp_create_nonce('nonce')
+		));
 	}
 	
 	/**
@@ -213,6 +217,32 @@ class WP_RIOTD_Admin {
 			}			
 		}
 	}
+
+	/**
+	 * Method to reset all settings via the button on the admin page
+	 * @since	1.0.1
+	 * @return	int		$result		Follow HTTP REST code standards. 200 operation successfull, 401 unathorized - security check failed, 400 general failure
+	 */
+	public function riotd_reset_settings() {
+		if ( !isset( $_POST['wp_riotd_nonce'] ) || !wp_verify_nonce( $_POST['wp_riotd_nonce'], 'nonce' ) ) {
+			echo json_encode(['payload' => null, 'response_code' => '401']);
+			wp_die('','401');
+		}
+
+		if ( class_exists('WP_RIOTD_Settings', false) ) {
+			if ( true === WP_RIOTD_Settings::set_defaults() ) {
+				$all_settings = WP_RIOTD_Settings::get_all();
+				if ( is_array( $all_settings ) || ( sizeof( $all_settings ) > 0 ) ) {
+					echo json_encode(['payload' => json_encode($all_settings), 'response_code' => '200']);
+				} else {
+					echo json_encode(['payload' => null, 'response_code' => '200']);
+				}
+				wp_die('','200');
+			}
+		}
+		echo json_encode(['payload' => null, 'response_code' => '400']);
+		wp_die('','400');
+	}
 	/**
 	 * Sanitisation callback to validate and sanitize data before saving to DB
 	 * @since	1.0.1	
@@ -268,7 +298,7 @@ class WP_RIOTD_Admin {
 								$value = WP_RIOTD_Settings::get( $def['uid'] );
 								$error_msg = $def['label'].' '.								
 											 esc_html__('must be between','wp-riotd').
-											 ' '.$allowed_values[0].' '
+											 ' '.$allowed_values[0].' '.
 											 esc_html__('and', 'wp-riotd').
 											 ' '.$allowed_values[1];
 
