@@ -48,8 +48,13 @@
         if ( class_exists('WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS', false) ) {
 			$settings_definitions = new WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS();
             $settings = $settings_definitions->get_settings_definitions();            
-            foreach($settings as $field) { 
-                update_option( $field['uid'], $field['default']);
+            foreach($settings as $field) {
+                // if the field['default'] element is null it will trigger an error
+                // ref: https://core.trac.wordpress.org/ticket/52723
+                if ($field['default'] === null ) {
+                    $field['default'] = '';
+                }
+                $res = update_option( $field['uid'], $field['default']);
             }
         }
      }
