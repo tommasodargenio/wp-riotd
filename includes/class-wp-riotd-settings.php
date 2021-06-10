@@ -39,6 +39,22 @@
         return "";
      }
      /**
+      * Return all the settings from the database
+      * @since  1.0.1
+      * @return array[]     $result     Associative array containing the settings read from the database in format setting_name => setting_value      
+      */
+     public static function get_all() {
+        $result = array();
+        if ( class_exists('WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS', false) ) {
+			$settings_definitions = new WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS();
+            $settings = $settings_definitions->get_settings_definitions();            
+            foreach($settings as $field) {                 
+                    $result[$field['uid']] = get_option( $field['uid'], $field['default']);                
+            }           
+        }     
+        return $result;
+     }
+     /**
       * Go throuh all the setting definitions and set the default in the database
       * this should be called in the plugin activation phase or if the user wants to reset all settings to default
       * BEWARE: If the setting already exists in the database it will be overwritten with the default value from the definitions
@@ -54,9 +70,11 @@
                 if ($field['default'] === null ) {
                     $field['default'] = '';
                 }
-                $res = update_option( $field['uid'], $field['default']);
+                update_option( $field['uid'], $field['default']);
             }
+            return true;
         }
+        return false;
      }
 
      /**
