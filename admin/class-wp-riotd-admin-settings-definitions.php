@@ -102,31 +102,31 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => __('Select the preferred aspect ratio when selecting the image', 'wp_riotd'),
-                'default'       => array('landscape')
+                'default'       => 'landscape'
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_image_max_width',
                 'label'         => __( 'Max image width', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_image_preferences',
                 'type'          => 'text',
-                'allowed'       => array(0),
+                'allowed'       => array('integer'),
                 'options'       => '',
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => __('Indicate the max width of the image', 'wp_riotd'),
-                'default'       => '640'
+                'default'       => '1920'
             ),       
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_image_max_height',
                 'label'         => __( 'Max image height', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_image_preferences',
                 'type'          => 'text',
-                'allowed'       => array(0),
+                'allowed'       => array('integer'),
                 'options'       => '',
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => __('Indicate the max height of the image', 'wp_riotd'),
-                'default'       => '360'
+                'default'       => '1080'
             ),                     
 
             array(
@@ -146,7 +146,7 @@
                 'label'         => __( 'Download limits', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_reddit_channel',
                 'type'          => 'text',
-                'allowed'       => array(0),
+                'allowed'       => array('integer'),
                 'options'       => false,
                 'placeholder'   => '50',
                 'helper'        => '',
@@ -158,7 +158,7 @@
                 'label'         => __( 'Allow NSFW content', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_general',
                 'type'          => 'bool',
-                'allowed'       => array(true),
+                'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
@@ -170,7 +170,7 @@
                 'label'         => __( 'Allow Zoom on mouse over', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
-                'allowed'       => array(true),                
+                'allowed'       => array('boolean'),                
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
@@ -182,7 +182,7 @@
                 'label'         => __( 'Display author\'s name', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
-                'allowed'       => array(true),
+                'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
@@ -194,7 +194,7 @@
                 'label'         => __( 'Display channel\'s name', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
-                'allowed'       => array(true),
+                'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
@@ -206,7 +206,7 @@
                 'label'         => __( 'Display image\'s title', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
-                'allowed'       => array(true),
+                'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
@@ -218,7 +218,7 @@
                 'label'         => __( 'Add link to reddit post?', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
-                'allowed'       => array(true),
+                'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
@@ -235,14 +235,14 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => __('Indicate if you want to change image every load (random), or use the same daily, or always use the last uploaded (this may change throughout the day)', 'wp_riotd'),
-                'default'       => array('daily_update')
+                'default'       => 'daily_update'
             ),    
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_cache_lifetime',
                 'label'         => __( 'Cache duration', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_general',
                 'type'          => 'seconds',
-                'allowed'       => array(0),
+                'allowed'       => array('integer'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
@@ -255,7 +255,7 @@
                 'label'         => __( 'Use plugin\'s css?', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
-                'allowed'       => array(true),
+                'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
@@ -272,7 +272,7 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => __('Select which layout you prefer. Minimialistic will only show the image, full will show all the available information', 'wp_riotd'),
-                'default'       => array('full')
+                'default'       => 'full'
             ),                      
         );
     }
