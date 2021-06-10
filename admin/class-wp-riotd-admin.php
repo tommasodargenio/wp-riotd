@@ -266,7 +266,13 @@ class WP_RIOTD_Admin {
 					if ( is_array($allowed_values) && sizeof($allowed_values) == 2 ) {
 							if ( $value <= $allowed_values[0] || $value >= $allowed_values[1] ) {
 								$value = WP_RIOTD_Settings::get( $def['uid'] );
-								add_settings_error( $uid, 'wp_riotd_error', __($def['label'].' must be between '.$allowed_values[0].' and '.$allowed_values[1],'wp_riotd'), 'error' );
+								$error_msg = $def['label'].' '.								
+											 esc_html__('must be between','wp-riotd').
+											 ' '.$allowed_values[0].' '
+											 esc_html__('and', 'wp-riotd').
+											 ' '.$allowed_values[1];
+
+								add_settings_error( $uid, 'wp_riotd_error', $error_msg, 'error' );
 							}
 					}
 					break;
