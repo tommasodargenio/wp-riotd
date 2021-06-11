@@ -125,7 +125,7 @@ class WP_RIOTD_Public {
 		} else {			
 
 			// check which layout the user prefer, if not set we will use the full one
-			$layout = WP_RIOTD_Settings::get("wp_riotd_layout")[0];			
+			$layout = WP_RIOTD_Settings::get("wp_riotd_layout");			
 			
 			if ($layout == "full") {
 				$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-single.php";
