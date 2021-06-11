@@ -5,7 +5,7 @@
         <?php if ( $post_url != "" ) { ?>
             <a href="<?php echo $post_url; ?>" title="Click to open the post with this image on reddit" target="_blank">
         <?php } ?>            
-            <img id="ig-iotd" <?php if ($overlay) { ?> ovonMouseOver="wp_riotd_image_fullscreen()" <?php } ?>alt="<?php echo $title; ?>" title="<?php echo $title; ?>" src="<?php echo $full_res_url ?>"/>
+            <img id="ig-iotd" <?php if ($overlay) { ?> onMouseOver="wp_riotd_image_fullscreen()" <?php } ?>alt="<?php echo $title; ?>" title="<?php echo $title; ?>" src="<?php echo $full_res_url ?>"/>
         <?php if ( $post_url != "" ) { ?>            
             </a>
         <?php } ?>            
