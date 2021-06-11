@@ -34,7 +34,7 @@ class WP_RIOTD_Scraper {
      *  Contains the images scraped
      *  @since  1.0.1  
      *  @access protected
-     *  @var    array[thumbnail_url: string, full_res_url: string, width:int, height: int, title: string, post_url: string, author: string, nsfw: bool ]    $scraped_content    array containing the images scraped 
+     *  @var    array[][thumbnail_url: string, full_res_url: string, width:int, height: int, title: string, post_url: string, author: string, nsfw: bool ]    $scraped_content    array containing the images scraped 
      */
     protected $scraped_content;
     
@@ -42,7 +42,7 @@ class WP_RIOTD_Scraper {
      *  Collect statistical information on downloaded posts
      *  @since  1.0.1
      *  @access protected
-     *  @var    array[tot_posts: int, tot_images: int, tot_videos: int, tot_galleries: int, tot_nsfw: int, tot_viable_images: int]      $statistics     array containing statistical information on collected data
+     *  @var    array[][tot_posts: int, tot_images: int, tot_videos: int, tot_galleries: int, tot_nsfw: int, tot_viable_images: int]      $statistics     array containing statistical information on collected data
      */
     protected $statistics;
     /**
@@ -165,7 +165,7 @@ class WP_RIOTD_Scraper {
                                     $img_found['nsfw'] = $post_data->over_18;
 
                                     $this->statistics['tot_images']++;
-
+                                    
                                     // check if image resolution is ok                                      
                                     if ( $this->is_resolution_ok( $img_found['width'], $img_found['height'], true) ) {
                                         // check if image is allowed due to adult content
@@ -173,11 +173,12 @@ class WP_RIOTD_Scraper {
                                         {
                                             // add to the list of candidates
                                             $this->scraped_content[] = $img_found; 
-                                            $this->statistics['tot_viable_images']++;                                   
+                                            $this->statistics['tot_viable_images']++;       
+                                                                        
                                         } else {
                                             $this->statistics['tot_nsfw']++;
                                         }
-                                    } 
+                                    }
 
                                 } elseif ( property_exists($post_data, 'is_gallery') && $post_data->is_gallery == true ) {
                                     $this->statistics['tot_galleries']++;
@@ -253,14 +254,14 @@ class WP_RIOTD_Scraper {
             }
         }
         if ( $check_aspect ) {
-            if ( isset($this->settings['wp_riotd_aspect_ratio'][0]) ) {
-                if ( $this->settings['wp_riotd_aspect_ratio'][0] == 'portrait' ) {
+            if ( isset($this->settings['wp_riotd_aspect_ratio']) ) {
+                if ( $this->settings['wp_riotd_aspect_ratio'] == 'portrait' ) {
                     $test_a = $height > $width ? true : false;                    
-                } elseif ( $this->settings['wp_riotd_aspect_ratio'][0] == 'landscape' ) {
+                } elseif ( $this->settings['wp_riotd_aspect_ratio'] == 'landscape' ) {
                     $test_a = $height < $width ? true : false;
                 }
             }
-
+                        
             return $test_w && $test_h && $test_a ? true : false;
         }
         
@@ -268,8 +269,8 @@ class WP_RIOTD_Scraper {
     }
 
     public function get_image() {
-        if ( isset( $this->settings['wp_riotd_image_scraping'][0] ) ) {
-            switch ( $this->settings['wp_riotd_image_scraping'][0] ) {
+        if ( isset( $this->settings['wp_riotd_image_scraping'] ) ) {
+            switch ( $this->settings['wp_riotd_image_scraping'] ) {
                 case 'daily_update':
                     srand( floor( time() / 86400 ) );
                     return $this->scraped_content[rand(0, count($this->scraped_content)-1)];

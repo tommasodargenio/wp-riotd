@@ -38,7 +38,7 @@ class WP_RIOTD_Public {
 	 * Image scraped from reddit
 	 * @since	1.0.1	
 	 * @access	protected
-	 * @var    array[thumbnail_url: string, full_res_url: string, width:int, height: int, title: string, post_url: string, author: string, nsfw: bool ]    $scraped_content    array containing the images scraped 
+	 * @var    array[][thumbnail_url: string, full_res_url: string, width:int, height: int, title: string, post_url: string, author: string, nsfw: bool ]    $scraped_content    array containing the images scraped 
 	 */
 	protected $scraped;
 
@@ -67,8 +67,22 @@ class WP_RIOTD_Public {
 		}
 
 		$scraper = new WP_RIOTD_Scraper();
-		$scraper->scrape();
-		$this->scraped = $scraper->get_image();
+		// check if cache exists, if not create and store scraped image in cache. If it exists take image from there
+		if( (class_exists( 'WP_RIOTD_Cache', false )) ) {
+			$cache = WP_RIOTD_Cache::get_cache('cache');
+			
+			if ( false === $cache ) {
+			// cache doesn't exist, download image and then store in cache				
+				$scraper->scrape();
+				$this->scraped = $scraper->get_image();
+	
+				WP_RIOTD_Cache::set_cache( array( 'uid' => 'cache', 'payload' => $this->scraped ) );
+			} else {
+					$this->scraped = $cache;
+			}
+		}
+		// $scraper->scrape();
+		// $this->scraped = $scraper->get_image();
 		$this->reddit_channel = $scraper->get_reddit_channel();
 	}	
     /**
