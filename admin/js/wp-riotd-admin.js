@@ -1,4 +1,30 @@
 jQuery(document).ready(function($) {
+    // save setting
+    $('#main-options-form').submit( function () {
+        $('#reddit_iotd_icon_loading').show();
+        var b =  $(this).serialize();        
+        $.post( 'options.php', b ).error( 
+            function() {
+                $('#reddit_iotd_icon_loading').hide();
+                $('#alert-message-text').text('Something went wrong while saving the settings, try again later');
+                $('#alert-message').addClass('notice-error')
+                $('#alert-message').show();
+                setTimeout(function() {
+                    $('#alert-message').fadeOut('fast');
+                }, 3000);
+            }).success( function() {
+                $('#reddit_iotd_icon_loading').hide();
+                $('#alert-message-text').text('Settings saved successfully');
+                $('#alert-message').addClass('notice-success')
+                $('#alert-message').show();
+                setTimeout(function() {
+                    $('#alert-message').fadeOut('slow');
+                }, 3000);
+            });            
+            return false;    
+            
+    });
+    
     // reset all settings
     $('#riotd_reset').on('click',function(event) {   
         $('#reddit_iotd_icon_loading').show();

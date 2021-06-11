@@ -50,7 +50,7 @@ class WP_RIOTD_Admin {
      * 
      * @since   1.0.1
      * @access  protected
-     * @var     string[]            $settings_definitions               Associative array listing all settings (setting->value)
+     * @var     WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS     $settings_definitions               Associative array listing all settings (setting->value)
      */
 	protected $settings_definitions;
 
@@ -217,7 +217,7 @@ class WP_RIOTD_Admin {
 			}			
 		}
 	}
-
+	
 	/**
 	 * Method to reset all settings via the button on the admin page
 	 * @since	1.0.1
