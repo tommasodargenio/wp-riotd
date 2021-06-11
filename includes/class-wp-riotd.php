@@ -205,6 +205,7 @@
             $this->loader->add_action( 'admin_init', $plugin_admin, 'register_admin_settings' );
             $this->loader->add_action( 'wp_ajax_riotd_reset_settings', $plugin_admin, 'riotd_reset_settings');
             $this->loader->add_action( 'wp_ajax_riotd_purge_cache', $plugin_admin, 'riotd_purge_cache');
+            $this->loader->add_action( 'wp_ajax_riotd_public_preview', $plugin_admin, 'riotd_public_preview');            
         }
     }
 

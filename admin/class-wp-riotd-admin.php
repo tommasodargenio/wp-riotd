@@ -96,6 +96,8 @@ class WP_RIOTD_Admin {
 	 */
 	public function enqueue_styles() {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-riotd-admin.css', array(), $this->version, 'all' );
+		// also enqueue the frontend css as this is used in the preview
+		wp_enqueue_style( $this->plugin_name.'_public', plugin_dir_url( __DIR__ ) . 'public/css/wp-riotd-public.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -105,6 +107,8 @@ class WP_RIOTD_Admin {
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-riotd-admin.js', array( 'jquery' ), $this->version, false );
+		// also enqueue the frontend script as this is used in the preview
+		wp_enqueue_script( $this->plugin_name.'_public', plugin_dir_url( __DIR__ ) . 'public/js/wp-riotd-public.js', array( 'jquery' ), $this->version, false );
 		// create the nonce
 		wp_localize_script($this->plugin_name, 'wp_riotd_data', array(
 				'nonce' => wp_create_nonce('nonce')
@@ -216,6 +220,28 @@ class WP_RIOTD_Admin {
 				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => array($this, 'sanitize_me') ) );			
 			}			
 		}
+	}
+
+	/**
+	 * Method to render the frontend in order to display the preview in the admin pages
+	 * @since	1.0.1
+	 * @return	string		$payload	The rendered html page and HTTP response code 200 or response code 400/401 if error
+	 */
+	public function riotd_public_preview() {
+		if ( !isset( $_POST['wp_riotd_nonce'] ) || !wp_verify_nonce( $_POST['wp_riotd_nonce'], 'nonce' ) ) {
+			echo json_encode(['payload' => null, 'response_code' => '401']);
+			wp_die('','401');
+		}
+
+		if( class_exists( 'WP_RIOTD_Public', false ) ) {
+			$public = new WP_RIOTD_Public( $this->plugin_name, $this->version );
+			$payload = $public->render_view();
+
+			echo $payload;
+			wp_die('', '200');
+		}
+
+		wp_die('', '400');
 	}
 	/**
 	 * Method to purge the cache via the button on the admin page

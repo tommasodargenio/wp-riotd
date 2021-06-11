@@ -64,3 +64,18 @@ hr {
 #reddit_iodt_highlight_on {
     border: solid 1px #a00;
 }
+
+#reddit_iotd_admin_preview {
+    border: solid 1px #aaa;
+    padding: 10px;
+    margin: 10px;    
+    width: 380px;
+}
+
+#reddit_iotd_admin_preview h1 {
+    background-color: #bbb;
+    font-size: large;
+    font-weight: bolder;
+    color: #222;
+    padding: 5px;
+}

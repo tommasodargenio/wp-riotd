@@ -2,6 +2,7 @@ jQuery(document).ready(function($) {
     // utility function to format numbers better    
     $('#cache_purged_msg').hide();
     $('#reddit_iotd_cache_loading').hide();
+    $('#update_preview').hide();
     
     let countdown = null;
 
@@ -131,6 +132,8 @@ jQuery(document).ready(function($) {
                 $('#alert-message-text').text('Settings saved successfully');
                 $('#alert-message').addClass('notice-success')
                 $('#alert-message').show();
+                $('#update_preview').show();            
+
                 setTimeout(function() {
                     $('#alert-message').fadeOut('slow');
                 }, 3000);
@@ -158,6 +161,7 @@ jQuery(document).ready(function($) {
                     if (parsed_data.payload != null ) {
                         const settings = JSON.parse(parsed_data.payload);
                         if ( Object.keys(settings).length > 0 ) {
+                            $('#update_preview').show();                            
                             Object.keys(settings).forEach(function(uid) {                            
                                 // check if uid is wp_riotd_cache_lifetime this requires special treatment
                                 if (uid == 'wp_riotd_cache_lifetime') {
@@ -199,4 +203,31 @@ jQuery(document).ready(function($) {
         });
     });
 
+    // preview
+    $('#riotd_preview').on('click',function(event) {   
+        event.preventDefault();
+        if ($('#riotd_preview').attr('data-action') == 'preview_off') {
+
+            jQuery.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'riotd_public_preview',
+                    wp_riotd_nonce:  wp_riotd_data.nonce
+                },
+                success: function (data) {      
+                    $('#reddit_iotd_admin_preview').show();
+                    $('#reddit_iotd_public_view').html(data);
+                    $('#riotd_preview').val('Hide Preview')
+                    $('#riotd_preview').attr('data-action', 'preview_on');
+                }
+            });
+        } else {
+            $('#reddit_iotd_admin_preview').hide();
+            $('#reddit_iotd_public_view').html();
+            $('#riotd_preview').val('Show Preview')
+            $('#riotd_preview').attr('data-action', 'preview_off');
+
+        }        
+    });
 });
