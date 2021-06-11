@@ -21,12 +21,12 @@
      */
     public static function set_cache($entity) {
         // check if the entity contains the required element
-        if ( !array_key_exists( 'uid', $entity ) || !array_key_exists( 'payload', $entity ) ) {
+        if ( !array_key_exists( 'uid', $entity ) || !array_key_exists( 'payload', $entity ) ) {            
             return;
         }
 
         // check if the uid is not null or empty, and if the payload is not empty. No point in setting an empty cache element
-        if ( $entity['uid'] === null || $entity['uid'] === '' || $entity['payload'] === null || $entity['payload'] === '') {
+        if ( $entity['uid'] === null || $entity['uid'] === '' || $entity['payload'] === null || $entity['payload'] === '') {            
             return;
         }
 
@@ -36,15 +36,16 @@
             $cache = $settings_definitions->get_cache_definition( $entity['uid'] );
 
             // if cache is null or empty then the definition doesn't exist, so we don't cache
-            if ( $cache === null || sizeof($cache) <= 0 ) {
+            if ( $cache === null || sizeof($cache) <= 0 ) {                
                 return;
             }
 
             // get the default expiration setting
             $expiration = WP_RIOTD_Settings::get('cache_lifetime');
-
+                
+            
             // set the cache
-            set_transient( $entity['uid'], $entity['payload'], $expiration );
+            set_transient( $cache['uid'], $entity['payload'], $expiration );
         }
         return;
     }
@@ -70,7 +71,7 @@
                 return;
             }
 
-            $payload = get_transient( $uid );
+            $payload = get_transient( $cache['uid'] );
 
             return $payload;
         }
@@ -81,12 +82,13 @@
      *  Delete a cached entity from the WP Cache
      *  @since  1.0.1
      *  @param  string  $uid        Unique identified of the entity to retrieve     
+     *  @return boolean             false if failed, true if cache deleted
      */
 
     public static function purge_cache($uid) {
         // can't delete a cache if we don't know the identifier
         if ( $uid === null || $uid === '' ) {
-            return;
+            return false;
         }
 
         // check if the uid is has a valid cache definition
@@ -96,13 +98,12 @@
 
             // if cache is null or empty then the definition doesn't exist, so we don't cache
             if ( $cache === null || sizeof($cache) <= 0 ) {
-                return;
+                return false;
             }
-
-            delete_transient( $uid );
-
+            
+            return delete_transient( $cache['uid'] );
         }
-        return;
+        return false;
     }
 
     /**
@@ -122,6 +123,8 @@
             }
 
             $expires = (int) get_option( '_transient_timeout_'.$cache['uid'], 0 );
+            
+            
             if ( $expires === 0  ) {
                 // can't find the expiration setting or cache expired already
                 return 0;
