@@ -46,7 +46,7 @@
      * 
      * @since   1.0.1
      * @access  protected
-     * @var     array[ 'uid'=> Unique identifier, 'label' => Description ]            $settings_sections               Array listing all sections
+     * @var     string[ 'uid'=> Unique identifier, 'label' => Description ]            $settings_sections               Array listing all sections
      */
 
      protected $settings_sections;
@@ -325,7 +325,7 @@
     /**
      * Return the cache definitions array
      * @since   1.0.1
-     * @return  array[]['uid'       =>  Unique identifier
+     * @return  string[]['uid'       =>  Unique identifier
      *                'label'     =>  description
      *                'default'   =>  default value 
      *                'payload'   =>  cached data
@@ -338,7 +338,7 @@
      * Return the requested element from the cache definitions array if it exists
      * @since   1.0.1
      * @param   string          $uid        Unique Idenfier of the cache definition to retrieve
-     * @return  array['uid'       =>  Unique identifier
+     * @return  string[]['uid'       =>  Unique identifier
      *                'label'     =>  description
      *                'default'   =>  default value 
      *                'payload'   =>  cached data
