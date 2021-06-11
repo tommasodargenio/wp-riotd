@@ -26,9 +26,28 @@
           $seconds = intval($seconds);
           $dtf = new \DateTime('@0');
           $dtT = new \DateTime("@$seconds");
-          return $dtf->diff($dtT)->format('%a '.__('days','wp_riotd').
-                                          ', %h '.__('hours', 'wp_riotd').
-                                          ', %i '.__('minutes','wp_riotd').
-                                          ' '.__('and','wp_riotd').' %s '.__('seconds', 'wp_riotd'));
+
+          $d ='%a '.__('days','wp_riotd').', ';
+          $h ='%h '.__('hours', 'wp_riotd').', ';
+          $m ='%i '.__('minutes','wp_riotd');
+          $s = ' '.__('and','wp_riotd').' %s '.__('seconds', 'wp_riotd');
+
+          $diff = $dtf->diff($dtT);
+          
+          if ( $diff->d == 0 ) {
+              $d = '';
+          }
+          if ( $diff->h == 0 ) {
+              $h = '';
+          }
+          if ( $diff->i == 0 ) {
+              $i = '';
+          }
+          if ( $diff->s == 0 ) {
+              $s = '';
+          }
+          
+
+          return $dtf->diff($dtT)->format($d.$h.$m.$s);
       }
  }

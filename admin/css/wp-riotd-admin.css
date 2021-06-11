@@ -42,14 +42,14 @@ hr {
 #reddit_iotd_icon_success {
     position: absolute;
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 15px;
     margin-right: 5px;
     color: #0a0;
 }
 #reddit_iotd_icon_error {
     position: absolute;
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 15px;
     margin-right: 5px;
     color: #a00;
 }

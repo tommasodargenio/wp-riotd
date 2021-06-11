@@ -217,7 +217,28 @@ class WP_RIOTD_Admin {
 			}			
 		}
 	}
-	
+	/**
+	 * Method to purge the cache via the button on the admin page
+	 * @since	1.0.1
+	 * @return	int		$result		Follow HTTP REST code standards. 200 operation successfull, 401 unathorized - security check failed, 400 general failure* 
+	 */
+	public function riotd_purge_cache() {
+		if ( !isset( $_POST['wp_riotd_nonce'] ) || !wp_verify_nonce( $_POST['wp_riotd_nonce'], 'nonce' ) ) {
+			echo json_encode(['expires_in' => null, 'response_code' => '401']);
+			wp_die('','401');
+		}
+
+		if( class_exists('WP_RIOTD_Cache', false) ) {
+			if (WP_RIOTD_Cache::purge_cache('cache')) {
+				echo json_encode(['expires_in' => WP_RIOTD_Cache::get_cache_expiration('cache'), 'response_code' => '200']);
+			} else {
+				echo json_encode(['expires_in' => null, 'response_code' => '400']);
+			}
+		}
+
+		echo json_encode(['expires_in' => null, 'response_code' => '400']);
+		wp_die('','400');	
+	}
 	/**
 	 * Method to reset all settings via the button on the admin page
 	 * @since	1.0.1
@@ -438,8 +459,8 @@ class WP_RIOTD_Admin {
 	 */
 	public function do_cache() {
 		$cache = WP_RIOTD_Cache::get_cache( 'cache' );		
-		$expires_in = WP_RIOTD_Cache::get_cache_expiration( 'cache' );
-		
+		$expires_in = WP_RIOTD_Cache::get_cache_expiration( 'cache' );		
+		$expire_seconds = $expires_in;
 		if ( $expires_in > 0 ) {
 			$expires_in = WP_RIOTD_Utility::seconds_to_human($expires_in);
 			$expired = false;
