@@ -32,12 +32,18 @@
                     <tr>
                         <td><?php submit_button( __( 'Save Settings', 'wp_riotd' ), 'primary', 'submit', false ); ?></td>
                         <td>
-                            <?php submit_button( __( 'Reset All Settings', 'wp_riotd'), 'secondary', 'riotd_reset', false, 'title="'.__('Click to reset all settings to default', 'wp_riotd').'"'); ?>
-                            <img src="<?php echo admin_url('/images/wpspin_light.gif') ?>" id="reddit_iotd_icon_loading" style="display:none" />                            
+                            <?php submit_button( __( 'Reset All Settings', 'wp_riotd'), 'secondary', 'riotd_reset', false, 'title="'.__('Click to reset all settings to default', 'wp_riotd').'"'); ?>                           
                         </td>
                         <td>
                             <?php submit_button( __( 'Show Preview', 'wp_riotd'), 'secondary', 'riotd_preview', false, 'data-action="preview_off" title="'.__('Click to see a preview', 'wp_riotd').'"'); ?>
                         </td>
+                        <td>
+                            <?php submit_button( __( 'View Cache Content', 'wp_riotd'), 'secondary', 'riotd_view_cache', false, 'data-action="cache_off" title="'.__('Click to see the content of the cache stored in the database', 'wp_riotd').'"'); ?>
+                        </td>
+                        <td>
+                            <img src="<?php echo admin_url('/images/wpspin_light.gif') ?>" id="reddit_iotd_icon_loading" style="display:none" />                            
+                        </td>
+
     <?php  }  ?>
                     </tr>
                 </table>
@@ -47,4 +53,9 @@
                <hr />
                 <div id="reddit_iotd_public_view"></div>
     </div>
+    <div id="reddit_iotd_admin_cache_preview" style="display:none">
+               <h1>Cache Content<span class="dashicons dashicons-update" id="update_cache_preview" style="display:none" title="<?php echo __('Update available, click to refresh', 'wp-riotd'); ?>"></span></h1>
+               <hr />
+                <div id="reddit_iotd_cache_view"></div>
+    </div>    
 </div>
