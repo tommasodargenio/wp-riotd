@@ -53,12 +53,10 @@ hr {
     margin-right: 5px;
     color: #a00;
 }
-#reddit_iotd_icon_loading {
-    position: absolute;
+#reddit_iotd_icon_loading {    
     margin-top: 5px;
     margin-left: 5px;
-    margin-right: 5px;
-    color: #f80;    
+    margin-right: 5px;    
 }
 
 #reddit_iodt_highlight_on {
