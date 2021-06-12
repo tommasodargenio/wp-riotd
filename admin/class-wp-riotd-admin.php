@@ -200,6 +200,17 @@ class WP_RIOTD_Admin {
 	}
 
 	/**
+	 * Check if nonce is valid
+	 * @since	1.0.1
+	 * @return	int		HTTP response code 401 if nonce check fails
+	 */
+	public function check_nonce() {
+		if ( !isset( $_POST['wp_riotd_nonce'] ) || !wp_verify_nonce( $_POST['wp_riotd_nonce'], 'nonce' ) ) {
+			echo json_encode(['payload' => null, 'response_code' => '401']);
+			wp_die('','401');
+		}
+	}
+	/**
 	 * Initialize all the configuration parameters and register them in the db
 	 * @since	1.0.1 
 	 */
@@ -221,23 +232,60 @@ class WP_RIOTD_Admin {
 			}			
 		}
 	}
+	/**
+	 *  Method to show the cache content stored in the database to the admin web page
+	 * @since	1.0.1
+	 * @return	string		$payload	The cache content if any and HTTP response code 200 or response code 400/401 if error
+	 */
+	public function riotd_view_cache() {
+		$this->check_nonce();
 
+		if ( class_exists( 'WP_RIOTD_Cache', false ) ) {
+
+			$cache = WP_RIOTD_Cache::get_cache('cache');
+				
+			if ( false === $cache ) {			
+				echo json_encode( ['cache'=>__( 'The cache is empty', 'wp-riotd' ), 'response_code'=>204] );
+				wp_die('', '204');
+			} else {
+				echo json_encode( ['cache' => $cache, 'response_code'=> 200 ]);
+				wp_die('', '200');
+			}
+		}
+		wp_die('', '400');
+	}
+	/**
+	 * Method to return the cache expiration time if requested by admin page JS on WP heartbeat tick usually
+	 * @since	1.0.1
+	 * @return	array[]		['payload' => the timer, 'response_code' => 200 if data is found otherwise 400/401]	 
+	 */
+	public function riotd_get_cache_expiration() {
+		$this->check_nonce();
+		if( class_exists('WP_RIOTD_Cache', false) ) {
+			$expires_in = WP_RIOTD_Cache::get_cache_expiration( 'cache' );			
+			echo json_encode(['payload' => $expires_in, 'response_code'=>200]);
+			wp_die('','200');
+		}
+		wp_die('','400');
+	}
 	/**
 	 * Method to render the frontend in order to display the preview in the admin pages
 	 * @since	1.0.1
-	 * @return	string		$payload	The rendered html page and HTTP response code 200 or response code 400/401 if error
+	 * @return	array[]		['payload' => the rendered html page, 'response_code' => HTTP response code 200 or response code 400/401 if error, 'cache_time' => the refreshed cache timer]
 	 */
 	public function riotd_public_preview() {
-		if ( !isset( $_POST['wp_riotd_nonce'] ) || !wp_verify_nonce( $_POST['wp_riotd_nonce'], 'nonce' ) ) {
-			echo json_encode(['payload' => null, 'response_code' => '401']);
-			wp_die('','401');
-		}
+		$this->check_nonce();
 
 		if( class_exists( 'WP_RIOTD_Public', false ) ) {
 			$public = new WP_RIOTD_Public( $this->plugin_name, $this->version );
-			$payload = $public->render_view();
+			$payload = $public->render_view(true);
+			$expires_in = 0;
+			// this will force the cache to be created if it's not there yet. We should send the new cache expiration timer
+			if( class_exists('WP_RIOTD_Cache', false) ) {
+				$expires_in = WP_RIOTD_Cache::get_cache_expiration( 'cache' );		
+			}
 
-			echo $payload;
+			echo json_encode(['payload'=> $payload, 'response_code' => 200, 'cache_time' => $expires_in]);
 			wp_die('', '200');
 		}
 
@@ -249,11 +297,7 @@ class WP_RIOTD_Admin {
 	 * @return	int		$result		Follow HTTP REST code standards. 200 operation successfull, 401 unathorized - security check failed, 400 general failure* 
 	 */
 	public function riotd_purge_cache() {
-		if ( !isset( $_POST['wp_riotd_nonce'] ) || !wp_verify_nonce( $_POST['wp_riotd_nonce'], 'nonce' ) ) {
-			echo json_encode(['expires_in' => null, 'response_code' => '401']);
-			wp_die('','401');
-		}
-
+		$this->check_nonce();
 		if( class_exists('WP_RIOTD_Cache', false) ) {
 			if (WP_RIOTD_Cache::purge_cache('cache')) {
 				echo json_encode(['expires_in' => WP_RIOTD_Cache::get_cache_expiration('cache'), 'response_code' => '200']);
@@ -271,11 +315,7 @@ class WP_RIOTD_Admin {
 	 * @return	int		$result		Follow HTTP REST code standards. 200 operation successfull, 401 unathorized - security check failed, 400 general failure
 	 */
 	public function riotd_reset_settings() {
-		if ( !isset( $_POST['wp_riotd_nonce'] ) || !wp_verify_nonce( $_POST['wp_riotd_nonce'], 'nonce' ) ) {
-			echo json_encode(['payload' => null, 'response_code' => '401']);
-			wp_die('','401');
-		}
-
+		$this->check_nonce();
 		if ( class_exists('WP_RIOTD_Settings', false) ) {
 			if ( true === WP_RIOTD_Settings::set_defaults() ) {
 				$all_settings = WP_RIOTD_Settings::get_all();
