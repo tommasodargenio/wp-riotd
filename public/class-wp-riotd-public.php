@@ -108,7 +108,7 @@ class WP_RIOTD_Public {
 	 * @since	1.0.1
 	 * @return	string		$view		The html code that will be pasted in the public site where the plugin shortcut has been used
 	 */
-	public function render_view() {
+	public function render_view($admin_view = false) {
 		$view = 'Template not available :(';
 		$scraped = 'No images availabe :(';
 		$reddit_channel = "";
@@ -156,7 +156,13 @@ class WP_RIOTD_Public {
 
 		// output the template
 		if ( file_exists( $view_template ) ) {
-			include_once $view_template;
+			if (false === $admin_view) {
+				include_once $view_template;
+			} else {
+				ob_start();
+				include_once $view_template;
+				return ob_get_clean();
+			}
 		} else {
 			return $view;
 		}
