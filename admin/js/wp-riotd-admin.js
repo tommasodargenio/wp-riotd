@@ -94,8 +94,18 @@ jQuery(document).ready(function($) {
 
 
     // code mirror
-    wp.codeEditor.initialize($('#wp_riotd_custom_css'), cm_settings);
+    var CM_custom_css = wp.codeEditor.initialize($('#wp_riotd_custom_css'), cm_settings);
     
+    // show / hide area for custom css
+    $('#wp_riotd_css_switch').on('change', function(){
+        var use_custom_css = $(this).prop( 'checked' );  
+        CM_custom_css.codemirror.setOption('readonly', ! use_custom_css );
+        $('#main-options-form').find( '.CodeMirror' ).toggleClass( 'disabled', ! use_custom_css );
+        $('#main-options-form').find( '.CodeMirror' ).prop( 'disabled', ! use_custom_css );        
+        $('#wp_riotd_custom_css').prop( 'disabled', ! use_custom_css );
+    });
+
+
     // check if we need to refresh the cache timer as the hearbeat might force a reload of the image in the cache
     $(document).on('heartbeat-tick', function(event, data) {        
         if ( isNaN( parseInt( $('#expire_seconds').text() ) ) ) {

@@ -81,3 +81,7 @@ hr {
 .CodeMirror {
     border: 1px solid #777;
   }
+
+.CodeMirror.disabled .CodeMirror-scroll {
+    background-color: #eee;
+}

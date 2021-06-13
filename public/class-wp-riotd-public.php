@@ -91,7 +91,7 @@ class WP_RIOTD_Public {
 	 * @since    1.0.1
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-riotd-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-riotd-public.css', array(), $this->version, 'all' );		
 	}
 
 	/**
@@ -119,9 +119,10 @@ class WP_RIOTD_Public {
 		$full_res_url = "";
 		$overlay = WP_RIOTD_Settings::get('wp_riotd_zoom_switch');
 		$custom_css = "";
-		// add custom CSS if defined
-		if ( 0 === WP_RIOTD_Settings::get( "css_switch" ) || false === WP_RIOTD_Settings::get( "css_switch" ) ) {
-			$custom_css = WP_RIOTD_Settings::get("custom_css");
+		
+		// add custom CSS if defined		
+		if ( "0" === WP_RIOTD_Settings::get( "css_switch" ) || 0 === WP_RIOTD_Settings::get( "css_switch" ) || false === WP_RIOTD_Settings::get( "css_switch" ) ) {
+			$custom_css = WP_RIOTD_Settings::get("custom_css");			
 			if ( ! empty( $custom_css ) ) {
 				$custom_css = "<style type=\"text/css\">\n$custom_css\n</style>\n";
 			}
