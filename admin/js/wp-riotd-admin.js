@@ -106,7 +106,9 @@ jQuery(document).ready(function($) {
 
 
     // code mirror
-    var CM_custom_css = wp.codeEditor.initialize($('#wp_riotd_custom_css'), cm_settings);
+    if ($('#wp_riotd_custom_css').length) {
+        var CM_custom_css = wp.codeEditor.initialize($('#wp_riotd_custom_css'), cm_settings);
+    }
     
     // show / hide area for custom css
     $('#wp_riotd_css_switch').on('change', function(){
