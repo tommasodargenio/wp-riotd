@@ -6,6 +6,8 @@ the <a href="<?php $this->get_tab_url("image", true); ?>">image</a> resolution a
 </p>
 <p>
 There are a couple of ways to display the image feed from the subreddit channel you have specified in the <a href="<?php $this->get_tab_url("channel", true); ?>">settings</a>. 
+It involves using shortcodes (specific keywords contained in square brackets, read more <a href="https://wordpress.com/support/shortcodes/" title="open the wordpress support web page in a new tab" target="_blank">here</a>),
+beware that shortcodes might not be processed in posts' excerpts but only in full posts depending on how your wordpress theme has been developed.
 <br/><br/>
 One is by using the main shortcode: <code>[<?php echo $shortcode; ?>]</code>
 which will create a rectangular box where the image, title, subreddit channel will be displayed. You can affect the information displayed by using the 
