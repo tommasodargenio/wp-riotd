@@ -1,3 +1,4 @@
+<?php echo $custom_css; ?>
 <div id="reddit-iotd">
     <div id="reddit-iotd-title-header">
         <div id="reddit-iotd-title">Reddit image of the day</div>

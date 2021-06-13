@@ -91,6 +91,10 @@ jQuery(document).ready(function($) {
     
         countdown = setInterval(ticker, 1000);   
     }
+
+
+    // code mirror
+    wp.codeEditor.initialize($('#wp_riotd_custom_css'), cm_settings);
     
     // check if we need to refresh the cache timer as the hearbeat might force a reload of the image in the cache
     $(document).on('heartbeat-tick', function(event, data) {        

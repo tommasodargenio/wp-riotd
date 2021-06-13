@@ -274,6 +274,19 @@
                 'supplemental'  => __('Select which layout you prefer. Minimialistic will only show the image, full will show all the available information', 'wp_riotd'),
                 'default'       => 'full'
             ),                      
+            array(
+                'uid'           => \WP_RIODT_SETTING_PREFIX.'_custom_css',
+                'label'         => __( 'Custom CSS', 'wp_riotd' ),
+                'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
+                'type'          => 'textarea',
+                'allowed'       => array('string'),
+                'options'       => false,
+                'placeholder'   => '',
+                'helper'        => '',
+                'supplemental'  => __('The CSS codes indicated in this box will override the plugin\'s own CSS styling', 'wp_riotd'),
+                'default'       => ''
+            ),                
+
         );
     }
 

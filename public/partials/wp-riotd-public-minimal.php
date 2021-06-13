@@ -1,3 +1,4 @@
+<?php echo $custom_css; ?>
 <div id="reddit-iotd">
     <!-- Main display area -->
     <div id="ig-main">

@@ -118,6 +118,14 @@ class WP_RIOTD_Public {
 		$post_url = "";
 		$full_res_url = "";
 		$overlay = WP_RIOTD_Settings::get('wp_riotd_zoom_switch');
+		$custom_css = "";
+		// add custom CSS if defined
+		if ( 0 === WP_RIOTD_Settings::get( "css_switch" ) || false === WP_RIOTD_Settings::get( "css_switch" ) ) {
+			$custom_css = WP_RIOTD_Settings::get("custom_css");
+			if ( ! empty( $custom_css ) ) {
+				$custom_css = "<style type=\"text/css\">\n$custom_css\n</style>\n";
+			}
+		}
 
 		// If no images were found, load the empty template
 		if ( sizeof($this->scraped) <= 0 ) {			
