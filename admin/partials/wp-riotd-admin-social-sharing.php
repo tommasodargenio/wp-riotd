@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || die( 'No direct script access allowed!' ); // Prohibit direct script loading. ?>
 <div id="social_sharing_box">
     <hr/>
     Like the plugin? Spread the love!<br/><br/>

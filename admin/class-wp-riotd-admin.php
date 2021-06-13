@@ -2,21 +2,18 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://github.com/tommasodargenio/wp-reddit-iodt/admin/class-wp-riotd-admin.php
+ * @link       https://github.com/tommasodargenio/wp-riodt/admin/class-wp-riotd-admin.php
  * @since      1.0.1
  * 
- * @package    WP-Reddit-IOTD
- * @subpackage WP-Reddit-IOTD/admin
+ * @package    RIOTD
+ * @subpackage RIOTD/admin
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  *  
  */
+// Prohibit direct script loading.
+defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
 
-/**
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- */
 class WP_RIOTD_Admin {
-
 	/**
 	 * The ID of this plugin.
 	 *
@@ -130,15 +127,15 @@ class WP_RIOTD_Admin {
 	public function create_admin_menu() {
 	
 		add_menu_page(
-			__('Reddit IOTD', 'wp-riotd'),
-			__('Reddit IOTD', 'wp-riotd'),
+			__('RIOTD - Reddit Image of The Day', 'wp-riotd'),
+			__('RIOTD', 'wp-riotd'),
 			'manage_options',
 			$this->menu_slug,
 			array($this, 'load_admin_page')
 		);
 		add_submenu_page(
 			$this->menu_slug,
-			__('Reddit IOTD - Settings', 'wp-riotd'),
+			__('RIOTD - Settings', 'wp-riotd'),
 			__('Settings', 'wp-riotd'),
 			'manage_options',
 			$this->menu_slug,
@@ -146,7 +143,7 @@ class WP_RIOTD_Admin {
 		);
 		add_submenu_page(
 			$this->menu_slug,
-			__('Reddit IOTD - Usage instructions', 'wp-riotd'),
+			__('RIOTD - Usage instructions', 'wp-riotd'),
 			__('How To Use', 'wp-riotd'),
 			'manage_options',
 			$this->menu_slug.'-usage',
@@ -154,7 +151,7 @@ class WP_RIOTD_Admin {
 		);
 		add_submenu_page(
 			$this->menu_slug,
-			__('Reddit IOTD - About Us', 'wp-riotd'),
+			__('RIOTD - About Us', 'wp-riotd'),
 			__('About Us', 'wp-riotd'),
 			'manage_options',
 			$this->menu_slug.'-aboutus',

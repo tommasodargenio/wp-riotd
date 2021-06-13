@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || die( 'No direct script access allowed!' ); // Prohibit direct script loading. ?>
 <?php echo $custom_css; ?>
 <div id="reddit-iotd">
     <!-- Main display area -->

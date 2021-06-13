@@ -8,13 +8,16 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  * 
- * @link       https://github.com/tommasodargenio/wp-reddit-iodt/includes/class-wp-riotd-loader.php
+ * @link       https://github.com/tommasodargenio/wp-riodt/includes/class-wp-riotd-loader.php
  * @since      1.0.1
  * 
- * @package    WP-Reddit-IOTD
- * @subpackage WP-Reddit-IOTD/includes
+ * @package    RIOTD
+ * @subpackage RIOTD/includes
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
+// Prohibit direct script loading.
+defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
+
 class WP_RIOTD_Loader {
 	/**
 	 * The array of actions registered with WordPress.

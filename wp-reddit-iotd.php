@@ -1,42 +1,39 @@
 <?php
 /**
- * WP Reddit IOTD
+ * RIOTD Reddit Image of The Day
  * 
- * @link                https://github.com/tommasodargenio/wp-reddit-iotd/
+ * @link                https://github.com/tommasodargenio/wp-riotd/
  * @since               1.0.0
- * @package             WP-Reddit-IOTD
+ * @package             WP-RIOTD
  * @author              Tommaso D'Argenio
  * @copyright           2021 Tommaso D'Argenio
  * @license             GPL-3.0-or-later
  * 
  * @wordpress-plugin
- * Plugin Name:         WordPress Reddit Image Of The Day
- * Plugin URI:          https://github.com/tommasodargenio/wp-reddit-iotd/
+ * Plugin Name:         RIOTD Reddit Image Of The Day
+ * Plugin URI:          https://github.com/tommasodargenio/wp-riotd/
  * Description:         Download a random image from any subreddit and display it in your WordPress site
  * Version:             1.0.1
  * License:             GPLv3
- * License URI:         https://github.com/tommasodargenio/wp-reddit-iotd/LICENSE
+ * License URI:         https://github.com/tommasodargenio/wp-riotd/gpl-3.0.txt
  * Author:              Tommaso D'Argenio
  * Author URI:          https://tommasodargenio.com
  * Text Domain:         wp-riotd
  */
-
-// check if this file is called within WP, if not abort
-if ( !defined( 'WPINC' ) ) {
-    die;
-}
+// Prohibit direct script loading.
+defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
 
 // Plugin version
 define ( 'WP_RIOTD_VERSION', '1.0.1' );
 
 // Plugin name
-define ( 'WP_RIOTD_PLUGIN_NAME', 'WP-Reddit-IOTD' );
+define ( 'WP_RIOTD_PLUGIN_NAME', 'RIOTD-Reddit-Image-Of-The-Day' );
 
 // Short code for full UI
-define ( 'WP_RIOTD_SHORTCODE', 'reddit-iotd' );
+define ( 'WP_RIOTD_SHORTCODE', 'riotd' );
 
 // Short code for data only
-define ( 'WP_RIOTD_SHORTCODE_DATA', 'reddit-iotd-data' );
+define ( 'WP_RIOTD_SHORTCODE_DATA', 'riotd-data' );
 
 // Reddit main url
 define ('WP_RIOTD_REDDIT_MAIN', 'https://www.reddit.com' );
@@ -45,7 +42,7 @@ define ('WP_RIOTD_REDDIT_MAIN', 'https://www.reddit.com' );
 define ( 'WP_RIOTD_REDDIT_URL', 'https://www.reddit.com/r/%reddit_channel%/new.json' );
 
 // Github Repository link
-define ( 'WP_RIOTD_GITHUB', 'https://github.com/tommasodargenio/wp-reddit-iotd' );
+define ( 'WP_RIOTD_GITHUB', 'https://github.com/tommasodargenio/wp-riotd' );
 
 // Prefix for settings
 define ( 'WP_RIODT_SETTING_PREFIX', 'wp_riotd' );

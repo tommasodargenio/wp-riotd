@@ -1,3 +1,15 @@
+/**
+ * The JS functions used for the public facing area.
+ *
+ * @link       https://github.com/tommasodargenio/wp-riodt/public/js/wp-riotd-public.js
+ * @since      1.0.1
+ * 
+ * @package    RIOTD
+ * @subpackage RIOTD/public
+ * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
+ *  
+ */
+
 function closest(e, t) { 
     return !e? false : e === t ? true : closest(e.parentNode, t);
 }

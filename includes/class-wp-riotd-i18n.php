@@ -5,13 +5,16 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  * 
- * @link       https://github.com/tommasodargenio/wp-reddit-iodt/includes/class-wp-riotd-i18n.php
+ * @link       https://github.com/tommasodargenio/wp-riodt/includes/class-wp-riotd-i18n.php
  * @since      1.0.1
  * 
- * @package    WP-Reddit-IOTD
- * @subpackage WP-Reddit-IOTD/includes
+ * @package    RIOTD
+ * @subpackage RIOTD/includes
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
+// Prohibit direct script loading.
+defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
+
 class WP_RIOTD_i18n {
 
 

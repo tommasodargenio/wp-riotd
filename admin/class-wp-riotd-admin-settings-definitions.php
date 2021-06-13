@@ -4,13 +4,15 @@
  *  
  *  Contains all definitions for the settings
  * 
- * @link       https://github.com/tommasodargenio/wp-reddit-iodt/admin/class-wp-riotd-admin-settings-definitions.php
+ * @link       https://github.com/tommasodargenio/wp-riodt/admin/class-wp-riotd-admin-settings-definitions.php
  * @since      1.0.1
  * 
- * @package    WP-Reddit-IOTD
- * @subpackage WP-Reddit-IOTD/admin
+ * @package    RIOTD
+ * @subpackage RIOTD/admin
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
+ // Prohibit direct script loading.
+ defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
 
  class WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS { 
      /**

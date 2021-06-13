@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || die( 'No direct script access allowed!' ); // Prohibit direct script loading. ?>
 <table class="form-table" role="presentation">
 <tr><th scope="row">Cache status</th>
 <td>

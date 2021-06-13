@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || die( 'No direct script access allowed!' ); // Prohibit direct script loading. ?>
 <h1>How to use the plugin</h1>
 <hr />
 <p>

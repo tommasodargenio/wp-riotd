@@ -5,14 +5,16 @@
  * Get all the available settings from the database
  * 
  * 
- * @link       https://github.com/tommasodargenio/wp-reddit-iodt/includes/class-wp-riotd-settings.php
+ * @link       https://github.com/tommasodargenio/wp-riodt/includes/class-wp-riotd-settings.php
  * @since      1.0.1
  * 
- * @package    WP-Reddit-IOTD
- * @subpackage WP-Reddit-IOTD/includes
+ * @package    RIOTD
+ * @subpackage RIOTD/includes
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
-
+ // Prohibit direct script loading.
+ defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
+ 
  class WP_RIOTD_Settings {
      /**
       * Given a key, scans the setting definition array, if the key is found it will load the related value from the database

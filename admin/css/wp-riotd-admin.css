@@ -1,3 +1,15 @@
+/**
+ * The CSS Styles used for the admin-specific area.
+ *
+ * @link       https://github.com/tommasodargenio/wp-riodt/admin/css/wp-riotd-admin.css
+ * @since      1.0.1
+ * 
+ * @package    RIOTD
+ * @subpackage RIOTD/admin
+ * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
+ *  
+ */
+
 #highlight_box {
     display: block;
     float: left;

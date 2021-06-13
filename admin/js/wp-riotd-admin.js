@@ -1,3 +1,15 @@
+/**
+ * The JS functions used for the admin-specific area.
+ *
+ * @link       https://github.com/tommasodargenio/wp-riodt/admin/js/wp-riotd-admin.js
+ * @since      1.0.1
+ * 
+ * @package    RIOTD
+ * @subpackage RIOTD/admin
+ * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
+ *  
+ */
+
 
 jQuery(document).ready(function($) {
     // utility function to format numbers better    

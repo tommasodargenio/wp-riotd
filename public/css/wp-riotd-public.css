@@ -1,3 +1,15 @@
+/**
+ * The CSS Styles used for the public facing area.
+ *
+ * @link       https://github.com/tommasodargenio/wp-riodt/public/css/wp-riotd-public.css
+ * @since      1.0.1
+ * 
+ * @package    RIOTD
+ * @subpackage RIOTD/public
+ * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
+ *  
+ */
+
 #reddit-iotd {
     overflow: hidden;
     display: block;

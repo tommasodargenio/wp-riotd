@@ -5,13 +5,15 @@
  * Collection of static utility methods of generic use throughout the plugin
  * 
  * 
- * @link       https://github.com/tommasodargenio/wp-reddit-iodt/includes/class-wp-riotd-utility.php
+ * @link       https://github.com/tommasodargenio/wp-riodt/includes/class-wp-riotd-utility.php
  * @since      1.0.1
  * 
- * @package    WP-Reddit-IOTD
- * @subpackage WP-Reddit-IOTD/includes
+ * @package    RIOTD
+ * @subpackage RIOTD/includes
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
+ // Prohibit direct script loading.
+ defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
 
  class WP_RIOTD_Utility {
      /**
@@ -53,9 +55,9 @@
 
       /**
        * Dirty CSS minifier - may not cover all cases and could break css. Since this will be used to minify user's custom CSS should contain complicated CSS in theory
-       * @since 1.0.1
-       * @author        Gary Jones
-       * @author-url    https://github.com/GaryJones/Simple-PHP-CSS-Minification/blob/master/minify.php
+       * @since     1.0.1
+       * @author    Gary Jones
+       * @link      https://github.com/GaryJones/Simple-PHP-CSS-Minification/blob/master/minify.php
        * @param     string  $css    CSS to minify
        * @return    string  minified CSS    
        */

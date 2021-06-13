@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || die( 'No direct script access allowed!' ); // Prohibit direct script loading. ?>
 <h1>Welcome</h1>
 <hr />
 <p>

@@ -4,13 +4,16 @@
  *  
  *  the core class
  * 
- * @link       https://github.com/tommasodargenio/wp-reddit-iodt/includes/class-wp-riotd.php
+ * @link       https://github.com/tommasodargenio/wp-riodt/includes/class-wp-riotd.php
  * @since      1.0.1
  * 
- * @package    WP-Reddit-IOTD
- * @subpackage WP-Reddit-IOTD/includes
+ * @package    WP-RIOTD
+ * @subpackage WP-RIOTD/includes
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
+
+// Prohibit direct script loading.
+defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
 
  class WP_RIOTD {
 	/**
@@ -91,7 +94,7 @@
         if ( defined( '\WP_RIOTD_PLUGIN_NAME' ) ) {
             $this->plugin_name = \WP_RIOTD_PLUGIN_NAME;
         } else {
-            $this->plugin_name = 'WP-Reddit-IOTD';
+            $this->plugin_name = 'RIOTD-Reddit-Image-Of-The-Day';
         }
 
         if ( defined( '\WP_RIOTD_VERSION' ) ) {
@@ -103,7 +106,7 @@
         if ( defined( '\WP_RIOTD_SHORTCODE' ) ) {
             $this->plugin_shortcode = \WP_RIOTD_SHORTCODE;
         } else {
-            $this->plugin_shortcode = 'reddit-iotd';
+            $this->plugin_shortcode = 'riotd';
         }
 
         if ( defined( '\WP_RIOTD_REDDIT_URL' ) ) {            
@@ -115,7 +118,7 @@
         if ( defined ('\WP_RIOTD_SHORTCODE_DATA') ) {
             $this->plugin_shortcode_data = \WP_RIOTD_SHORTCODE_DATA;        
         } else {
-            $this->plugin_shortcode_data = 'reddit-iotd-data';
+            $this->plugin_shortcode_data = 'riotd-data';
         }
 
         // define the dependencies

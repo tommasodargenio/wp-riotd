@@ -2,19 +2,18 @@
 /**
  * Public facing functionality of the plugin.
  *
- * @link       https://github.com/tommasodargenio/wp-reddit-iodt/public/class-wp-riotd-public.php
+ * @link       https://github.com/tommasodargenio/wp-riodt/public/class-wp-riotd-public.php
  * @since      1.0.1
  * 
- * @package    WP-Reddit-IOTD
- * @subpackage WP-Reddit-IOTD/public
+ * @package    RIOTD
+ * @subpackage RIOTD/public
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  *  
  */
 
-/**
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- */
+ // Prohibit direct script loading.
+defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
+
 class WP_RIOTD_Public {
 
 	/**
