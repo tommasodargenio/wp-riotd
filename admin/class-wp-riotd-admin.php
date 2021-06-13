@@ -407,6 +407,9 @@ class WP_RIOTD_Admin {
 						}
 					}
 					break;
+				case 'css':
+					// special case to minify css
+					$value = WP_RIOTD_Utility::minify_css($value);
 				default:						
 					$value = sanitize_text_field( $value );
 			}

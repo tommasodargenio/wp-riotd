@@ -279,7 +279,7 @@
                 'label'         => __( 'Custom CSS', 'wp_riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'textarea',
-                'allowed'       => array('string'),
+                'allowed'       => array('css'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
