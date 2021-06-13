@@ -28,8 +28,7 @@
 } 
 
 #social_sharing_box {
-    position: absolute;
-    bottom: -8%;    
+    padding-top: 50px;
     width: 100%;
 }
 
