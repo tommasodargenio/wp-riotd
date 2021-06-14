@@ -14,49 +14,57 @@
     <h2 class="nav-tab-wrapper">
         <?php $this->do_tabs($active_tab); ?>
     </h2>
-    
-    <form method="POST" action="options.php" id="main-options-form">
-        <?php 
-            if ( $active_tab == $this->default_setting_tab ) {
-                $this->welcome_tab();    
-            } elseif ( $active_tab == 'wp_riotd_section_usage' ) {
-                $this->usage_tab();
-            } else {
-                settings_fields( $active_tab );
-                do_settings_sections( $active_tab );
 
-                if ( $active_tab == 'wp_riotd_section_general') {
-                    $this->do_cache();
-                }
-                ?>
-                <table class="form-table" role="presentation" style="width:5%">
-                    <tr>
-                        <td><?php submit_button( __( 'Save Settings', 'wp_riotd' ), 'primary', 'submit', false ); ?></td>
-                        <td>
-                            <?php submit_button( __( 'Reset All Settings', 'wp_riotd'), 'secondary', 'riotd_reset', false, 'title="'.__('Click to reset all settings to default', 'wp_riotd').'"'); ?>                           
-                        </td>
-                        <td>
-                            <?php submit_button( __( 'Show Preview', 'wp_riotd'), 'secondary', 'riotd_preview', false, 'data-action="preview_off" title="'.__('Click to see a preview', 'wp_riotd').'"'); ?>
-                        </td>
-                        <td>
-                            <?php submit_button( __( 'View Cache Content', 'wp_riotd'), 'secondary', 'riotd_view_cache', false, 'data-action="cache_off" title="'.__('Click to see the content of the cache stored in the database', 'wp_riotd').'"'); ?>
-                        </td>
-                        <td>
-                            <img src="<?php echo admin_url('/images/wpspin_light.gif') ?>" id="reddit_iotd_icon_loading" style="display:none" />                            
-                        </td>
+            <form method="POST" action="options.php" id="main-options-form">
+                <?php 
+                    if ( $active_tab == $this->default_setting_tab ) {
+                        $this->welcome_tab();    
+                    } elseif ( $active_tab == 'wp_riotd_section_usage' ) {
+                        $this->usage_tab();
+                    } else {
+                    ?>
+                    <section class="page-content">
+                    <section class="grid">
+                        <article>                        
+                    <?php
+                        settings_fields( $active_tab );
+                        do_settings_sections( $active_tab );
 
-    <?php  }  ?>
-                    </tr>
-                </table>
-    </form>
-    <div id="reddit_iotd_admin_preview" style="display:none">
-               <h1>Preview <span class="dashicons dashicons-update" id="update_preview" style="display:none" title="<?php echo __('Update available, click to refresh', 'wp-riotd'); ?>"></span></h1>
-               <hr />
-                <div id="reddit_iotd_public_view"></div>
-    </div>
-    <div id="reddit_iotd_admin_cache_preview" style="display:none">
-               <h1>Cache Content<span class="dashicons dashicons-update" id="update_cache_preview" style="display:none" title="<?php echo __('Update available, click to refresh', 'wp-riotd'); ?>"></span></h1>
-               <hr />
-                <div id="reddit_iotd_cache_view"></div>
-    </div>    
+                        if ( $active_tab == 'wp_riotd_section_general') {
+                            $this->do_cache();
+                        }
+                        ?>
+                        <table class="form-table" role="presentation" style="width:5%">
+                            <tr>
+                                <td><?php submit_button( __( 'Save Settings', 'wp_riotd' ), 'primary', 'submit', false ); ?></td>
+                                <td>
+                                    <?php submit_button( __( 'Reset All Settings', 'wp_riotd'), 'secondary', 'riotd_reset', false, 'title="'.__('Click to reset all settings to default', 'wp_riotd').'"'); ?>                           
+                                </td>
+                                <td>
+                                    <?php submit_button( __( 'Show Preview', 'wp_riotd'), 'secondary', 'riotd_preview', false, 'data-action="preview_off" title="'.__('Click to see a preview', 'wp_riotd').'"'); ?>
+                                </td>
+                                <td>
+                                    <?php submit_button( __( 'View Cache Content', 'wp_riotd'), 'secondary', 'riotd_view_cache', false, 'data-action="cache_off" title="'.__('Click to see the content of the cache stored in the database', 'wp_riotd').'"'); ?>
+                                </td>
+                                <td>
+                                    <img src="<?php echo admin_url('/images/wpspin_light.gif') ?>" id="reddit_iotd_icon_loading" style="display:none" />                            
+                                </td>
+
+            <?php  }  ?>
+                            </tr>
+                        </table>
+            </form>
+            <div id="reddit_iotd_admin_preview" style="display:none">
+                    <h1>Preview <span class="dashicons dashicons-update" id="update_preview" style="display:none" title="<?php echo __('Update available, click to refresh', 'wp-riotd'); ?>"></span></h1>
+                    <hr />
+                        <div id="reddit_iotd_public_view"></div>
+            </div>
+            <div id="reddit_iotd_admin_cache_preview" style="display:none">
+                    <h1>Cache Content<span class="dashicons dashicons-update" id="update_cache_preview" style="display:none" title="<?php echo __('Update available, click to refresh', 'wp-riotd'); ?>"></span></h1>
+                    <hr />
+                        <div id="reddit_iotd_cache_view"></div>
+            </div>    
+        </article>
+    </section>
+    </section>
 </div>
