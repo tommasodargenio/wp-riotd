@@ -1,6 +1,9 @@
 <?php defined( 'ABSPATH' ) || die( 'No direct script access allowed!' ); // Prohibit direct script loading. ?>
 <h1>How to use the plugin</h1>
 <hr />
+<section class="page-content">
+    <section class="grid">
+        <article style="grid-column: 1 / 4;">
 <p>
 The first step is to setup the plugin, indicating the subdreddit <a href="<?php $this->get_tab_url("channel", true); ?>">channel</a> you want to fetch images from, 
 the <a href="<?php $this->get_tab_url("image", true); ?>">image</a> resolution and aspect ratio, which kind of data you want it <a href="<?php $this->get_tab_url("layout", true); ?>">displayed</a>.
@@ -9,22 +12,32 @@ the <a href="<?php $this->get_tab_url("image", true); ?>">image</a> resolution a
 There are a couple of ways to display the image feed from the subreddit channel you have specified in the <a href="<?php $this->get_tab_url("channel", true); ?>">settings</a>. 
 It involves using shortcodes (specific keywords contained in square brackets, read more <a href="https://wordpress.com/support/shortcodes/" title="open the wordpress support web page in a new tab" target="_blank">here</a>),
 beware that shortcodes might not be processed in posts' excerpts but only in full posts depending on how your wordpress theme has been developed.
-<br/><br/>
-One is by using the main shortcode: <code>[<?php echo $shortcode; ?>]</code>
-which will create a rectangular box where the image, title, subreddit channel will be displayed. You can affect the information displayed by using the 
+</p>
+<p>
+We strongly suggest to not modify the plugin files directly as any successive updates will overwrite your customization, use the override mechanism provided via the settings menu as this will not be touched during an upgrade and are stored in your WordPress database.
+</p>
+</article>
+<article style="grid-column: 1 / 2;">
+<h2>Styled Shortcode</h2>
+<p>
+Using the main shortcode: <code>[<?php echo $shortcode; ?>]</code>
+will create a rectangular box where the image, title, subreddit channel will be displayed. You can affect the information displayed by using the 
 switches in the Theme Layout <a href="<?php $this->get_tab_url("layout", true); ?>">settings</a> tab.
 <div id="highlight_box">
-<h3><span class="dashicons dashicons-admin-post"></span>&nbsp;Display the feed</h3>
-Copy and paste this shortcode directly into the page, post or widget where you'd like to display the feed
+<h3><span class="dashicons dashicons-admin-post" id="pin"></span>&nbsp;Display the feed</h3>
+<p>Copy and paste this shortcode directly into the page, post or widget where you'd like to display the feed</p>
 <input type="text" value="[<?php echo $shortcode; ?>]" size="10" readonly="readonly" style="text-align:center" onClick="this.focus();this.select()" title="To copy, click the field than press Ctrl + C (PC) or Cmd + C (Mac)" />
 </div>
 </p>
-<p style="clear:both;padding-top:25px;">
+</article>
+<article style="grid-column: 2 / 4;">
+<h2>Data Extraction shortcode</h2>
+<p>
 The second way is to just get the information you are interested to display, instead of using the plugin UI. In this case use the shortcode
 <code>[<?php echo $shortcode_data; ?> key=&quot;parameter&quot;]</code>
 <div id="highlight_box">
-<h3><span class="dashicons dashicons-admin-post"></span>&nbsp;Display a piece of data</h3>
-Copy and paste this shortcode directly into the page, post or widget where you'd like to display the requested data
+<h3><span class="dashicons dashicons-admin-post" id="pin"></span>&nbsp;Display a piece of data</h3>
+<p>Copy and paste this shortcode directly into the page, post or widget where you'd like to display the requested data</>
 <input type="text" value="[<?php echo $shortcode_data; ?> key=&quot;parameter&quot;]" size="32 " readonly="readonly" style="text-align:center" onClick="this.focus();this.select()" title="To copy, click the field than press Ctrl + C (PC) or Cmd + C (Mac)" />
 </div>
 </p>
@@ -82,6 +95,8 @@ where parameter is the field you want to extract from the plugin, you can choose
     </tbody>
 </table>
 </p>
+</article>
+<article style="grid-column: 1 / 4;">
 <h1>Styling</h1>
 <hr />
 
@@ -142,4 +157,6 @@ own styling. You can find below a summary of the classes used by the plugin:
     </tbody>
 </table>
 </p>
-
+</article>
+    </section>
+</section>
