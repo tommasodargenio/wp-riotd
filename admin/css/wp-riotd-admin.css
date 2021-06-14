@@ -38,15 +38,32 @@
 
 
 #highlight_box {
-    display: block;
-    float: left;
-    clear: both;
-    margin: 15px 0 0 0;
-    padding: 15px 20px;
+    display: flex;    
+    clear: both;  
+    width: 75%;  
+    margin: 15px auto 0 auto;
+    padding: 10px 15px;
     box-shadow: var(--box-shadow);
     border: var(--border-solid);
     background: var(--gray-alpha); 
     border-radius: var(--border-radius); 
+    position: relative;
+}
+
+#pin {
+    position: absolute;
+    top: -8%;
+    left: 1%;
+}
+
+#highlight_box > h3 {
+    display: flex;
+    text-align: center;
+    padding: 0 1em 0 0;
+}
+
+#highlight_box > p {
+    display: flex;
 }
 
 #reddit_iotd_admin_table {
@@ -124,6 +141,8 @@ hr {
     word-break: break-all;
     font-size: x-small;
 }
+
+
 
 /**
 * Grid

@@ -41,11 +41,13 @@
             <li>If you would like to check the exact data that the plugin has collected and stored in the database, you can use the utlity button on <a href="<?php $this->get_tab_url( 'section_general', true ); ?>">general settings</a> page</li>
             <br/>
             <br/>
-            Reddit Inc. &copy; has the ownership of the post from which the image has been fetched, please refer to <a href="https://www.redditinc.com/policies/privacy-policy" target="_blank" title="Click to open the reddit website privacy policy page in a new tab">Reddit</a> privacy policies for more information on how this data is treated.
+            Reddit Inc. has the ownership of the post from which the image has been fetched, please refer to <a href="https://www.redditinc.com/policies/privacy-policy" target="_blank" title="Click to open the reddit website privacy policy page in a new tab">Reddit</a> privacy policies for more information on how this data is treated.
             </p>
         </article>
-
     </section>
+    <p>
+        <?php include_once plugin_dir_path( __DIR__ ).'wp-riotd-admin-social-sharing.php'; ?>
+    </p>    
 </section>
 
 
