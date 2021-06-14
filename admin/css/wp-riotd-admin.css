@@ -10,15 +10,43 @@
  *  
  */
 
+/**
+* Variables
+*/
+:root {
+    --page-header-width: 0px;
+    --page-content-bgColor: #f0f1f6;
+    --page-content-txtColor: #171616;
+    --page-content-blockColor: #fff;
+    --page-content-titleColor: rgb(129, 0, 0);
+    --page-content-menuTitleColor: rgb(83, 0, 0);
+    --white: #fff;
+    --black: #333;
+    --blue: #00b9eb;
+    --red: #ec1848;
+    --gray-alpha: rgba(255,255,255,0.4);
+    --border-radius: 4px;
+    --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
+    --border-solid: 1px solid #ddd;
+    --border-dashed-menu: 1px dotted rgb(77, 0, 13);
+    --switch-bgLightModeColor: #87cefa;
+    --switch-sunColor: gold;
+    --switch-moonColor: #f4f4f4;
+    --switch-bgDarkModeColor: #1f1f27;
+    --icon-margin: 5px 5px auto 15px;
+  }
+
+
 #highlight_box {
     display: block;
     float: left;
     clear: both;
     margin: 15px 0 0 0;
     padding: 15px 20px;
-    border: 1px solid #ccc;
-    background: rgba(255,255,255,0.5);
-    border-radius: 5px;  
+    box-shadow: var(--box-shadow);
+    border: var(--border-solid);
+    background: var(--gray-alpha); 
+    border-radius: var(--border-radius); 
 }
 
 #reddit_iotd_admin_table {
@@ -28,13 +56,16 @@
     border-spacing: 2px;
     border-color: #999;
     border-collapse: collapse;
+    box-shadow: var(--box-shadow);
 }
 
 #reddit_iotd_admin_table th {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.2);
+    font-weight: bolder;
+    font-size: medium;
 }
 #reddit_iotd_admin_table th, #reddit_iotd_admin_table td {
-    border: 1px solid #999;
+    border: var(--border-solid);
     padding: 0.5rem;
     text-align: left;
 } 
@@ -45,29 +76,27 @@
 }
 
 hr {
-    width: 100%;
-    border-top: 1px solid #dcdcde;
-    border-bottom: 1px solid #f6f7f7;
+    /* width: 100%;
+    border-top: var(--border-solid);
+    border-bottom: 1px solid #f6f7f7; */
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 #reddit_iotd_icon_success {
-    position: absolute;
-    margin-top: 5px;
-    margin-left: 15px;
-    margin-right: 5px;
+    position: absolute;  
     color: #0a0;
+    margin: var(--icon-margin);
 }
 #reddit_iotd_icon_error {
     position: absolute;
-    margin-top: 5px;
-    margin-left: 15px;
-    margin-right: 5px;
+    margin: var(--icon-margin);
     color: #a00;
 }
 #reddit_iotd_icon_loading {    
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-right: 5px;    
+    margin: var(--icon-margin);
 }
 
 #reddit_iodt_highlight_on {
@@ -75,7 +104,7 @@ hr {
 }
 
 #reddit_iotd_admin_preview {
-    border: solid 1px #aaa;
+    border: var(--border-solid);
     padding: 10px;
     margin: 10px;    
     width: 380px;
@@ -89,6 +118,62 @@ hr {
     padding: 5px;
 }
 
+.settings_debug {
+    width: 400px;
+    display: block;
+    word-break: break-all;
+    font-size: x-small;
+}
+
+/**
+* Grid
+*/
+.page-content {
+    position: relative;
+    /* left: var(--page-header-width);
+    width: calc(100% - var(--page-header-width)); */
+    min-height: 100vh;
+    padding: 10px 20px 10px 0px;
+    color: var(--page-content-txtColor);
+    background: var(--page-content-bgColor);
+  }
+
+.page-content .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .page-content .grid > article {    
+    min-height: 200px;
+    background: var(--page-content-blockColor);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 10px;
+  }
+  
+  .page-content .grid > article:first-child {
+    grid-column: 1 / 3;
+  }
+  
+  .page-content .grid > article h1 {
+      color:var(--page-content-titleColor);
+      font-size: larger;
+      font-weight: bolder;    
+      margin: 5px 0px 0px 0px;  
+  }
+  .page-content .grid > article h2 {
+    color: var(--page-content-menuTitleColor);
+    font-size: large;
+    font-weight: bolder;    
+    margin: 5px 0px 0px 0px;  
+    padding: 0px 0px 5px 0px;
+    border-bottom: var(--border-dashed-menu);
+}  
+
+/**
+* CodeMirror styling
+*/
 .CodeMirror {
     border: 1px solid #777;
   }
