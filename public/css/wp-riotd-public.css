@@ -71,7 +71,8 @@
 }
  
 #ig-iotd {
-    margin: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0.5em;
     width: 300px;    
 }
