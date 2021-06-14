@@ -287,7 +287,19 @@
                 'helper'        => '',
                 'supplemental'  => __('The CSS codes indicated in this box will override the plugin\'s own CSS styling', 'wp_riotd'),
                 'default'       => ''
-            ),                
+            ),         
+            array(
+                'uid'           => \WP_RIODT_SETTING_PREFIX.'_activation_date',
+                'label'         => __( 'Plugin Activation Date', 'wp_riotd' ),
+                'section'       => \WP_RIODT_SETTING_PREFIX.'_section_private',
+                'type'          => 'private',
+                'allowed'       => array('date'),
+                'options'       => false,
+                'placeholder'   => '',
+                'helper'        => '',
+                'supplemental'  => '',
+                'default'       => time()
+            ),       
 
         );
     }

@@ -26,6 +26,8 @@ class WP_RIOTD_Activator {
 	public static function activate() {
 		// create options in db and set the defaults
 		WP_RIOTD_Settings::set_defaults();
+		// set internal / private settings
+		WP_RIOTD_Settings::set_privates();
 	}
 
 }
