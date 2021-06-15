@@ -2,8 +2,8 @@
 
 Contributors: SyDream  
 Tags: feed, reddit, subreddit, image, gallery, developer  
-Requires at least: 5.6  
-Requires PHP: 5.6.20  
+Requires at least: 5.0.2  
+Requires PHP: 5.6.39  
 Tested up to: 5.7  
 Stable tag: 1.0.1  
 License: GPLv3  
