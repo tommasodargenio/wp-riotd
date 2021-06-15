@@ -65,6 +65,14 @@ class WP_RIOTD_Admin {
 	 * @var		string				$menu_slug							The slug to identify the admin page
 	 */
 	protected $menu_slug;
+
+	/**
+	 * Base64 encoding of the plugin Icon SVG
+	 * @since	1.0.1
+	 * @access	protected
+	 * @var		string				$plugin_icon						Base64 encoding of the plugin SVG ICON stored in images, the filename must be icon.svg
+	 */
+	protected $plugin_icon;
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -82,6 +90,12 @@ class WP_RIOTD_Admin {
 
 		if ( class_exists('WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS', false) ) {
 			$this->settings_definitions = new WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS();			
+		}
+
+		if ( file_exists( plugin_dir_path(__FILE__) . 'images/icon.svg' ) ) {
+			$this->plugin_icon = 'data:image/svg+xml;base64,'.base64_encode(file_get_contents( plugin_dir_path(__FILE__) . 'images/icon.svg' ));
+		} else {
+			$this->plugin_icon = '';
 		}
 
 		$this->default_setting_tab = 'wp_riotd_section_welcome';		
@@ -131,7 +145,8 @@ class WP_RIOTD_Admin {
 			__('RIOTD', 'wp-riotd'),
 			'manage_options',
 			$this->menu_slug,
-			array($this, 'load_admin_page')
+			array($this, 'load_admin_page'),
+			'data:image/svg+xml;base64,'.base64_encode(file_get_contents( plugin_dir_path(__FILE__) . 'images/icon.svg' ))
 		);
 		add_submenu_page(
 			$this->menu_slug,
