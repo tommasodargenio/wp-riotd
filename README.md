@@ -1,13 +1,13 @@
 # RIOTD - Reddit Image Of The Day
 
-Contributors: SyDream
-Tags: feed, reddit, subreddit, image, gallery, developer
-Requires at least: 5.6
-Requires PHP: 5.6.20
-Tested up to: 5.7
-Stable tag: 1.0.1
-License: GPLv3
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Contributors: SyDream  
+Tags: feed, reddit, subreddit, image, gallery, developer  
+Requires at least: 5.6  
+Requires PHP: 5.6.20  
+Tested up to: 5.7  
+Stable tag: 1.0.1  
+License: GPLv3  
+License URI: https://www.gnu.org/licenses/gpl-3.0.html  
 
 Image of The Day from any sub/Reddit in your WordPress widgets and posts
 
@@ -70,10 +70,10 @@ Reddit is a copyright of Reddit Inc., please refer to Reddit user agreement [web
 * The post from Reddit where the image is selected, contains the username of the post's author which you can choose not to display on your Website. **(always read and respect the author's copyright terms)**
 * Images not stored on Reddit but on 3rd party hosting sites will not be selected
 * Galleries and Videos will not be selected
-* The image's content is never analyzed, we rely on Reddit's flags to determine whether or not the image has adult content, you can choose to display such content or not with the related flag (*Allow NSFW content*) in the general settings area.
+* The image's content is never analyzed, we rely on Reddit's flags to determine whether or not the image has adult content, you can choose to display such content or not with the related flag (*Allow NSFW content*) in the general settings area. The content of images shown on your website and fetched through this plugin is your sole responsibility
 * All data is stored on your Website at all time (in the wp_options table within the WordPress database), the lifetime of the data within this table is limited and it can be purged at anytime by using the control on the general settings page.
 * The plugin do not transfer or send any of the data collected (in its entirity or partially) anywhere outside your website.
-* If you would like to check the exact data that the plugin has collected and stored in the database, you can use the utlity button on general settings page
+* If you would like to check the data that the plugin has collected from Reddit and stored in the database, you can use the *Show Cache Content* button on general settings page
 
 
 * Reddit Inc. has the ownership of the post from which the image has been fetched, please refer to [Reddit](https://www.redditinc.com/policies/privacy-policy) privacy policies for more information on how this data is treated.
