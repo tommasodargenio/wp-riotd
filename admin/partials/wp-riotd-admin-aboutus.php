@@ -26,7 +26,7 @@
             Although a lot of care has gone into thoroughly testing this plugin, we couldn't possibly cover all cases and different setup scenario, so please bear with us while we improve and fix any issues that you will report.
             </p>
             <p>
-            Would you have any issue with the plugin, or if you want to request a new feature to be implemented, please open a new ticket on the <a href="<?php $this->get_github_link(true); ?>/issues" title="Click to open RIOTD github repository in a new tab" target="_blank">github</a> repository.
+            Would you have any issue with the plugin, or if you want to request a new feature to be implemented, please open a new ticket on the <a href="<?php $this->get_github_link(true); ?>/issues/new/choose" title="Click to open RIOTD github repository in a new tab" target="_blank">github</a> repository.
             </p>
             <p>
             Support is provided on best-effort basis, please upload screenshots to show the issue, the debug information shown in the column below called Debug Checkup, and any relevant information to help expedite troubleshooting and resolution.
