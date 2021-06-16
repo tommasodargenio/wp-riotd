@@ -1,9 +1,9 @@
-<?php defined( 'ABSPATH' ) || die( 'No direct script access allowed!' ); // Prohibit direct script loading. ?>
+<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-riotd') ); // Prohibit direct script loading. ?>
 <?php echo $custom_css; ?>
 <div id="reddit-iotd">
     <div id="reddit-iotd-title-header">
-        <div id="reddit-iotd-title">Reddit image of the day</div>
-        <div id="reddit-iotd-subtitle">from <a href="<?php echo $reddit_channel_url; ?>" title="Click to open the subreddit channel" target="_blank"><?php echo $reddit_channel; ?></a></div>
+        <div id="reddit-iotd-title"><?php esc_html_e('Reddit image of the day','wp-riotd'); ?></div>
+        <div id="reddit-iotd-subtitle">from <a href="<?php echo $reddit_channel_url; ?>" title="<?php esc_html_e('Click to open the subreddit channel','wp-riod'); ?>" target="_blank"><?php echo $reddit_channel; ?></a></div>
     </div>
     <!-- Main display area -->
     <div id="ig-main">

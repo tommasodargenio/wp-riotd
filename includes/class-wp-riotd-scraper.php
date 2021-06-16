@@ -14,7 +14,7 @@
  */
 
 // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
 class WP_RIOTD_Scraper {
     /**
      * Contains all the plugin settings
@@ -74,11 +74,11 @@ class WP_RIOTD_Scraper {
             if ( defined( '\WP_RIOTD_REDDIT_URL' ) ) {
                 $this->reddit_json_url = str_replace( '%reddit_channel%', $this->settings['wp_riotd_channel'], \WP_RIOTD_REDDIT_URL );
             } else {
-                trigger_error(__("Reddit URL not defined", "wp-riotd"), E_USER_ERROR);    
+                trigger_error(esc_html__("Reddit URL not defined", "wp-riotd"), E_USER_ERROR);    
             }
         }            
         else {
-            trigger_error(__("Reddit channel not specified", "wp-riotd"), E_USER_ERROR);
+            trigger_error(esc_html__("Reddit channel not specified", "wp-riotd"), E_USER_ERROR);
         }
 
         $this->statistics = array('tot_posts' => 0, 'tot_images' => 0, 'tot_videos' => 0, 'tot_galleries' => 0, 'tot_nsfw' => 0, 'tot_viable_images'=>0 );
@@ -118,17 +118,17 @@ class WP_RIOTD_Scraper {
 
                     // if null something went wrong
                     if ( $scrapes == null ) {
-                        trigger_error(__("Reddit returned an unexpected result, check your settings", "wp-riotd"), E_USER_ERROR);   
+                        trigger_error(esc_html__("Reddit returned an unexpected result, check your settings", "wp-riotd"), E_USER_ERROR);   
                     }
 
                     // if there is no data property in the object, then the channel is empty or something went wrong
                     if ( !property_exists( $scrapes, 'data' ) ) {
-                        trigger_error(__("The reddit channel selected is empty or something went wrong during the download", "wp-riotd"), E_USER_ERROR);                           
+                        trigger_error(esc_html__("The reddit channel selected is empty or something went wrong during the download", "wp-riotd"), E_USER_ERROR);                           
                     } 
 
                     // check if there are any children property, if not then the channel has no posts
                     if ( !property_exists( $scrapes->data, 'children' ) ) {
-                        $this->scraped_content = 'channel empty';
+                        $this->scraped_content = esc_html__('channel empty', 'wp-riotd');
                         return true; 
                     }
                     // check how many results we got

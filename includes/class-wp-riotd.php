@@ -13,7 +13,7 @@
  */
 
 // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
 
  class WP_RIOTD {
 	/**
@@ -100,7 +100,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
         if ( defined( '\WP_RIOTD_VERSION' ) ) {
             $this->plugin_version = \WP_RIOTD_VERSION;
         } else {
-            $this->plugin_version = '1.0.0';
+            $this->plugin_version = '1.0.1';
         }
 
         if ( defined( '\WP_RIOTD_SHORTCODE' ) ) {
@@ -172,10 +172,10 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
                 if ( file_exists($class_path) ) {
                     require_once $class_path;
                     if ( !class_exists($class, false) ) {
-                        trigger_error(__("Unable to load required dependency", "wp-riotd").": $class", E_USER_ERROR);
+                        trigger_error(esc_html__("Unable to load required dependency", "wp-riotd").": $class", E_USER_ERROR);
                     }
                 } else {
-                    trigger_error(__("Unable to load required dependency", "wp-riotd").": $class", E_USER_ERROR);
+                    trigger_error(esc_html__("Unable to load required dependency", "wp-riotd").": $class", E_USER_ERROR);
                 }
             }
         }

@@ -10,7 +10,7 @@
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
 // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
 
 class WP_RIOTD_Activator {
 

@@ -1,43 +1,45 @@
-<?php defined( 'ABSPATH' ) || die( 'No direct script access allowed!' ); // Prohibit direct script loading. ?>
-<h1>About Us</h1>
+<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' )); // Prohibit direct script loading. ?>
+<h1><?php esc_html_e('About Us', 'wp-riotd' ); ?></h1>
 <hr />
 <section class="page-content">
     <section class="grid">
         <article>
-            <h1>Author and License</h1>
+            <h1><?php esc_html_e('Author and License', 'wp-riotd' ); ?></h1>
             <p>
-            This plugin was written and developed by <a href="https://tommasodargenio.com">Tommaso D'Argenio</a>. It is licensed as Free Software under GNU General Public License 3 (GPL 3).
-            I'd really appreciate it, if you could rate and review the plugin in the WordPress Plugin Directory.
-            Good ratings and constructive feedbacks encourages me to further develop the plugin and to provide support. Thanks!
+            <?php esc_html_e('This plugin was written and developed by', 'wp-riotd' ) ?> <a href="https://tommasodargenio.com">Tommaso D'Argenio</a>. <?php esc_html_e('It is licensed as Free Software under GNU General Public License 3 (GPL 3)', 'wp-riotd'); ?>.
+            <?php esc_html_e("I'd really appreciate it, if you could rate and review the plugin in the WordPress Plugin Directory.", 'wp-riotd'); ?>
+            <?php esc_html_e("Good ratings and constructive feedbacks encourages me to further develop the plugin and to provide support. Thanks!", 'wp-riotd' ); ?>
             </p>
             <p>
                 <?php include_once plugin_dir_path( __FILE__ ).'wp-riotd-admin-social-sharing.php'; ?>
             </p>
         </article>
         <article>
-            <h1>Acknowledgements</h1>
-            <p>This work has been inspired, painstakingly tested, and refined by my brother. Thanks for all you support and ideas!</p>
-            <p>I owe a great deal to my partner Aisling who supported me throughout the development of this and other crazy ideas, and who helped me overcome the fear of publishing and releasing this work to the public.</p>
-            <p>To my dear and quirky auntie who always encouraged me and nurtured my brain, I always loved the way she used to say goodbye to me: Ad maiora! (to greater things).</p>
+            <h1><?php esc_html_e('Acknowledgements', 'wp-riotd' ); ?></h1>
+            <p><?php esc_html_e('This work has been inspired, painstakingly tested, and refined by my brother. Thanks for all your support and ideas!', 'wp-riotd' ); ?></p>
+            <p><?php esc_html_e('I owe a great deal to my partner Aisling who supported me throughout the development of this and other crazy ideas, and who helped me overcome the fear of publishing and releasing this work to the public.', 'wp-riotd' ); ?> </p>
+            <p><?php esc_html_e('To my dear and quirky auntie who always encouraged me and nurtured my brain, I always loved the way she used to say goodbye to me: Ad maiora! (to greater things).', 'wp-riotd' ); ?></p>
         </article>
         <article style="grid-column: 1 / 3;">
-            <h1>Help and Support</h1>
+            <h1><?php esc_html_e('Help and Support', 'wp-riotd' ); ?></h1>
             <p>
-            Although a lot of care has gone into thoroughly testing this plugin, we couldn't possibly cover all cases and different setup scenario, so please bear with us while we improve and fix any issues that you will report.
+            <?php esc_html_e('Although a lot of care has gone into thoroughly testing this plugin, we couldn\'t possibly cover all cases and different setup scenario, so please bear with us while we improve and fix any issues that you will report.', 'wp-riotd' ); ?>
             </p>
             <p>
-            Would you have any issue with the plugin, or if you want to request a new feature to be implemented, please open a new ticket on the <a href="<?php $this->get_github_link(true); ?>/issues/new/choose" title="Click to open RIOTD github repository in a new tab" target="_blank">github</a> repository.
+            <?php 
+                /* translators: 1 is a link  */
+                printf(__('Would you have any issue with the plugin, or if you want to request a new feature to be implemented, please open a new ticket on our <a href="%1$s" title="Click to open RIOTD github repository in a new tab" target="_blank">GitHub</a> repository', 'wp-riotd' ),$this->get_github_link().'/issues/new/choose');?>.
             </p>
             <p>
-            Support is provided on best-effort basis, please upload screenshots to show the issue, the debug information shown in the column below called Debug Checkup, and any relevant information to help expedite troubleshooting and resolution.
+            <?php esc_html_e('Support is provided on best-effort basis, please upload screenshots to show the issue, the debug information shown in the column below called Debug Checkup, and any relevant information to help expedite troubleshooting and resolution.', 'wp-riotd' ); ?>
             </p>
             <p>
-            We would love to hear any feedback and constructive criticisms that could help us improve this plugin and create new one, feature requests will be assessed based on the project's roadmap and mission statement and feedback provided if we decide to implement it or else.                
+            <?php esc_html_e("We would love to hear any feedback and constructive criticisms that could help us improve this plugin and create new one, feature requests will be assessed based on the project's roadmap and mission statement and feedback provided if we decide to implement it or else.", 'wp-riotd' ); ?>                
             </p>
         </article>
         <article>
-            <h1>Debug Checkup</h1>
-            <span style="font-style:italic;font-size:12px;">Please provide this information in bug and support requests</span>
+            <h1><?php esc_html_e('Debug Checkup', 'wp-riotd' ); ?></h1>
+            <span style="font-style:italic;font-size:12px;"><?php esc_html_e('Please provide this information in bug and support requests', 'wp-riotd' ); ?></span>
             <p>
             <?php $mysqli = ( isset( $GLOBALS['wpdb'] ) && isset( $GLOBALS['wpdb']->use_mysqli ) && $GLOBALS['wpdb']->use_mysqli && isset( $GLOBALS['wpdb']->dbh ) ); ?>
             <ul style="padding-left:10px;list-style-type: square;">

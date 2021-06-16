@@ -12,7 +12,7 @@
  */
 
  // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
 
 class WP_RIOTD_Public {
 
@@ -62,7 +62,7 @@ class WP_RIOTD_Public {
 		$this->version = $version;
 		
 		if ( !class_exists( 'WP_RIOTD_Scraper', false ) ) {
-			trigger_error(__("Can't find the scraper class", "wp-riotd"), E_USER_ERROR);    
+			trigger_error(esc_html__("Can't find the scraper class", "wp-riotd"), E_USER_ERROR);    
 		}
 
 		$scraper = new WP_RIOTD_Scraper();
@@ -108,8 +108,8 @@ class WP_RIOTD_Public {
 	 * @return	string		$view		The html code that will be pasted in the public site where the plugin shortcut has been used
 	 */
 	public function render_view($admin_view = false) {
-		$view = 'Template not available :(';
-		$scraped = 'No images availabe :(';
+		$view = esc_html__('Template not available :(','wp-riotd');
+		$scraped = esc_html__('No images availabe :(','wp-riotd');
 		$reddit_channel = "";
 		$reddit_channel_url = "";
 		$author = "";

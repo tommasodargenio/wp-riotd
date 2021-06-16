@@ -11,7 +11,7 @@
  *  
  */
 // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
 
 class WP_RIOTD_Admin {
 	/**
@@ -32,7 +32,13 @@ class WP_RIOTD_Admin {
 	 */
 	private $version;
 
-    
+	/**
+	 * The plugin shortname
+	 * @since	1.0.1
+	 * @access	private
+	 * @var		string		$plugin_shortname  The plugin shortname 
+	 */
+    private $plugin_shortname;
     /**
      *  All the configuration user's settings for this plugin loaded from the database
      * 
@@ -86,6 +92,12 @@ class WP_RIOTD_Admin {
 		$this->version = $version;
 		$this->settings = $settings;
 
+		if ( defined( '\WP_RIOTD_SHORT_NAME' ) ) {
+            $this->plugin_shortname = \WP_RIOTD_SHORT_NAME;
+        } else {
+            $this->plugin_shortname = 'RIOTD';
+        }
+
 		$this->menu_slug = strtolower($this->plugin_name);
 
 		if ( class_exists('WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS', false) ) {
@@ -93,7 +105,7 @@ class WP_RIOTD_Admin {
 		}
 
 		if ( file_exists( plugin_dir_path(__FILE__) . 'images/icon.svg' ) ) {
-			$this->plugin_icon = 'data:image/svg+xml;base64,'.base64_encode(file_get_contents( plugin_dir_path(__FILE__) . 'images/icon.svg' ));
+			$this->plugin_icon = 'data:image/svg+xml;base64,'.base64_encode(file_get_contents( plugin_dir_path(__FILE__) . 'images/riotd_admin_icon_bw.svg' ));
 		} else {
 			$this->plugin_icon = '';
 		}
@@ -141,16 +153,16 @@ class WP_RIOTD_Admin {
 	public function create_admin_menu() {
 	
 		add_menu_page(
-			__('RIOTD - Reddit Image of The Day', 'wp-riotd'),
+			$this->plugin_shortname.' - '.esc_html__('Reddit Image of The Day', 'wp-riotd'),
 			__('RIOTD', 'wp-riotd'),
 			'manage_options',
 			$this->menu_slug,
 			array($this, 'load_admin_page'),
-			'data:image/svg+xml;base64,'.base64_encode(file_get_contents( plugin_dir_path(__FILE__) . 'images/icon.svg' ))
+			$this->plugin_icon
 		);
 		add_submenu_page(
 			$this->menu_slug,
-			__('RIOTD - Settings', 'wp-riotd'),
+			$this->plugin_shortname.' - '.esc_html__('Settings', 'wp-riotd'),
 			__('Settings', 'wp-riotd'),
 			'manage_options',
 			$this->menu_slug,
@@ -158,7 +170,7 @@ class WP_RIOTD_Admin {
 		);
 		add_submenu_page(
 			$this->menu_slug,
-			__('RIOTD - Usage instructions', 'wp-riotd'),
+			$this->plugin_shortname.' - '.esc_html__('Usage instructions', 'wp-riotd'),
 			__('How To Use', 'wp-riotd'),
 			'manage_options',
 			$this->menu_slug.'-usage',
@@ -166,7 +178,7 @@ class WP_RIOTD_Admin {
 		);
 		add_submenu_page(
 			$this->menu_slug,
-			__('RIOTD - About Us', 'wp-riotd'),
+			$this->plugin_shortname.' - '.esc_html__('About Us', 'wp-riotd'),
 			__('About Us', 'wp-riotd'),
 			'manage_options',
 			$this->menu_slug.'-aboutus',
@@ -264,7 +276,7 @@ class WP_RIOTD_Admin {
 			$cache = WP_RIOTD_Cache::get_cache('cache');
 				
 			if ( false === $cache ) {			
-				echo json_encode( ['cache'=>__( 'The cache is empty', 'wp-riotd' ), 'response_code'=>204] );
+				echo json_encode( ['cache'=>esc_html__( 'The cache is empty', 'wp-riotd' ), 'response_code'=>204] );
 				wp_die('', '204');
 			} else {
 				echo json_encode( ['cache' => $cache, 'response_code'=> 200 ]);
@@ -402,11 +414,8 @@ class WP_RIOTD_Admin {
 					if ( is_array($allowed_values) && sizeof($allowed_values) == 2 ) {
 							if ( $value <= $allowed_values[0] || $value >= $allowed_values[1] ) {
 								$value = WP_RIOTD_Settings::get( $def['uid'] );
-								$error_msg = $def['label'].' '.								
-											 esc_html__('must be between','wp-riotd').
-											 ' '.$allowed_values[0].' '.
-											 esc_html__('and', 'wp-riotd').
-											 ' '.$allowed_values[1];
+								/* translators: 1: minimum numeric value 2: maximum numeric value */
+								$error_msg = $def['label'].' '.sprintf(esc_html__('must be between %1$s and %2$s', 'wp-riotd'),$allowed_values[0],$allowed_values[1]);
 
 								add_settings_error( $uid, 'wp_riotd_error', $error_msg, 'error' );
 							}
@@ -482,9 +491,9 @@ class WP_RIOTD_Admin {
 		// Check which type of field we want
 		switch( $args['type'] ){
 			case 'seconds':
-				$options_markup = '<option value="minutes" %minutes%>Minutes</option>
-								   <option value="hours" %hours%>Hours</option>
-								   <option value="days" %days%>Days</option>';
+				$options_markup = '<option value="minutes" %minutes%>'.esc_html__('Minutes', 'wp-riotd' ).'</option>
+								   <option value="hours" %hours%>'.esc_html__('Hours', 'wp-riotd' ).'</option>
+								   <option value="days" %days%>'.esc_html__('Days', 'wp-riotd' ).'</option>';
 				
 				if ( $value >= DAY_IN_SECONDS ) {
 					$value = floor( $value / DAY_IN_SECONDS );		
@@ -553,7 +562,7 @@ class WP_RIOTD_Admin {
 			$expires_in = WP_RIOTD_Utility::seconds_to_human($expires_in);
 			$expired = false;
 		} else {
-			$expires_in = __('Expired', 'wp_riotd');
+			$expires_in = esc_html__('Expired', 'wp-riotd');
 			$expired = true;
 		}
 		

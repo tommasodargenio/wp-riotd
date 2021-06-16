@@ -21,13 +21,16 @@
  * Text Domain:         wp-riotd
  */
 // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
 
 // Plugin version
 define ( 'WP_RIOTD_VERSION', '1.0.1' );
 
 // Plugin name
 define ( 'WP_RIOTD_PLUGIN_NAME', 'RIOTD-Reddit-Image-Of-The-Day' );
+
+// Plugin shortname
+define ( 'WP_RIOTD_SHORT_NAME', 'RIOTD');
 
 // Short code for full UI
 define ( 'WP_RIOTD_SHORTCODE', 'riotd' );

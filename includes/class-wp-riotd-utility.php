@@ -13,7 +13,7 @@
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
  // Prohibit direct script loading.
- defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
+ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
 
  class WP_RIOTD_Utility {
      /**
@@ -29,10 +29,11 @@
           $dtf = new \DateTime('@0');
           $dtT = new \DateTime("@$seconds");
 
-          $d ='%a '.__('days','wp_riotd').', ';
-          $h ='%h '.__('hours', 'wp_riotd').', ';
-          $m ='%i '.__('minutes','wp_riotd');
-          $s = ' '.__('and','wp_riotd').' %s '.__('seconds', 'wp_riotd');
+          $d ='%a '.esc_html__('days','wp-riotd').', ';
+          $h ='%h '.esc_html__('hours', 'wp-riotd').', ';
+          $m ='%i '.esc_html__('minutes','wp-riotd');
+          /* translators: %s is the number of seconds in numerical format no translation needed */
+          $s = ' '.esc_html__('and %s seconds','wp-riotd');
 
           $diff = $dtf->diff($dtT);
           

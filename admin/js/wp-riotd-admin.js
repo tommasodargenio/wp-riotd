@@ -9,7 +9,8 @@
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  *  
  */
-
+    // wp localization obj
+    const __ = wp.i18n.__;
 
 jQuery(document).ready(function($) {
     // utility function to format numbers better    
@@ -25,13 +26,13 @@ jQuery(document).ready(function($) {
     function reset_cache_preview() {
         $('#reddit_iotd_admin_cache_preview').hide();
         $('#reddit_iotd_cache_view').html();
-        $('#riotd_view_cache').val('View Cache Content')
+        $('#riotd_view_cache').val(__('View Cache Content','wp-riotd'))
         $('#riotd_view_cache').attr('data-action', 'cache_off');
     }
     function reset_public_preview() {
         $('#reddit_iotd_admin_preview').hide();
         $('#reddit_iotd_public_view').html();
-        $('#riotd_preview').val('Show Preview')
+        $('#riotd_preview').val(__('Show Preview','wp-riotd'))
         $('#riotd_preview').attr('data-action', 'preview_off');
     }
 
@@ -61,35 +62,35 @@ jQuery(document).ready(function($) {
         if ( days > 0 ) {
             output += days;
             if (days == 1) {
-                output += " day, ";
+                output += " " + __('day','wp-riotd')+", ";
             } else {
-                output += " days, ";
+                output += " "+ __('days','wp-riotd')+", ";
             }
         }
         if ( hours > 0 ) {
             output += hours;
             if (hours == 1) {
-                output += " hour, ";
+                output += " "+__('hour','wp-riotd')+", ";
             } else {
-                output += " hours, ";
+                output += " "+__('hours','wp-riotd')+", ";
             }
 
         }
         if ( minutes > 0 ) {
             output += minutes +" ";
             if (minutes == 1) {
-                output += " minute, ";
+                output += " "+__('minute','wp-riotd')+", ";
             } else {
-                output += " minutes, ";
+                output += " "+__('minutes','wp-riotd')+", ";
             }                
             
         }
         if ( seconds > 0 ) {
-            output += " and " + seconds;
+            output += " "+__('and','wp-riotd')+" "+ seconds;
             if (seconds == 1) {
-                output += " second";
+                output += " "+__('second','wp-riotd');
             } else {
-                output += " seconds";
+                output += " "+__('seconds','wp-riotd');
             }                
 
         }
@@ -163,7 +164,7 @@ jQuery(document).ready(function($) {
             },
             error: function(data) {
                 $('#reddit_iotd_cache_loading').hide();
-                $('#riotd_purge_cache').after('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>Operation not completed</span>');
+                $('#riotd_purge_cache').after('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation not completed','wp-riotd')+'</span>');
 
                 setTimeout(function() {
                     $('#reddit_iotd_icon_error').fadeOut('fast');
@@ -201,7 +202,7 @@ jQuery(document).ready(function($) {
         $.post( 'options.php', b ).error( 
             function() {
                 $('#reddit_iotd_icon_loading').hide();
-                $('#alert-message-text').text('Something went wrong while saving the settings, try again later');
+                $('#alert-message-text').text(__('Something went wrong while saving the settings, try again later','wp-riotd'));
                 $('#alert-message').addClass('notice-error')
                 $('#alert-message').show();
                 setTimeout(function() {
@@ -209,7 +210,7 @@ jQuery(document).ready(function($) {
                 }, 3000);
             }).success( function() {
                 $('#reddit_iotd_icon_loading').hide();
-                $('#alert-message-text').text('Settings saved successfully');
+                $('#alert-message-text').text(__('Settings saved successfully','wp-riotd'));
                 $('#alert-message').addClass('notice-success')
                 $('#alert-message').show();
                 $('#update_preview').show();            
@@ -238,7 +239,7 @@ jQuery(document).ready(function($) {
                 $('#reddit_iotd_icon_loading').hide();
                 let parsed_data = JSON.parse(data);
                 if (parsed_data.response_code == 200) {            
-                    $('#riotd_reset').after('<span id="reddit_iotd_icon_success"><i class="dashicons dashicons-yes-alt"></i>Settings reset successfully</span>');
+                    $('#riotd_reset').after('<span id="reddit_iotd_icon_success"><i class="dashicons dashicons-yes-alt"></i>'+__('Settings reset successfully','wp-riotd')+'</span>');
                     if (parsed_data.payload != null ) {
                         const settings = JSON.parse(parsed_data.payload);
                         if ( Object.keys(settings).length > 0 ) {
@@ -270,9 +271,9 @@ jQuery(document).ready(function($) {
                     }
 
                 } else if (parsed_data.response_code == 400) {
-                    $('#riotd_reset').after('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>Operation aborted!</span>');
+                    $('#riotd_reset').after('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation aborted','wp-riotd')+'!</span>');
                 } else if (parsed_data.response_code == 401) {
-                    $('#riotd_reset').after('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>Operation non authorized!</span>');
+                    $('#riotd_reset').after('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation non authorized','wp-riotd')+'!</span>');
                 }
 
                 setTimeout(function() {
@@ -324,7 +325,7 @@ jQuery(document).ready(function($) {
             $('#reddit_iotd_icon_loading').hide();
             $('#reddit_iotd_admin_preview').hide();
             $('#reddit_iotd_public_view').html();
-            $('#riotd_preview').val('Show Preview')
+            $('#riotd_preview').val(__('Show Preview','wp-riotd'));
             $('#riotd_preview').attr('data-action', 'preview_off');
 
         }        
@@ -356,15 +357,15 @@ jQuery(document).ready(function($) {
                             cache_out = '<table id="reddit_iotd_admin_table">\
                                                 <tbody>\
                                                     <tr valign="top">\
-                                                        <th scope="row">Data name</th>\
-                                                        <th scope="row">Content</th>\
+                                                        <th scope="row">'+__('Data name','wp-riotd')+'</th>\
+                                                        <th scope="row">'+__('Content','wp-riotd')+'</th>\
                                                     </tr>';
                             Object.keys(cache).forEach(function(key) {   
                                 let content = "";
                                 
                                 if (cache[key].toString().split("http://").length > 1 || cache[key].toString().split("https://").length > 1)  {
                                     // it's a url, create a link for it
-                                    content = '<a href="'+cache[key]+'" title="Click to open in a new tab" target="_blank">'+cache[key]+'</a>';
+                                    content = '<a href="'+cache[key]+'" title="'+__('Click to open in a new tab','wp-riotd')+'" target="_blank">'+cache[key]+'</a>';
                                 } else {
                                     content = cache[key];
                                 }
@@ -380,7 +381,7 @@ jQuery(document).ready(function($) {
                     }
                     $('#reddit_iotd_admin_cache_preview').show();
                     $('#reddit_iotd_cache_view').html(cache_out);
-                    $('#riotd_view_cache').val('Hide Cache Content')
+                    $('#riotd_view_cache').val(__('Hide Cache Content','wp-riotd'));
                     $('#riotd_view_cache').attr('data-action', 'cache_on');
                 }
             });
@@ -388,7 +389,7 @@ jQuery(document).ready(function($) {
             $('#reddit_iotd_icon_loading').hide();
             $('#reddit_iotd_admin_cache_preview').hide();
             $('#reddit_iotd_cache_view').html();
-            $('#riotd_view_cache').val('View Cache Content')
+            $('#riotd_view_cache').val(__('View Cache Content','wp-riotd'));
             $('#riotd_view_cache').attr('data-action', 'cache_off');
 
         }        

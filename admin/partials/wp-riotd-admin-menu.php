@@ -1,9 +1,9 @@
-<?php defined( 'ABSPATH' ) || die( 'No direct script access allowed!' ); // Prohibit direct script loading. ?>
+<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' )); // Prohibit direct script loading. ?>
 <div class="wrap">    
     <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>    
     <?php if ( isset($_GET['settings-updated']) && $_GET['settings-updated'] ) {?>
         <div class="notice notice-success is-dismissible">
-            <p>Your settings have been updated!</p>
+            <p><?php esc_html_e('Your settings have been updated!', 'wp-riotd' ); ?></p>
         </div>
     <?php } ?>
     <div id="alert-message" class="notice is-dismissible" style="display:none"><p id="alert-message-text"></p></div>
@@ -36,15 +36,15 @@
                         ?>
                         <table class="form-table" role="presentation" style="width:5%">
                             <tr>
-                                <td><?php submit_button( __( 'Save Settings', 'wp_riotd' ), 'primary', 'submit', false ); ?></td>
+                                <td><?php submit_button( esc_html__( 'Save Settings', 'wp-riotd' ), 'primary', 'submit', false ); ?></td>
                                 <td>
-                                    <?php submit_button( __( 'Reset All Settings', 'wp_riotd'), 'secondary', 'riotd_reset', false, 'title="'.__('Click to reset all settings to default', 'wp_riotd').'"'); ?>                           
+                                    <?php submit_button( esc_html__( 'Reset All Settings', 'wp-riotd'), 'secondary', 'riotd_reset', false, 'title="'.esc_html__('Click to reset all settings to default', 'wp-riotd').'"'); ?>                           
                                 </td>
                                 <td>
-                                    <?php submit_button( __( 'Show Preview', 'wp_riotd'), 'secondary', 'riotd_preview', false, 'data-action="preview_off" title="'.__('Click to see a preview', 'wp_riotd').'"'); ?>
+                                    <?php submit_button( esc_html__( 'Show Preview', 'wp-riotd'), 'secondary', 'riotd_preview', false, 'data-action="preview_off" title="'.esc_html__('Click to see a preview', 'wp-riotd').'"'); ?>
                                 </td>
                                 <td>
-                                    <?php submit_button( __( 'View Cache Content', 'wp_riotd'), 'secondary', 'riotd_view_cache', false, 'data-action="cache_off" title="'.__('Click to see the content of the cache stored in the database', 'wp_riotd').'"'); ?>
+                                    <?php submit_button( esc_html__( 'View Cache Content', 'wp-riotd'), 'secondary', 'riotd_view_cache', false, 'data-action="cache_off" title="'.esc_html__('Click to see the content of the cache stored in the database', 'wp-riotd').'"'); ?>
                                 </td>
                                 <td>
                                     <img src="<?php echo admin_url('/images/wpspin_light.gif') ?>" id="reddit_iotd_icon_loading" style="display:none" />                            
@@ -55,12 +55,12 @@
                         </table>
             </form>
             <div id="reddit_iotd_admin_preview" style="display:none">
-                    <h1>Preview <span class="dashicons dashicons-update" id="update_preview" style="display:none" title="<?php echo __('Update available, click to refresh', 'wp-riotd'); ?>"></span></h1>
+                    <h1><?php esc_html_e('Preview', 'wp-riotd' ); ?><span class="dashicons dashicons-update" id="update_preview" style="display:none" title="<?php esc_html_e('Update available, click to refresh', 'wp-riotd'); ?>"></span></h1>
                     <hr />
                         <div id="reddit_iotd_public_view"></div>
             </div>
             <div id="reddit_iotd_admin_cache_preview" style="display:none">
-                    <h1>Cache Content<span class="dashicons dashicons-update" id="update_cache_preview" style="display:none" title="<?php echo __('Update available, click to refresh', 'wp-riotd'); ?>"></span></h1>
+                    <h1><?php esc_html_e('Cache Content', 'wp-riotd' ); ?><span class="dashicons dashicons-update" id="update_cache_preview" style="display:none" title="<?php esc_html_e('Update available, click to refresh', 'wp-riotd'); ?>"></span></h1>
                     <hr />
                         <div id="reddit_iotd_cache_view"></div>
             </div>    
