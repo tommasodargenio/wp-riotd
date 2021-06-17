@@ -223,8 +223,8 @@ class WP_RIOTD_Scraper {
                                     $img_found['post_url'] = \WP_RIOTD_REDDIT_MAIN.$post_data->permalink;
                                     $img_found['author'] = $post_data->author;
                                     $img_found['nsfw'] = $post_data->over_18;
-                                    $img_found['upvotes'] = 123430;//$post_data->ups;
-                                    $img_found['comments'] = 3453;//$post_data->num_comments;
+                                    $img_found['upvotes'] = $post_data->ups;
+                                    $img_found['comments'] = $post_data->num_comments;
                                     $img_found['post_date'] = $post_data->created_utc;
 
                                     $this->statistics['tot_images']++;
