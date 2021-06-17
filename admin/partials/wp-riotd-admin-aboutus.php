@@ -16,7 +16,7 @@
         </article>
         <article>
             <h1><?php esc_html_e('Acknowledgements', 'wp-riotd' ); ?></h1>
-            <p><?php esc_html_e('This work has been inspired, painstakingly tested, and refined by my brother. Thanks for all your support and ideas!', 'wp-riotd' ); ?></p>
+            <p><?php esc_html_e('This work has been inspired, painstakingly tested, and refined with the help of my brother. Thanks for all your support and ideas!', 'wp-riotd' ); ?></p>
             <p><?php esc_html_e('I owe a great deal to my partner Aisling who supported me throughout the development of this and other crazy ideas, and who helped me overcome the fear of publishing and releasing this work to the public.', 'wp-riotd' ); ?> </p>
             <p><?php esc_html_e('To my dear and quirky auntie who always encouraged me and nurtured my brain, I always loved the way she used to say goodbye to me: Ad maiora! (to greater things).', 'wp-riotd' ); ?></p>
         </article>

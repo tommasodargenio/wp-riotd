@@ -1,0 +1,72 @@
+{
+    "translation-revision-date": "2021-06-17 23:38+0000",
+    "generator": "Loco https://localise.biz/",
+    "source": "admin/js/wp-riotd-admin.js",
+    "domain": "wp-riotd",
+    "locale_data": {
+        "wp-riotd": {
+            "": {
+                "domain": "wp-riotd",
+                "lang": "it_IT",
+                "plural-forms": "nplurals=2; plural=n != 1;"
+            },
+            "and": [
+                "e"
+            ],
+            "Click to open in a new tab": [
+                "Clicca per aprire questa pagina in una nuova scheda del tuo browser"
+            ],
+            "day": [
+                "giorno"
+            ],
+            "days": [
+                "giorni"
+            ],
+            "Hide Cache Content": [
+                "Nascondi Cache"
+            ],
+            "hour": [
+                "ora"
+            ],
+            "hours": [
+                "ore"
+            ],
+            "minute": [
+                "minuto"
+            ],
+            "minutes": [
+                "minuti"
+            ],
+            "Operation aborted": [
+                "Operazione abortita"
+            ],
+            "Operation non authorized": [
+                "Operazione non autorizzata"
+            ],
+            "Operation not completed": [
+                "Operazione non completata"
+            ],
+            "second": [
+                "secondo"
+            ],
+            "seconds": [
+                "secondi"
+            ],
+            "Settings reset successfully": [
+                "Settaggi ripristinati con successo"
+            ],
+            "Settings saved successfully": [
+                "Settaggi salvati con successo"
+            ],
+            "Show Preview": [
+                "Mostra anteprima"
+            ],
+            "Something went wrong while saving the settings, try again later": [
+                "Qualcosa non ha funzionato durante il salvataggio dei dati, riprova ancora"
+            ],
+            "View Cache Content": [
+                "Contenuto della cache"
+            ]
+        }
+    }
+}

@@ -28,7 +28,7 @@
     </div>
     <!-- Full size image area -->
     <div id="reddit-iotd-full-size">
-        <div id="reddit-iotd-close-button"><span onClick="wp_riotd_image_close()" class="dashicons dashicons-dismiss" title="<?php esc_html_e('Click here to close or anywhere outside the image','wp-riotd') ?>"></span></div>
+        <div id="reddit-iotd-close-button"><span onClick="wp_riotd_image_close()" class="dashicons dashicons-dismiss" title="<?php esc_html_e('Click here or anywhere outside the window to close the image','wp-riotd') ?>"></span></div>
         <?php if ( $post_url != "" ) { ?>
         <div id="reddit-iotd-link-button"><span onClick="wp_riotd_image_link('<?php echo $post_url; ?>')" class="dashicons dashicons-admin-links" title="<?php esc_html_e('Click to open the post with this image on reddit','wp-riotd') ?>"></span></div>        
         <?php } ?>

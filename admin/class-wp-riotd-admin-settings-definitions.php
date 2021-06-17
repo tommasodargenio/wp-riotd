@@ -287,7 +287,7 @@
                 'options'       => array('minimal'=>esc_html__('Minimalistic', 'wp-riotd'), 'full' => esc_html__('Full','wp-riotd'), 'reddit'=>esc_html__('Reddit Branding','wp-riotd') ),
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Select which layout you prefer. Minimialistic will only show the image, full will show all the available information', 'wp-riotd'),
+                'supplemental'  => esc_html__('Select which layout you prefer. Minimialistic will only show the image, full will show all the available information, Reddit Branding will use a layout compliant with Reddit branding policies', 'wp-riotd'),
                 'default'       => 'reddit',
                 'force_reload'  => false,
             ),                      

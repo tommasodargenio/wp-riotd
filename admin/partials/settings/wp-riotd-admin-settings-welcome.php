@@ -7,7 +7,7 @@
             <p>
             <?php esc_html_e("Whether you own a subreddit channel and wants to showcase the images posted, or you are passionate about some of the many topics discussed in a subreddit and wants to show some images from there in your posts or your website", 'wp-riotd'  ); ?>, 
             <?php esc_html_e("this plugin is for you. It will scrape images from a subreddit channel of your choice, and display it on your website through a text widget or in any of your post where you would use the shortcodes available. The images are fetched", 'wp-riotd'  ); ?>
-            <?php esc_html_e("based on criteria you can setup in the settings, you can choose between two layout or simply grab the image url and use it anywhere you want.", 'wp-riotd'  ); ?>
+            <?php esc_html_e("based on criteria you can setup in the settings, you can choose between a few layouts or simply grab the image url (or any other available data) and use it anywhere you want.", 'wp-riotd'  ); ?>
             </p>
             <p>
             <?php 

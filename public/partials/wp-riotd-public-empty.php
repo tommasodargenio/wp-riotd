@@ -3,7 +3,7 @@
 <div id="reddit-iotd">
     <div id="reddit-iotd-title-header">
         <div id="reddit-iotd-title"><?php esc_html_e('Reddit image of the day','wp-riotd'); ?></div>
-        <div id="reddit-iotd-subtitle">from <a href="<?php echo $reddit_channel_url; ?>" title="<?php esc_html_e('Click to open the subreddit channel','wp-riod'); ?>" target="_blank"><?php echo $reddit_channel; ?></a></div>
+        <div id="reddit-iotd-subtitle">from <a href="<?php echo $reddit_channel_url; ?>" title="<?php esc_html_e('Click to open the subreddit channel in a new tab','wp-riod'); ?>" target="_blank"><?php echo $reddit_channel; ?></a></div>
     </div>
     <!-- Main display area -->
     <div id="ig-main">
