@@ -65,6 +65,10 @@ This plugin and its code is provided *as-is* without warranty of any kind, eithe
 
 Reddit is a copyright of Reddit Inc., please refer to Reddit user agreement [website](https://www.redditinc.com/policies/user-agreement) for further details
 
+It is your responsibility to follow Reddit [branding](https://www.redditinc.com/brand) [guidelines](https://www.redditinc.com/assets/press-resources/broadcast_2020.pdf) when posting data from their feed, RIOTD has a preformatted widget style compliant with the afore mentioned guidelines however it is up to you whether to use it or not
+
+*If you are looking to feature any content from a post as standalone asset, you'll need to contact the original poster*
+
 ### Privacy Statement
 
 * We do not collect or store any personal or usage information, the data fetched from Reddit is publicly available and exported via Reddit JSON RSS feed.
