@@ -134,6 +134,9 @@
   margin:auto;
   max-width: 500px;
   }
+  .reddit-branding .post_image img {
+      max-width: 480px;
+  }
 
   .reddit-branding .reddit_logo {
     display:grid;    
@@ -186,8 +189,7 @@
   }
 
   .reddit-branding > div {
-    background-color: rgba(255, 255, 255, 0.8);
-    font-size: 0.6em;
+    background-color: rgba(255, 255, 255, 0.8);    
   }
   .reddit-branding .bold {
       font-weight:600;

@@ -34,6 +34,7 @@
     --switch-moonColor: #f4f4f4;
     --switch-bgDarkModeColor: #1f1f27;
     --icon-margin: 5px 5px auto 15px;
+    --icon-warning: #ec1848;
   }
 
 
@@ -124,7 +125,7 @@ hr {
     border: var(--border-solid);
     padding: 10px;
     margin: 10px;    
-    width: 380px;
+    max-width: 520px;
 }
 
 #reddit_iotd_admin_preview h1 {

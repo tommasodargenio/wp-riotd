@@ -27,9 +27,16 @@
             <h1><?php esc_html_e('Disclaimer', 'wp-riotd' ); ?></h1>
             <hr />
             <p>
-            <?php _e('This plugin and its code is provided <span style="font-style: italic">as-is</span> without warranty of any kind, either express or implied, including any implied warranties or fitness for a particular purpose, merchantibility, or non-infringement', 'wp-riotd' ); ?>
+            <?php _e('This plugin and its code is provided <em>as-is</em> without warranty of any kind, either express or implied, including any implied warranties or fitness for a particular purpose, merchantibility, or non-infringement', 'wp-riotd' ); ?>
             <br/><br/>
             <?php _e('Reddit is a copyright of Reddit Inc., please refer to Reddit user agreement <a href="https://www.redditinc.com/policies/user-agreement" target="_blank" title="Click to open the reddit website user agreement page in a new tab">website</a> for further details', 'wp-riotd' ); ?>
+            <br />
+            <br />
+            <?php _e('<span class="dashicons dashicons-warning" style="color:var(--icon-warning);"></span>It is your responsibility to follow Reddit <a href="https://www.redditinc.com/brand" target="_blank" title="Click to open the main branding page on Reddit website in a new tab">branding</a> <a href="https://www.redditinc.com/assets/press-resources/broadcast_2020.pdf" title="Direct link to the Reddit Press and Broadcast branding guidelines, if this link is not available please go the main branding page use the link before this" target="_blank">guidelines</a> when posting data from their feed, RIOTD has a preformatted widget style compliant with the afore mentioned guidelines however it is up to you whether to use it or not'); ?>
+            <br />
+            <br />
+            <?php _e('<span class="dashicons dashicons-warning" style="color:var(--icon-warning);"></span><em>If you are looking to feature any content from a post as standalone asset, you\'ll need to contact the original poster</em>'); ?>
+
             </p>
         </article>
         <article style="grid-column: 1 / 4;">
