@@ -79,7 +79,7 @@
       /**
        * Dirty CSS minifier - may not cover all cases and could break css. Since this will be used to minify user's custom CSS should contain complicated CSS in theory
        * @since     1.0.1
-       * @author    Gary Jones
+       * @author    Gary Jones (https://twitter.com/GaryJ)
        * @link      https://github.com/GaryJones/Simple-PHP-CSS-Minification/blob/master/minify.php
        * @param     string  $css    CSS to minify
        * @return    string  minified CSS    
