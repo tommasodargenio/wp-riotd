@@ -104,7 +104,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Select the preferred aspect ratio when selecting the image', 'wp-riotd'),
-                'default'       => 'landscape'
+                'default'       => 'landscape',
+                'force_reload'  => true,
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_image_max_width',
@@ -116,7 +117,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Indicate the max width of the image', 'wp-riotd'),
-                'default'       => '1920'
+                'default'       => '1920',
+                'force_reload'  => true,
             ),       
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_image_max_height',
@@ -128,7 +130,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Indicate the max height of the image', 'wp-riotd'),
-                'default'       => '1080'
+                'default'       => '1080',
+                'force_reload'  => true,                
             ),                     
 
             array(
@@ -141,7 +144,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Set a valid subreddit channel you want to download images from', 'wp-riotd'),
-                'default'       => 'images'
+                'default'       => 'images',
+                'force_reload'  => true,                
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_download_limit',
@@ -153,7 +157,8 @@
                 'placeholder'   => '50',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Set a download limit, lower numbers results in less images but faster processing', 'wp-riotd'),
-                'default'       => '50'
+                'default'       => '50',
+                'force_reload'  => false,
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_nsfw_switch',
@@ -165,7 +170,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Allow to download and show images marked as Not Safe For Work (i.e.: adult content)', 'wp-riotd'),
-                'default'       => 1
+                'default'       => 0,
+                'force_reload'  => true,                
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_zoom_switch',
@@ -177,7 +183,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('If enabled, when the mouse is over the image it will overlay a window with the image in a bigger resolution.', 'wp-riotd'),
-                'default'       => 1
+                'default'       => 1,
+                'force_reload'  => false,
             ),            
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_author_switch',
@@ -189,7 +196,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Display the author\'s name in the caption', 'wp-riotd'),
-                'default'       => 1
+                'default'       => 1,
+                'force_reload'  => false,
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_channel_switch',
@@ -201,7 +209,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Display the subreddit channel\'s name in the header title?', 'wp-riotd'),
-                'default'       => 1
+                'default'       => 1,
+                'force_reload'  => false,
             ),            
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_title_switch',
@@ -213,7 +222,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Display the image\'s title', 'wp-riotd'),
-                'default'       => 1
+                'default'       => 1,
+                'force_reload'  => false,
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_link_switch',
@@ -225,7 +235,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('If enabled, the image will have a link to the related reddit post, this will open in a new tab', 'wp-riotd'),
-                'default'       => 1
+                'default'       => 1,
+                'force_reload'  => false,
             ),            
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_image_scraping',
@@ -237,7 +248,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Indicate if you want to change image every load (random), or use the same daily, or always use the last uploaded (this may change throughout the day)', 'wp-riotd'),
-                'default'       => 'daily_update'
+                'default'       => 'daily_update',
+                'force_reload'  => true,
             ),    
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_cache_lifetime',
@@ -249,7 +261,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__( '', 'wp-riotd' ),
-                'default'       => DAY_IN_SECONDS
+                'default'       => DAY_IN_SECONDS,
+                'force_reload'  => false,
 
             ),            
             array(
@@ -262,7 +275,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('If enabled the plugin will use its own CSS styling, otherwise you can override the css classes with your own styling', 'wp-riotd'),
-                'default'       => 1
+                'default'       => 1,
+                'force_reload'  => false,
             ),                
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_layout',
@@ -274,7 +288,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Select which layout you prefer. Minimialistic will only show the image, full will show all the available information', 'wp-riotd'),
-                'default'       => 'reddit'
+                'default'       => 'reddit',
+                'force_reload'  => false,
             ),                      
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_custom_css',
@@ -286,7 +301,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('The CSS codes indicated in this box will override the plugin\'s own CSS styling', 'wp-riotd'),
-                'default'       => ''
+                'default'       => '',
+                'force_reload'  => false,
             ),         
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_activation_date',
@@ -298,7 +314,8 @@
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => '',
-                'default'       => time()
+                'default'       => time(),
+                'force_reload'  => false,
             ),       
 
         );

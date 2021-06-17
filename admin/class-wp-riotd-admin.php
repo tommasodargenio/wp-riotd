@@ -300,6 +300,19 @@ class WP_RIOTD_Admin {
 		wp_die('','400');
 	}
 	/**
+	 *  Method used in cron jobs to force a cache update, this method will re-download the image from reddit and save to cache
+	 *  It is triggered if the a field with a force_reload attribute set to true is being saved
+	 *  @since	1.0.1 	
+	 */
+	public function force_cache_update() {
+		if( class_exists( 'WP_RIOTD_Public', false ) ) {
+			if ( class_exists( 'WP_RIOTD_Cache', false ) ) {
+				WP_RIOTD_Cache::purge_cache( 'cache' );
+				$public = new WP_RIOTD_Public( $this->plugin_name, $this->version );				
+			}// remove cache
+		}		
+	}
+	/**
 	 * Method to render the frontend in order to display the preview in the admin pages
 	 * @since	1.0.1
 	 * @return	array[]		['payload' => the rendered html page, 'response_code' => HTTP response code 200 or response code 400/401 if error, 'cache_time' => the refreshed cache timer]
@@ -438,6 +451,15 @@ class WP_RIOTD_Admin {
 			}
 
 		}
+
+		// check if the field being saved require to reload the image from reddit
+		if ( true === $def['force_reload'] ) {
+			// schedule the actvity via WP-Cron, the task will run on the next page load or heartbeat-tick, this is a one-off task
+			if ( !wp_next_scheduled( \WP_RIODT_SETTING_PREFIX.'_force_cache_update' ) ) {
+				wp_schedule_single_event(time(), \WP_RIODT_SETTING_PREFIX.'_force_cache_update');
+			}
+		}
+
 		return $value;
 	}
 

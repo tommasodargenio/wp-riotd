@@ -206,11 +206,17 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
             $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );    
             $this->loader->add_action( 'admin_menu', $plugin_admin, 'create_admin_menu' );
             $this->loader->add_action( 'admin_init', $plugin_admin, 'register_admin_settings' );
+            
+            // Cron job Hooks
+            $this->loader->add_action( \WP_RIODT_SETTING_PREFIX.'_force_cache_update', $plugin_admin, 'force_cache_update');
+
+            // Ajax Hooks
             $this->loader->add_action( 'wp_ajax_riotd_reset_settings', $plugin_admin, 'riotd_reset_settings');
             $this->loader->add_action( 'wp_ajax_riotd_purge_cache', $plugin_admin, 'riotd_purge_cache');
             $this->loader->add_action( 'wp_ajax_riotd_public_preview', $plugin_admin, 'riotd_public_preview');    
             $this->loader->add_action( 'wp_ajax_riotd_view_cache', $plugin_admin, 'riotd_view_cache');    
-            $this->loader->add_action( 'wp_ajax_riotd_get_cache_expiration', $plugin_admin, 'riotd_get_cache_expiration');    
+            $this->loader->add_action( 'wp_ajax_riotd_get_cache_expiration', $plugin_admin, 'riotd_get_cache_expiration');   
+
         }
     }
 

@@ -25,6 +25,12 @@ class WP_RIOTD_Deactivator {
 		WP_RIOTD_Settings::purge();
 		// remove cache
 		WP_RIOTD_Cache::purge_cache( 'cache' );
+
+		// Unshedule cron events if any
+		if ( $timestamp = wp_next_scheduled( \WP_RIODT_SETTING_PREFIX.'_force_cache_update' ) ) {
+			wp_unschedule_event( $timestamp, \WP_RIODT_SETTING_PREFIX.'_force_cache_update' );
+		}
+
 	}
 
 }
