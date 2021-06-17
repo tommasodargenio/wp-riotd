@@ -269,12 +269,12 @@
                 'label'         => esc_html__( 'Layout mode', 'wp-riotd' ),
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'select',
-                'allowed'       => array('string' => array('minimal','full')),
-                'options'       => array('minimal'=>esc_html__('Minimalistic', 'wp-riotd'), 'full' => esc_html__('Full','wp-riotd') ),
+                'allowed'       => array('string' => array('minimal','full','reddit')),
+                'options'       => array('minimal'=>esc_html__('Minimalistic', 'wp-riotd'), 'full' => esc_html__('Full','wp-riotd'), 'reddit'=>esc_html__('Reddit Branding','wp-riotd') ),
                 'placeholder'   => '',
                 'helper'        => '',
                 'supplemental'  => esc_html__('Select which layout you prefer. Minimialistic will only show the image, full will show all the available information', 'wp-riotd'),
-                'default'       => 'full'
+                'default'       => 'reddit'
             ),                      
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_custom_css',

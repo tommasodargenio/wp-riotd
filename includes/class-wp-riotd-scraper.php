@@ -32,7 +32,14 @@ class WP_RIOTD_Scraper {
      *  @var    string      $reddit_json_url    the reddit json export url 
      */
     protected $reddit_json_url;
-
+    /**
+     *  Store the url to retrieve the channel info json export
+     *  @since  1.0.1  
+     *  @access protected
+     *  @var    string      $reddit_channel_info_json_url  the reddit channel about json export url
+     * 
+     */
+    protected $reddit_channel_info_json_url;
     /**
      *  Contains the images scraped
      *  @since  1.0.1  
@@ -76,6 +83,12 @@ class WP_RIOTD_Scraper {
             } else {
                 trigger_error(esc_html__("Reddit URL not defined", "wp-riotd"), E_USER_ERROR);    
             }
+            if ( defined( '\WP_RIOTD_REDDIT_CHANNEL_INFO' ) ) {
+                $this->reddit_channel_info_json_url = str_replace( '%reddit_channel%', $this->settings['wp_riotd_channel'], \WP_RIOTD_REDDIT_CHANNEL_INFO );
+            } else {
+                trigger_error(esc_html__("Reddit URL not defined", "wp-riotd"), E_USER_ERROR);    
+            }
+
         }            
         else {
             trigger_error(esc_html__("Reddit channel not specified", "wp-riotd"), E_USER_ERROR);
@@ -83,7 +96,50 @@ class WP_RIOTD_Scraper {
 
         $this->statistics = array('tot_posts' => 0, 'tot_images' => 0, 'tot_videos' => 0, 'tot_galleries' => 0, 'tot_nsfw' => 0, 'tot_viable_images'=>0 );
     }
+    /**
+     * Method to retrieve a reddit channel info via the about json export
+     * 
+     * @since   1.0.1
+     * @access  private
+     * @return  object     $channel_info   All properties returned by the json query
+     */
+    public function get_channel_info() {
+        $channel_info = null;       
+        
+        if ( $this->reddit_channel_info_json_url != null && $this->reddit_channel_info_json_url != "" ) {
+            // attempt to retrieve the channel info
+            $response  = wp_remote_get( $this->reddit_channel_info_json_url );
+            $http_code = wp_remote_retrieve_response_code( $response );
+            
+            // check if download was successfull
+            if ( $http_code != 200 ) {
+                return null;
+            } else {
+                // retrieve the response body
+                $body   = wp_remote_retrieve_body( $response );
+                $content_type = wp_remote_retrieve_header( $response, 'content-type' );      
 
+                 // make sure the response is in json format
+                 if ( stristr( $content_type, 'application/json' ) ) {
+                     // decode the json
+                     $channel_info = json_decode($body);
+               
+                    // if null something went wrong
+                    if ( $channel_info == null ) {
+                        trigger_error(esc_html__("Reddit returned an unexpected result, check your settings", "wp-riotd"), E_USER_ERROR);   
+                    }
+
+                    // if there is no data property in the object, then the channel is empty or something went wrong
+                    if ( !property_exists( $channel_info, 'data' ) ) {
+                        trigger_error(esc_html__("The reddit channel selected is empty or something went wrong during the download", "wp-riotd"), E_USER_ERROR);                           
+                    }     
+                    
+                    // all good returning the results
+                    return $channel_info->data;
+                 }         
+            }
+        }        
+    }
     /**
      * Main method to fetch the json export of the channel and extract the image
      * all extracted images / titles / etc. are stored as properties
@@ -98,6 +154,7 @@ class WP_RIOTD_Scraper {
             if ( isset($this->settings['wp_riotd_download_limit']) && intval($this->settings['wp_riotd_download_limit']) > 0 ) {
                 $this->reddit_json_url .= '?limit='.$this->settings['wp_riotd_download_limit'];
             }
+
             $response   = wp_remote_get( $this->reddit_json_url );            
             $http_code  = wp_remote_retrieve_response_code( $response );
             // check if the download was successfull if not exit
@@ -166,9 +223,15 @@ class WP_RIOTD_Scraper {
                                     $img_found['post_url'] = \WP_RIOTD_REDDIT_MAIN.$post_data->permalink;
                                     $img_found['author'] = $post_data->author;
                                     $img_found['nsfw'] = $post_data->over_18;
+                                    $img_found['upvotes'] = 123430;//$post_data->ups;
+                                    $img_found['comments'] = 3453;//$post_data->num_comments;
+                                    $img_found['post_date'] = $post_data->created_utc;
 
                                     $this->statistics['tot_images']++;
                                     
+                                    $channel = $this->get_channel_info();
+                                    $img_found['channel_icon'] = $channel->icon_img;
+
                                     // check if image resolution is ok                                      
                                     if ( $this->is_resolution_ok( $img_found['width'], $img_found['height'], true) ) {
                                         // check if image is allowed due to adult content

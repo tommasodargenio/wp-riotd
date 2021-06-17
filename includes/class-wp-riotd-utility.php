@@ -17,6 +17,28 @@
 
  class WP_RIOTD_Utility {
      /**
+      *  Convert a number in a human readable format if over or equal to 1000, adapted to php from a js source
+      *  @since     1.0.1
+      *  @author    https://stackoverflow.com/a/28608086/3310134
+      *  @param     int     $number     Number to convert
+      *  @param     int     $digits     Number of digits to appear after the decimal point   
+      *  @return    string  $human_str  Readable version of number
+      *  @example   // number_to_human(12453, 1) -> returns '12.5k'
+      */
+      public static function number_to_human($number, $digits) {
+        $units = ['k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];        
+
+        for($i=sizeof($units)-1; $i>=0; $i--) {
+            $decimal = pow(1000, $i+1);
+
+            if($number <= -$decimal || $number >= $decimal) {
+                return number_format( ($number / $decimal), $digits ). $units[$i];
+            }
+        }
+
+        return strval($number);
+      }
+     /**
       * Convert seconds in human readable format
       * @author https://stackoverflow.com/a/19680778/3310134
       * @since  1.0.1

@@ -44,6 +44,10 @@ define ('WP_RIOTD_REDDIT_MAIN', 'https://www.reddit.com' );
 // Reddit url to fecth data
 define ( 'WP_RIOTD_REDDIT_URL', 'https://www.reddit.com/r/%reddit_channel%/new.json' );
 
+
+// Reddit url to fecth channel information
+define ( 'WP_RIOTD_REDDIT_CHANNEL_INFO', 'https://www.reddit.com/r/%reddit_channel%/about.json');
+
 // Github Repository link
 define ( 'WP_RIOTD_GITHUB', 'https://github.com/tommasodargenio/wp-riotd' );
 

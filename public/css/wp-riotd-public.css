@@ -10,6 +10,16 @@
  *  
  */
 
+ :root {
+    --reddit-color-orangered: #ff4500;
+    --reddit-color-beluga: #fff;
+    --reddit-color-dugong: #f2f6f7;
+    --reddit-color-dolphin: #d7dfe2;
+    --reddit-color-seal: #b8c7cc;
+    --reddit-color-narwhal: #7a9299;
+    --reddit-color-orca: #1b2426;
+ }
+
 #reddit-iotd {
     overflow: hidden;
     display: block;
@@ -93,3 +103,96 @@
     font-size: smaller;
 }
 
+/**
+* REDDIT Branding Style
+*/
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap');
+
+.reddit-branding {
+    font-family: 'IBM Plex Sans', sans-serif;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 5px;
+    background-color: var(--reddit-color-beluga);
+    padding: 5px;
+    border: 5px solid var(--reddit-color-dugong);
+    border-radius: 10px;
+    max-width: 500px;
+  }
+  .reddit-branding .post_title {
+      grid-column: 1/-1;
+      display:grid;
+      margin:auto;
+      
+  }
+  .reddit-branding .bottom_row {
+      padding: 10px;
+  }
+  .reddit-branding .post_image {
+  grid-column: 1/-1;
+  display:grid;
+  margin:auto;
+  max-width: 500px;
+  }
+
+  .reddit-branding .reddit_logo {
+    display:grid;    
+    align-self: center;
+    justify-self: right;
+}
+.reddit-branding .reddit_logo img {
+    height: 42px; 
+    width: 42px;
+
+}
+
+.reddit-branding .channel_thumbnail img {
+    height: 42px;
+    width: 42px;
+    border-radius: 100%;
+    justify-self: left;
+    align-self: center;
+}
+.reddit-branding .channel_name {    
+    grid-column: 2 / span 2;    
+    align-self: center;
+}
+.reddit-branding .author {
+    grid-column: 4 / span 2;    
+    align-self: center;
+}
+.reddit-branding .comments {
+    color: var(--reddit-color-narwhal);
+    font-weight:bold;
+    grid-column: 3 / span 2;
+    display: flex;
+    justify-self: left;
+    align-items: center;
+}
+  .reddit-branding .upvotes {
+  grid-column: 1 / span 2;
+  display: flex;
+  justify-self: left;
+  align-items: flex-end;
+  color: var(--reddit-color-orangered);
+  font-weight:bold;
+  }
+
+  .reddit-branding .post_date {
+      grid-column: 5 / span 2;
+      display: flex;      
+      justify-content: flex-end;
+      align-items: center;
+  }
+
+  .reddit-branding > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 0.6em;
+  }
+  .reddit-branding .bold {
+      font-weight:600;
+  }
+  .reddit-branding .regular {
+      font-weight:400;
+      color: var(--reddit-color-narwhal);
+  }

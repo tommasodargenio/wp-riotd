@@ -40,7 +40,7 @@ class WP_RIOTD_Public {
 	 * @var    array[][thumbnail_url: string, full_res_url: string, width:int, height: int, title: string, post_url: string, author: string, nsfw: bool ]    $scraped_content    array containing the images scraped 
 	 */
 	protected $scraped;
-
+	
 	/**
 	 * Reddit channel being scraped
 	 * @since 	1.0.1
@@ -73,8 +73,9 @@ class WP_RIOTD_Public {
 			if ( false === $cache ) {
 			// cache doesn't exist, download image and then store in cache				
 				$scraper->scrape();
+				// get an image based on the settings for selection/randomness/etc.
 				$this->scraped = $scraper->get_image();
-	
+
 				WP_RIOTD_Cache::set_cache( array( 'uid' => 'cache', 'payload' => $this->scraped ) );
 			} else {
 					$this->scraped = $cache;
@@ -132,13 +133,11 @@ class WP_RIOTD_Public {
 			$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-empty.php";
 		} else {			
 
-			// check which layout the user prefer, if not set we will use the full one
-			$layout = WP_RIOTD_Settings::get("wp_riotd_layout");			
-			
-			if ($layout == "full") {
-				$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-single.php";
-			} else {
-				$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-minimal.php";
+			// check which layout the user prefer, if not set we will use the full one			
+			switch(WP_RIOTD_Settings::get("wp_riotd_layout")) {
+				case 'full': $view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-single.php"; break;
+				case 'reddit': $view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-reddit.php"; break;
+				case 'minimal': $view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-minimal.php"; break;
 			}
 			
 			// check if the user wants the reddit channel displayed
@@ -149,6 +148,7 @@ class WP_RIOTD_Public {
 			// check if the user wants the post's author displayed
 			if ( WP_RIOTD_Settings::get("wp_riotd_author_switch") ) {
 				$author = $this->scraped["author"];
+				$author_url = \WP_RIOTD_REDDIT_MAIN.'/u/'.$author;
 			} 
 			// check if the user wants the post's title displayed
 			if ( WP_RIOTD_Settings::get("wp_riotd_title_switch") ) {
@@ -160,6 +160,16 @@ class WP_RIOTD_Public {
 			}
 			// setting the full resolution image URL
 			$full_res_url = $this->scraped["full_res_url"];
+
+			$comments = WP_RIOTD_Utility::number_to_human( $this->scraped['comments'], 1 );
+			$upvotes = WP_RIOTD_Utility::number_to_human( $this->scraped['upvotes'], 1 );
+			$post_date = date_i18n('M d, Y', $this->scraped['post_date']);
+			
+			if ( array_key_exists( 'channel_icon', $this->scraped ) ) {
+				$channel_icon = $this->scraped['channel_icon'];
+			} else {
+				$channel_icon = '';
+			}
 		}
 
 		// output the template
