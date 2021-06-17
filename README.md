@@ -48,6 +48,7 @@ based on criteria you can setup in the settings, you can choose between two layo
  4. Configure general settings<br>![Configure general settings](.wordpress-org/screenshot-4.png)
  5. Show widget preview<br>![Show widget preview](.wordpress-org/screenshot-5.png)
  6. Show cache content<br>![Show cache content](.wordpress-org/screenshot-6.png)
+ 7. Show reddit compliant widget preview<br>![Show reddit compliant widget preview](./wordpress-org/screenshot-7.png)
 
 ### Help and Support
 Although a lot of care has gone into thoroughly testing this plugin, we couldn't possibly cover all cases and different setup scenario, so please bear with us while we improve and fix any issues that you will report.
