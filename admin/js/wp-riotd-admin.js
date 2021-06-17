@@ -102,7 +102,7 @@ jQuery(document).ready(function($) {
         timer = new Date()
         timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()))
     
-        countdown = setInterval(ticker, 1000);   
+        countdown = setInterval(ticker, 1000);           
     }
 
 
@@ -139,7 +139,7 @@ jQuery(document).ready(function($) {
                         $('#expire_seconds').text(data.payload)
                         timer = new Date()
                         timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()))
-                    
+                        
                         countdown = setInterval(ticker, 1000);               
                     }
                 }   
@@ -182,8 +182,7 @@ jQuery(document).ready(function($) {
                 $('#expire_seconds').text('');
                 $('#cache_purged_msg').show();
                 $('#cache_expire_msg').hide();
-                if (data.expires_in != null) {
-                    console.log('figa:' + data.expires_in);
+                if (data.expires_in != null) {                    
                     $('#cache_expires').text(data.expires_in);
                 }
                 setTimeout(function() {

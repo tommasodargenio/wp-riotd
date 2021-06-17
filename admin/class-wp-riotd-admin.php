@@ -332,8 +332,10 @@ class WP_RIOTD_Admin {
 		if( class_exists('WP_RIOTD_Cache', false) ) {
 			if (WP_RIOTD_Cache::purge_cache('cache')) {
 				echo json_encode(['expires_in' => WP_RIOTD_Cache::get_cache_expiration('cache'), 'response_code' => '200']);
+				wp_die('','200');
 			} else {
 				echo json_encode(['expires_in' => null, 'response_code' => '400']);
+				wp_die('','400');
 			}
 		}
 
