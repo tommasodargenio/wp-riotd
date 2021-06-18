@@ -128,6 +128,12 @@ class WP_RIOTD_Public {
 			}
 		}
 
+		// check if the user wants the reddit channel displayed
+		if ( WP_RIOTD_Settings::get("wp_riotd_channel_switch") ) {
+			$reddit_channel = $this->reddit_channel;
+			$reddit_channel_url = \WP_RIOTD_REDDIT_MAIN.'/r/'.$reddit_channel;	
+		} 
+		
 		// If no images were found, load the empty template
 		if ( sizeof($this->scraped) <= 0 ) {			
 			$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-empty.php";
@@ -140,11 +146,7 @@ class WP_RIOTD_Public {
 				case 'minimal': $view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-minimal.php"; break;
 			}
 			
-			// check if the user wants the reddit channel displayed
-			if ( WP_RIOTD_Settings::get("wp_riotd_channel_switch") ) {
-				$reddit_channel = $this->reddit_channel;
-				$reddit_channel_url = \WP_RIOTD_REDDIT_MAIN.'/r/'.$reddit_channel;	
-			} 
+
 			// check if the user wants the post's author displayed
 			if ( WP_RIOTD_Settings::get("wp_riotd_author_switch") ) {
 				$author = $this->scraped["author"];
