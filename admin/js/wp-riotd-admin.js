@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
     $('#reddit_iotd_admin_cache_preview').hide();
     $('#reddit_iotd_admin_preview').hide();
 
-    let countdown = null;
+    let countdown = false;
     let timer = null;
     function reset_cache_preview() {
         $('#reddit_iotd_admin_cache_preview').hide();
@@ -101,8 +101,9 @@ jQuery(document).ready(function($) {
     if ( !isNaN($('#expire_seconds').text()) && parseInt($('#expire_seconds').text()) > 0 ) {
         timer = new Date()
         timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()))
-    
-        countdown = setInterval(ticker, 1000);           
+        if (!countdown) {
+            countdown = setInterval(ticker, 1000);           
+        }
     }
 
 
@@ -139,8 +140,9 @@ jQuery(document).ready(function($) {
                         $('#expire_seconds').text(data.payload)
                         timer = new Date()
                         timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()))
-                        
-                        countdown = setInterval(ticker, 1000);               
+                        if (!countdown) {
+                            countdown = setInterval(ticker, 1000);               
+                        }
                     }
                 }   
             });
@@ -178,6 +180,7 @@ jQuery(document).ready(function($) {
                 reset_cache_preview();
                 // stop the countdown
                 clearInterval(countdown);
+                countdown = false;
                 $('#cache_expires').text('');
                 $('#expire_seconds').text('');
                 $('#cache_purged_msg').show();
@@ -315,8 +318,9 @@ jQuery(document).ready(function($) {
                         $('#expire_seconds').text(data.cache_time);
                         timer = new Date();
                         timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()));
-                    
-                        countdown = setInterval(ticker, 1000);                           
+                        if (!countdown) {
+                            countdown = setInterval(ticker, 1000);                           
+                        }
                     }
                 }
             });
