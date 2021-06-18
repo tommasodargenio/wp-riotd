@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' )); // Prohibit direct script loading. ?>
+<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-riotd' )); // Prohibit direct script loading. ?>
 <div class="wrap">    
     <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>    
     <?php if ( isset($_GET['settings-updated']) && $_GET['settings-updated'] ) {?>

@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' )); // Prohibit direct script loading. ?>
+<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ,'wp-riotd')); // Prohibit direct script loading. ?>
 <div id="social_sharing_box">
     <hr/>
     <?php esc_html_e('Like the plugin? Spread the love!', 'wp-riotd' ); ?><br/><br/>

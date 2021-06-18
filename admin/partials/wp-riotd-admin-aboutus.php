@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' )); // Prohibit direct script loading. ?>
+<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-riotd')); // Prohibit direct script loading. ?>
 <h1><?php esc_html_e('About Us', 'wp-riotd' ); ?></h1>
 <hr />
 <section class="page-content">
@@ -47,6 +47,7 @@
                 <li>RIOTD: <?php echo $this->version; ?></li>
                 <li>RIOTD Settings: <span class="settings_debug"><?php echo WP_RIOTD_Settings::to_base64(); ?></span></li>
                 <li>Plugin installed: <?php echo date( 'd/m/Y H:i:s', WP_RIOTD_Settings::get('activation_date') ); ?></li>
+                <li>Last scraping execution time: <?php echo round(WP_RIOTD_Settings::get('last_scraping_execution_time'), 2).' seconds'; ?></li>
                 <li>WordPress: <?php echo $GLOBALS['wp_version']; ?></li>
                 <li>Multisite: <?php echo is_multisite() ? 'yes' : 'no'; ?></li>
                 <li>PHP: <?php echo phpversion(); ?></li>

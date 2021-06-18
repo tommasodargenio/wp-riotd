@@ -4,7 +4,7 @@
  *  
  *  the core class
  * 
- * @link       https://github.com/tommasodargenio/wp-riodt/includes/class-wp-riotd.php
+ * @link       https://github.com/tommasodargenio/wp-riotd/includes/class-wp-riotd.php
  * @since      1.0.1
  * 
  * @package    WP-RIOTD
@@ -13,7 +13,7 @@
  */
 
 // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-riotd' ));
 
  class WP_RIOTD {
 	/**

@@ -8,7 +8,7 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  * 
- * @link       https://github.com/tommasodargenio/wp-riodt/includes/class-wp-riotd-loader.php
+ * @link       https://github.com/tommasodargenio/wp-riotd/includes/class-wp-riotd-loader.php
  * @since      1.0.1
  * 
  * @package    RIOTD
@@ -16,7 +16,7 @@
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
 // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-riotd' ));
 
 class WP_RIOTD_Loader {
 	/**

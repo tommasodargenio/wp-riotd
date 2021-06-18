@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' )); // Prohibit direct script loading. ?>
+<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ,'wp-riotd')); // Prohibit direct script loading. ?>
 <h1><?php esc_html_e('Welcome','wp-riotd' ); ?></h1>
 <hr />
 <section class="page-content">
@@ -32,10 +32,10 @@
             <?php _e('Reddit is a copyright of Reddit Inc., please refer to Reddit user agreement <a href="https://www.redditinc.com/policies/user-agreement" target="_blank" title="Click to open the reddit website user agreement page in a new tab">website</a> for further details', 'wp-riotd' ); ?>
             <br />
             <br />
-            <?php _e('<span class="dashicons dashicons-warning" style="color:var(--icon-warning);"></span>It is your responsibility to follow Reddit <a href="https://www.redditinc.com/brand" target="_blank" title="Click to open the main branding page on Reddit website in a new tab">branding</a> <a href="https://www.redditinc.com/assets/press-resources/broadcast_2020.pdf" title="Direct link to the Reddit Press and Broadcast branding guidelines, if this link is not available please go the main branding page use the link before this" target="_blank">guidelines</a> when posting data from their feed, RIOTD has a preformatted widget style compliant with the afore mentioned guidelines however it is up to you whether to use it or not'); ?>
+            <?php _e('<span class="dashicons dashicons-warning" style="color:var(--icon-warning);"></span>It is your responsibility to follow Reddit <a href="https://www.redditinc.com/brand" target="_blank" title="Click to open the main branding page on Reddit website in a new tab">branding</a> <a href="https://www.redditinc.com/assets/press-resources/broadcast_2020.pdf" title="Direct link to the Reddit Press and Broadcast branding guidelines, if this link is not available please go the main branding page use the link before this" target="_blank">guidelines</a> when posting data from their feed, RIOTD has a preformatted widget style compliant with the afore mentioned guidelines however it is up to you whether to use it or not','wp-riotd'); ?>
             <br />
             <br />
-            <?php _e('<span class="dashicons dashicons-warning" style="color:var(--icon-warning);"></span><em>If you are looking to feature any content from a post as standalone asset, you\'ll need to contact the original poster</em>'); ?>
+            <?php _e('<span class="dashicons dashicons-warning" style="color:var(--icon-warning);"></span><em>If you are looking to feature any content from a post as standalone asset, you\'ll need to contact the original poster</em>','wp-riotd'); ?>
 
             </p>
         </article>
@@ -56,7 +56,7 @@
             <li><?php esc_html_e('The plugin do not transfer or send any of the data collected (in its entirity or partially) anywhere outside your website.','wp-riotd');?></li>
             <li><?php 
             /* translators: 1: is a link */
-            printf(__('If you would like to check the exact data that the plugin has collected and stored in the database, you can use the utlity button on <a href="%1$s">general settings</a> page'),$this->get_tab_url( 'section_general'));?></li>
+            printf(__('If you would like to check the exact data that the plugin has collected and stored in the database, you can use the utlity button on <a href="%1$s">general settings</a> page','wp-riotd'),$this->get_tab_url( 'section_general'));?></li>
             <br/>
             <br/>
             <?php _e('Reddit Inc. has the ownership of the post from which the image has been fetched, please refer to <a href="https://www.redditinc.com/policies/privacy-policy" target="_blank" title="Click to open the reddit website privacy policy page in a new tab">Reddit</a> privacy policies for more information on how this data is treated.','wp-riotd'); ?>

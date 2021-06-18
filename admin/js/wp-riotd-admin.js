@@ -1,7 +1,7 @@
 /**
  * The JS functions used for the admin-specific area.
  *
- * @link       https://github.com/tommasodargenio/wp-riodt/admin/js/wp-riotd-admin.js
+ * @link       https://github.com/tommasodargenio/wp-riotd/admin/js/wp-riotd-admin.js
  * @since      1.0.1
  * 
  * @package    RIOTD
@@ -9,10 +9,10 @@
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  *  
  */
+  
+jQuery(document).ready(function($) {
     // wp localization obj
     const __ = wp.i18n.__;
-
-jQuery(document).ready(function($) {
     // utility function to format numbers better    
     $('#cache_purged_msg').hide();
     $('#reddit_iotd_cache_loading').hide();
@@ -308,13 +308,13 @@ jQuery(document).ready(function($) {
                     if ( data.payload != null ) {
                         $('#reddit_iotd_admin_preview').show();
                         $('#reddit_iotd_public_view').html(data.payload);
-                        $('#riotd_preview').val('Hide Preview')
+                        $('#riotd_preview').val(__('Hide Preview','wp-riotd'));
                         $('#riotd_preview').attr('data-action', 'preview_on');
                     }
                     if ( data.cache_time != null ) {
                         $('#expire_seconds').text(data.cache_time);
-                        timer = new Date()
-                        timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()))
+                        timer = new Date();
+                        timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()));
                     
                         countdown = setInterval(ticker, 1000);                           
                     }

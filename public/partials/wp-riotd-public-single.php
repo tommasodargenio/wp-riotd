@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' )); // Prohibit direct script loading. ?>
+<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ,'wp-riotd')); // Prohibit direct script loading. ?>
 <?php echo $custom_css; ?>
 <div id="reddit-iotd">
     <div id="reddit-iotd-title-header">

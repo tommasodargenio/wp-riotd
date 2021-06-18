@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' )); // Prohibit direct script loading. ?>
+<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-riotd' )); // Prohibit direct script loading. ?>
 <h1><?php esc_html_e('How to use the plugin','wp-riotd'); ?></h1>
 <hr />
 <section class="page-content">
@@ -106,7 +106,7 @@
             </p>
         </article>
         <article style="grid-column: 1 / 4;">
-            <h1><?php esc_html_e('Styling','wp-riodt'); ?></h1>
+            <h1><?php esc_html_e('Styling','wp-riotd'); ?></h1>
             <hr />
 
             <p>
@@ -114,56 +114,56 @@
                 <?php 
                 /* translators: 1: is a link */
                 printf(__('In such case you can disable the plug-in CSS with the toggle in the <a href="$1%s">setting</a> page, and override the CSS classes we use with your own styling.','wp-riotd'),$this->get_tab_url("layout")); ?>
-                <?php esc_html_e('You can find below a summary of the classes used by the plugin:','wp-riodt'); ?>
+                <?php esc_html_e('You can find below a summary of the classes used by the plugin:','wp-riotd'); ?>
                 <table id="reddit_iotd_admin_table">
                     <tbody>
                         <tr valign="top">
-                            <th scope="row"><?php esc_html_e('CSS Id ','wp-riodt'); ?>#</th>
-                            <th scope="row"><?php esc_html_e('Description','wp-riodt'); ?></th>            
-                            <th scope="row"><?php esc_html_e('CSS Id','wp-riodt'); ?> #</th>
-                            <th scope="row"><?php esc_html_e('Description','wp-riodt'); ?></th>                
+                            <th scope="row"><?php esc_html_e('CSS Id ','wp-riotd'); ?>#</th>
+                            <th scope="row"><?php esc_html_e('Description','wp-riotd'); ?></th>            
+                            <th scope="row"><?php esc_html_e('CSS Id','wp-riotd'); ?> #</th>
+                            <th scope="row"><?php esc_html_e('Description','wp-riotd'); ?></th>                
                         </tr>
                         <tr>
                             <td><code>reddit-iotd</code></td>
-                            <td><?php esc_html_e('this is the main box that will contain the title, image, links, etc.','wp-riodt'); ?></td>            
+                            <td><?php esc_html_e('this is the main box that will contain the title, image, links, etc.','wp-riotd'); ?></td>            
                             <td><code>ig-main</code></td>
-                            <td><?php esc_html_e('the main box where the image is contained','wp-riodt'); ?></td>            
+                            <td><?php esc_html_e('the main box where the image is contained','wp-riotd'); ?></td>            
                         </tr>
                         <tr>
                             <td><code>reddit-iotd-title-header</code></td>
-                            <td><?php esc_html_e('the main title area','wp-riodt'); ?></td>            
+                            <td><?php esc_html_e('the main title area','wp-riotd'); ?></td>            
                             <td><code>ig-iotd</code></td>
-                            <td><?php esc_html_e('the thumbnail image styling','wp-riodt'); ?></td>            
+                            <td><?php esc_html_e('the thumbnail image styling','wp-riotd'); ?></td>            
                         </tr>
                         <tr>
                             <td><code>reddit-iotd-title</code></td>
                             <td><?php 
                             /* translators: 1: is a link  */
-                            printf(__('the plugin name by default or a title of your choice as specified in the <a href="$1%s">settings</a>','wp-riodt'),$this->get_tab_url("general")); ?></td>
+                            printf(__('the plugin name by default or a title of your choice as specified in the <a href="$1%s">settings</a>','wp-riotd'),$this->get_tab_url("general")); ?></td>
                             <td><code>ig-iotd-full</code></td>
-                            <td><?php esc_html_e('the full resolution image styling','wp-riodt'); ?></td>            
+                            <td><?php esc_html_e('the full resolution image styling','wp-riotd'); ?></td>            
                         </tr>
                         <tr>
                             <td><code>reddit-iotd-subtitle</code></td>
-                            <td><?php esc_html_e('the subtitle, containing the subreddit from which the image has been fetched','wp-riodt'); ?></td>
+                            <td><?php esc_html_e('the subtitle, containing the subreddit from which the image has been fetched','wp-riotd'); ?></td>
                             <td><code>ig-title</code></td>
-                            <td><?php esc_html_e('the image caption and its author','wp-riodt'); ?></td>            
+                            <td><?php esc_html_e('the image caption and its author','wp-riotd'); ?></td>            
                         </tr>               
                         <tr>
                             <td><code>reddit-iotd-close-button</code></td>
-                            <td><?php esc_html_e('the close button showing in the ligthbox','wp-riodt'); ?></td>
+                            <td><?php esc_html_e('the close button showing in the ligthbox','wp-riotd'); ?></td>
                             <td><code>reddit-iotd-close-button span:hover</code></td>
-                            <td><?php esc_html_e('the style change on the mouseOver of the close button','wp-riodt'); ?></td>            
+                            <td><?php esc_html_e('the style change on the mouseOver of the close button','wp-riotd'); ?></td>            
                         </tr>  
                         <tr>
                             <td><code>reddit-iotd-link-button</code></td>
-                            <td><?php esc_html_e('the link button showing in the lightbox, this will contain the link to the original subreddit post with the image','wp-riodt'); ?></td>
+                            <td><?php esc_html_e('the link button showing in the lightbox, this will contain the link to the original subreddit post with the image','wp-riotd'); ?></td>
                             <td><code>reddit-iotd-link-button span:hover</code></td>
-                            <td><?php esc_html_e('the style change on the mouseOver event of the link button','wp-riodt'); ?></td>            
+                            <td><?php esc_html_e('the style change on the mouseOver event of the link button','wp-riotd'); ?></td>            
                         </tr>        
                         <tr>
                             <td><code>reddit-iotd-full-size</code></td>
-                            <td><?php esc_html_e('the lightbox containing the full-resolution image','wp-riodt'); ?></td>
+                            <td><?php esc_html_e('the lightbox containing the full-resolution image','wp-riotd'); ?></td>
                             <td></td>
                             <td></td>            
                         </tr>           

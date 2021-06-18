@@ -5,7 +5,7 @@
  * Manage the cacheable data, leveraging the WordPress Transient API
  * 
  * 
- * @link       https://github.com/tommasodargenio/wp-riodt/includes/class-wp-riotd-cache.php
+ * @link       https://github.com/tommasodargenio/wp-riotd/includes/class-wp-riotd-cache.php
  * @since      1.0.1
  * 
  * @package    RIOTD
@@ -13,7 +13,7 @@
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
 // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ,'wp-riotd'));
  class WP_RIOTD_Cache {
     /**
      *  Set the given entity in the WP Cache

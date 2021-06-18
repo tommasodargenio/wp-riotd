@@ -21,7 +21,7 @@
  * Text Domain:         wp-riotd
  */
 // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!', 'wp-riotd'));
 
 // Plugin version
 define ( 'WP_RIOTD_VERSION', '1.0.1' );

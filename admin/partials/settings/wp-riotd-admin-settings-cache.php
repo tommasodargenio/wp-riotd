@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' )); // Prohibit direct script loading. ?>
+<?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-riotd' )); // Prohibit direct script loading. ?>
 <table class="form-table" role="presentation">
 <tr><th scope="row"><?php esc_html_e('Cache status','wp-riotd'); ?></th>
 <td>

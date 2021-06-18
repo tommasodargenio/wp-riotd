@@ -2,7 +2,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://github.com/tommasodargenio/wp-riodt/admin/class-wp-riotd-admin.php
+ * @link       https://github.com/tommasodargenio/wp-riotd/admin/class-wp-riotd-admin.php
  * @since      1.0.1
  * 
  * @package    RIOTD
@@ -11,7 +11,7 @@
  *  
  */
 // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!', 'wp-riotd' ));
 
 class WP_RIOTD_Admin {
 	/**
@@ -118,9 +118,9 @@ class WP_RIOTD_Admin {
 	 * @since    1.0.1
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-riotd-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name.'_admin_css', plugin_dir_url( __FILE__ ) . 'css/wp-riotd-admin.css', array(), $this->version, 'all' );
 		// also enqueue the frontend css as this is used in the preview
-		wp_enqueue_style( $this->plugin_name.'_public', plugin_dir_url( __DIR__ ) . 'public/css/wp-riotd-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name.'_public_css', plugin_dir_url( __DIR__ ) . 'public/css/wp-riotd-public.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -129,13 +129,16 @@ class WP_RIOTD_Admin {
 	 * @since    1.0.1
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-riotd-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name.'_admin_js', plugin_dir_url( __FILE__ ) . 'js/wp-riotd-admin.js', array( 'wp-i18n', 'jquery' ), $this->version, false );
 		// also enqueue the frontend script as this is used in the preview
-		wp_enqueue_script( $this->plugin_name.'_public', plugin_dir_url( __DIR__ ) . 'public/js/wp-riotd-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name.'_public_js', plugin_dir_url( __DIR__ ) . 'public/js/wp-riotd-public.js', array( 'wp-i18n','jquery' ), $this->version, false );
 		// create the nonce
-		wp_localize_script($this->plugin_name, 'wp_riotd_data', array(
+		wp_localize_script($this->plugin_name.'_admin_js', 'wp_riotd_data', array(
 				'nonce' => wp_create_nonce('nonce')
 		));
+
+		// hook the js with the translation system
+		wp_set_script_translations($this->plugin_name.'_admin_js', 'wp-riotd', plugin_dir_path(dirname(__FILE__)).'languages/');
 
 
 		// code mirror requirements
@@ -249,12 +252,12 @@ class WP_RIOTD_Admin {
 
 		// register a new section in the group
 		foreach($this->settings_definitions->get_settings_sections() as $section) {
-			add_settings_section( $section['uid'], $section['label'], array($this, 'section_renderer' ), $section['uid'] );			
+			add_settings_section( $section['uid'], esc_html__($section['label'],'wp-riotd'), array($this, 'section_renderer' ), $section['uid'] );			
 		}
 		
 		// register fields
 		foreach($this->settings_definitions->get_settings_definitions() as $field) {
-			add_settings_field($field['uid'], $field['label'], array($this, 'fields_renderer'), $field['section'], $field['section'], $field );
+			add_settings_field($field['uid'], esc_html__($field['label'],'wp-riotd'), array($this, 'fields_renderer'), $field['section'], $field['section'], $field );
 			// use a different callback if the field is of type seconds, as this would require some data post-processing
 			if ( $field['type'] == 'seconds' ) {
 				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => array($this, 'sanitize_time_field') ) );				
@@ -551,7 +554,7 @@ class WP_RIOTD_Admin {
 					$attributes = '';
 					$options_markup = '';							
 					foreach( $args['options'] as $key => $label ) {
-						$options_markup .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', $key, selected( $value, $key, false ), $label );
+						$options_markup .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', $key, selected( $value, $key, false ), esc_html__($label,'wp-riotd') );
 					}
 					if ( $args['type'] === 'multiselect' ) {
 						$attributes = ' multiple="multiple" ';
@@ -566,12 +569,12 @@ class WP_RIOTD_Admin {
 	
 		// If there is help text
 		if( $helper = $args['helper'] ){
-			printf( '<span class="helper"> %s</span>', esc_html($helper) ); // Show it
+			printf( '<span class="helper"> %s</span>', esc_html__($helper, 'wp-riotd') ); // Show it
 		}
 	
 		// If there is supplemental text
 		if( $supplemental = $args['supplemental'] ){
-			printf( '<p class="description">%s</p>', esc_html($supplemental) ); // Show it
+			printf( '<p class="description">%s</p>', esc_html__($supplemental, 'wp-riotd') ); // Show it
 		}		
 	}
 	/**

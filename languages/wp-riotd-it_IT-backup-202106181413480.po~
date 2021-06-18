@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RIOTD Reddit Image Of The Day\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-17 18:46+0000\n"
-"PO-Revision-Date: 2021-06-18 15:13+0000\n"
+"PO-Revision-Date: 2021-06-18 14:12+0000\n"
 "Last-Translator: \n"
 "Language-Team: Italiano\n"
 "Language: it_IT\n"
@@ -69,7 +69,7 @@ msgstr ""
 "Un valore booleano (vero o falso) che indica se l'immagine è adatta a soli "
 "adulti (NSFW) o no"
 
-#: admin/class-wp-riotd-admin.php:184 admin/class-wp-riotd-admin.php:185
+#: admin/class-wp-riotd-admin.php:181 admin/class-wp-riotd-admin.php:182
 #: admin/partials/wp-riotd-admin-aboutus.php:2
 msgid "About Us"
 msgstr "Chi siamo"
@@ -216,11 +216,6 @@ msgid "Click to open the subreddit channel"
 msgstr ""
 "Clicca per aprire il canale di Reddit in una nuova scheda sul tuo browser"
 
-#: public/partials/wp-riotd-public-empty.php:6
-msgid "Click to open the subreddit channel in a new tab"
-msgstr ""
-"Clicca per aprire questo canale di Reddit in una nuova scheda del tuo browser"
-
 #: public/partials/wp-riotd-public-reddit.php:3
 msgid "Click to open this reddit channel in a new tab"
 msgstr ""
@@ -256,11 +251,11 @@ msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:123
 msgid "CSS Id"
-msgstr "CSS Id "
+msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:121
 msgid "CSS Id "
-msgstr "CSS Id "
+msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:296
 msgid "Custom CSS"
@@ -278,7 +273,7 @@ msgstr "Riservatezza dei dati e GDPR"
 msgid "day"
 msgstr "giorno"
 
-#: admin/class-wp-riotd-admin.php:523
+#: admin/class-wp-riotd-admin.php:520
 msgid "Days"
 msgstr "Giorni"
 
@@ -356,7 +351,7 @@ msgstr "Limite di scarico"
 msgid "Example"
 msgstr "Esempio"
 
-#: admin/class-wp-riotd-admin.php:592
+#: admin/class-wp-riotd-admin.php:589
 msgid "Expired"
 msgstr "Scaduta"
 
@@ -388,15 +383,11 @@ msgstr "Aiuto e Supporto"
 msgid "Hide Cache Content"
 msgstr "Nascondi Cache"
 
-#: admin/js/wp-riotd-admin.js:311
-msgid "Hide Preview"
-msgstr "Nascondi Anteprima"
-
 #: admin/js/wp-riotd-admin.js:73
 msgid "hour"
 msgstr "ora"
 
-#: admin/class-wp-riotd-admin.php:522
+#: admin/class-wp-riotd-admin.php:519
 msgid "Hours"
 msgstr "Ore"
 
@@ -404,7 +395,7 @@ msgstr "Ore"
 msgid "hours"
 msgstr "ore"
 
-#: admin/class-wp-riotd-admin.php:177
+#: admin/class-wp-riotd-admin.php:174
 msgid "How To Use"
 msgstr "Come si usa"
 
@@ -572,7 +563,7 @@ msgstr "Minimalista"
 msgid "minute"
 msgstr "minuto"
 
-#: admin/class-wp-riotd-admin.php:521
+#: admin/class-wp-riotd-admin.php:518
 msgid "Minutes"
 msgstr "Minuti"
 
@@ -581,35 +572,16 @@ msgid "minutes"
 msgstr "minuti"
 
 #. 1: minimum numeric value 2: maximum numeric value
-#: admin/class-wp-riotd-admin.php:436
+#: admin/class-wp-riotd-admin.php:433
 #, php-format
 msgid "must be between %1$s and %2$s"
 msgstr "deve essere tra %1$s e %2$s"
 
-#: wp-reddit-iotd.php:24 includes/class-wp-riotd.php:16
-#: includes/class-wp-riotd-loader.php:19
-#: includes/class-wp-riotd-activator.php:13
-#: includes/class-wp-riotd-cache.php:16 includes/class-wp-riotd-scraper.php:17
-#: includes/class-wp-riotd-settings.php:16 includes/class-wp-riotd-i18n.php:16
-#: includes/class-wp-riotd-deactivator.php:13
-#: includes/class-wp-riotd-utility.php:16
-#: admin/class-wp-riotd-admin-settings-definitions.php:15
-#: admin/class-wp-riotd-admin.php:14 public/class-wp-riotd-public.php:15
-#: admin/partials/wp-riotd-admin-aboutus.php:1
-#: admin/partials/wp-riotd-admin-menu.php:1
-#: admin/partials/wp-riotd-admin-social-sharing.php:1
 #: public/partials/wp-riotd-public-empty.php:1
-#: public/partials/wp-riotd-public-minimal.php:1
-#: public/partials/wp-riotd-public-single.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-cache.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-section.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-welcome.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-section-tabs.php:1
 msgid "No direct script access allowed!"
 msgstr "Accesso diretto non consentito!"
 
-#: public/class-wp-riotd-public.php:115
+#: public/class-wp-riotd-public.php:113
 msgid "No images availabe :("
 msgstr "Nessuna immagine disponibile :("
 
@@ -671,7 +643,7 @@ msgstr "Casuale"
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:287
 msgid "Reddit"
-msgstr "Reddit"
+msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:139
 msgid "Reddit Channel"
@@ -681,7 +653,7 @@ msgstr "Canale di Reddit"
 msgid "Reddit channel not specified"
 msgstr "Canale di Reddit non specificato"
 
-#: admin/class-wp-riotd-admin.php:159
+#: admin/class-wp-riotd-admin.php:156
 msgid "Reddit Image of The Day"
 msgstr "Immagine del giorno da Reddit"
 
@@ -733,7 +705,7 @@ msgstr "Indirizzo web di Reddit non definito"
 msgid "Reset All Settings"
 msgstr "Ripristina tutti i settaggi"
 
-#: admin/class-wp-riotd-admin.php:160
+#: admin/class-wp-riotd-admin.php:157
 msgid "RIOTD"
 msgstr "RIOTD"
 
@@ -789,7 +761,7 @@ msgstr ""
 msgid "Set a valid subreddit channel you want to download images from"
 msgstr "Imposta un canale di reddit valido da cui vuoi scaricare le immagini"
 
-#: admin/class-wp-riotd-admin.php:168 admin/class-wp-riotd-admin.php:169
+#: admin/class-wp-riotd-admin.php:165 admin/class-wp-riotd-admin.php:166
 msgid "Settings"
 msgstr "Settaggi"
 
@@ -836,7 +808,7 @@ msgstr ""
 "Diagnostiche, e ogni altra informazione pertinente per accelerare la "
 "risoluzione del problema."
 
-#: public/class-wp-riotd-public.php:114
+#: public/class-wp-riotd-public.php:112
 msgid "Template not available :("
 msgstr "Modello non disponibile :("
 
@@ -844,7 +816,7 @@ msgstr "Modello non disponibile :("
 msgid "The author username of the post containing the image"
 msgstr "Il nome utente dell'autore del post che contiene l'immagine"
 
-#: admin/class-wp-riotd-admin.php:282
+#: admin/class-wp-riotd-admin.php:279
 msgid "The cache is empty"
 msgstr "La cache è vuota"
 
@@ -1055,8 +1027,6 @@ msgstr ""
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:128
 msgid "this is the main box that will contain the title, image, links, etc."
 msgstr ""
-"questo è il riquadro principale che conterrà il titolo, l'immagine, i link, "
-"ecc."
 
 #: admin/partials/settings/wp-riotd-admin-settings-welcome.php:30
 msgid ""
@@ -1127,7 +1097,7 @@ msgstr ""
 msgid "Update available, click to refresh"
 msgstr "Aggiornamento disponibile, clicca per aggiornare"
 
-#: admin/class-wp-riotd-admin.php:176
+#: admin/class-wp-riotd-admin.php:173
 msgid "Usage instructions"
 msgstr "Istruzioni per l'uso"
 
@@ -1220,7 +1190,7 @@ msgid ""
 "might not be of your liking or it could not work with your theme of choice."
 msgstr ""
 "Anche se lo stile CSS interno utilizzato dal plugin usa colori e stili "
-"compatibili col tema standard di WordPress (Twenty Twenty-One al momento del "
+"compatibili col tema standard di WordPress (Venti Ventuno al momento del "
 "rilascio di questo plugin), potrebbe non piacerti o potrebbe non funzionare "
 "col tuo tema."
 

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RIOTD Reddit Image Of The Day\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-17 18:46+0000\n"
-"PO-Revision-Date: 2021-06-18 15:13+0000\n"
+"PO-Revision-Date: 2021-06-18 15:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: Italiano\n"
 "Language: it_IT\n"
@@ -216,11 +216,6 @@ msgid "Click to open the subreddit channel"
 msgstr ""
 "Clicca per aprire il canale di Reddit in una nuova scheda sul tuo browser"
 
-#: public/partials/wp-riotd-public-empty.php:6
-msgid "Click to open the subreddit channel in a new tab"
-msgstr ""
-"Clicca per aprire questo canale di Reddit in una nuova scheda del tuo browser"
-
 #: public/partials/wp-riotd-public-reddit.php:3
 msgid "Click to open this reddit channel in a new tab"
 msgstr ""
@@ -256,11 +251,11 @@ msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:123
 msgid "CSS Id"
-msgstr "CSS Id "
+msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:121
 msgid "CSS Id "
-msgstr "CSS Id "
+msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:296
 msgid "Custom CSS"
@@ -586,26 +581,7 @@ msgstr "minuti"
 msgid "must be between %1$s and %2$s"
 msgstr "deve essere tra %1$s e %2$s"
 
-#: wp-reddit-iotd.php:24 includes/class-wp-riotd.php:16
-#: includes/class-wp-riotd-loader.php:19
-#: includes/class-wp-riotd-activator.php:13
-#: includes/class-wp-riotd-cache.php:16 includes/class-wp-riotd-scraper.php:17
-#: includes/class-wp-riotd-settings.php:16 includes/class-wp-riotd-i18n.php:16
-#: includes/class-wp-riotd-deactivator.php:13
-#: includes/class-wp-riotd-utility.php:16
-#: admin/class-wp-riotd-admin-settings-definitions.php:15
-#: admin/class-wp-riotd-admin.php:14 public/class-wp-riotd-public.php:15
-#: admin/partials/wp-riotd-admin-aboutus.php:1
-#: admin/partials/wp-riotd-admin-menu.php:1
-#: admin/partials/wp-riotd-admin-social-sharing.php:1
 #: public/partials/wp-riotd-public-empty.php:1
-#: public/partials/wp-riotd-public-minimal.php:1
-#: public/partials/wp-riotd-public-single.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-cache.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-section.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-welcome.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-section-tabs.php:1
 msgid "No direct script access allowed!"
 msgstr "Accesso diretto non consentito!"
 
@@ -671,7 +647,7 @@ msgstr "Casuale"
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:287
 msgid "Reddit"
-msgstr "Reddit"
+msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:139
 msgid "Reddit Channel"

@@ -2,7 +2,7 @@
 /**
  * Public facing functionality of the plugin.
  *
- * @link       https://github.com/tommasodargenio/wp-riodt/public/class-wp-riotd-public.php
+ * @link       https://github.com/tommasodargenio/wp-riotd/public/class-wp-riotd-public.php
  * @since      1.0.1
  * 
  * @package    RIOTD
@@ -12,7 +12,7 @@
  */
 
  // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-riotd' ));
 
 class WP_RIOTD_Public {
 
@@ -91,7 +91,7 @@ class WP_RIOTD_Public {
 	 * @since    1.0.1
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-riotd-public.css', array(), $this->version, 'all' );		
+		wp_enqueue_style( $this->plugin_name.'_public_css', plugin_dir_url( __FILE__ ) . 'css/wp-riotd-public.css', array(), $this->version, 'all' );		
 	}
 
 	/**
@@ -100,7 +100,7 @@ class WP_RIOTD_Public {
 	 * @since    1.0.1
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-riotd-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name.'_public_js', plugin_dir_url( __FILE__ ) . 'js/wp-riotd-public.js', array( 'jquery' ), $this->version, false );
 	}
 	/**
 	 * Render the final view to be output on the public site

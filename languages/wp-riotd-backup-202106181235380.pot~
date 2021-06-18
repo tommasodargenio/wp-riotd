@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RIOTD Reddit Image Of The Day\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-18 15:12+0000\n"
+"POT-Creation-Date: 2021-06-17 18:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -26,34 +26,13 @@ msgstr ""
 msgid "%1$s upvotes"
 msgstr ""
 
-#: admin/partials/settings/wp-riotd-admin-settings-welcome.php:38
-msgid ""
-"<span class=\"dashicons dashicons-warning\" style=\"color:var(--icon-warning)"
-";\"></span><em>If you are looking to feature any content from a post as "
-"standalone asset, you'll need to contact the original poster</em>"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-welcome.php:35
-msgid ""
-"<span class=\"dashicons dashicons-warning\" style=\"color:var(--icon-warning)"
-";\"></span>It is your responsibility to follow Reddit <a href=\"https://www."
-"redditinc.com/brand\" target=\"_blank\" title=\"Click to open the main "
-"branding page on Reddit website in a new tab\">branding</a> <a href=\"https:"
-"//www.redditinc.com/assets/press-resources/broadcast_2020.pdf\" "
-"title=\"Direct link to the Reddit Press and Broadcast branding guidelines, "
-"if this link is not available please go the main branding page use the link "
-"before this\" target=\"_blank\">guidelines</a> when posting data from their "
-"feed, RIOTD has a preformatted widget style compliant with the afore "
-"mentioned guidelines however it is up to you whether to use it or not"
-msgstr ""
-
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:100
 msgid ""
 "A boolean value (either true or false) indicating if the image is marked as "
 "NSFW (i.e.: adult content) or not"
 msgstr ""
 
-#: admin/class-wp-riotd-admin.php:184 admin/class-wp-riotd-admin.php:185
+#: admin/class-wp-riotd-admin.php:181 admin/class-wp-riotd-admin.php:182
 #: admin/partials/wp-riotd-admin-aboutus.php:2
 msgid "About Us"
 msgstr ""
@@ -113,9 +92,8 @@ msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-welcome.php:10
 msgid ""
-"based on criteria you can setup in the settings, you can choose between a "
-"few layouts or simply grab the image url (or any other available data) and "
-"use it anywhere you want."
+"based on criteria you can setup in the settings, you can choose between two "
+"layout or simply grab the image url and use it anywhere you want."
 msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:20
@@ -157,7 +135,7 @@ msgid "channel empty"
 msgstr ""
 
 #: public/partials/wp-riotd-public-single.php:31
-msgid "Click here or anywhere outside the window to close the image"
+msgid "Click here to close or anywhere outside the image"
 msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-cache.php:20
@@ -182,10 +160,6 @@ msgstr ""
 msgid "Click to open the subreddit channel"
 msgstr ""
 
-#: public/partials/wp-riotd-public-empty.php:6
-msgid "Click to open the subreddit channel in a new tab"
-msgstr ""
-
 #: public/partials/wp-riotd-public-reddit.php:3
 msgid "Click to open this reddit channel in a new tab"
 msgstr ""
@@ -202,6 +176,10 @@ msgstr ""
 msgid "Click to see the content of the cache stored in the database"
 msgstr ""
 
+#: admin/class-wp-riotd-admin-settings-definitions.php:78
+msgid "Configure Reddit Channel"
+msgstr ""
+
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:36
 msgid ""
 "Copy and paste this shortcode directly into the page, post or widget where "
@@ -212,14 +190,6 @@ msgstr ""
 msgid ""
 "Copy and paste this shortcode directly into the page, post or widget where "
 "you'd like to display the requested data"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:123
-msgid "CSS Id"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:121
-msgid "CSS Id "
 msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:296
@@ -238,7 +208,7 @@ msgstr ""
 msgid "day"
 msgstr ""
 
-#: admin/class-wp-riotd-admin.php:523
+#: admin/class-wp-riotd-admin.php:520
 msgid "Days"
 msgstr ""
 
@@ -251,8 +221,6 @@ msgid "Debug Checkup"
 msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:60
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:122
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:124
 msgid "Description"
 msgstr ""
 
@@ -312,7 +280,7 @@ msgstr ""
 msgid "Example"
 msgstr ""
 
-#: admin/class-wp-riotd-admin.php:592
+#: admin/class-wp-riotd-admin.php:589
 msgid "Expired"
 msgstr ""
 
@@ -326,6 +294,10 @@ msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-welcome.php:49
 msgid "Galleries and Videos will not be selected"
+msgstr ""
+
+#: admin/class-wp-riotd-admin-settings-definitions.php:70
+msgid "General Settings"
 msgstr ""
 
 #: admin/partials/wp-riotd-admin-aboutus.php:11
@@ -342,15 +314,11 @@ msgstr ""
 msgid "Hide Cache Content"
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:311
-msgid "Hide Preview"
-msgstr ""
-
 #: admin/js/wp-riotd-admin.js:73
 msgid "hour"
 msgstr ""
 
-#: admin/class-wp-riotd-admin.php:522
+#: admin/class-wp-riotd-admin.php:519
 msgid "Hours"
 msgstr ""
 
@@ -358,7 +326,7 @@ msgstr ""
 msgid "hours"
 msgstr ""
 
-#: admin/class-wp-riotd-admin.php:177
+#: admin/class-wp-riotd-admin.php:174
 msgid "How To Use"
 msgstr ""
 
@@ -405,17 +373,16 @@ msgid ""
 "the image in a bigger resolution."
 msgstr ""
 
-#. 1: is a link
-#: admin/partials/settings/wp-riotd-admin-settings-welcome.php:59
-#, php-format
-msgid ""
-"If you would like to check the exact data that the plugin has collected and "
-"stored in the database, you can use the utlity button on <a href=\"%1$s\">"
-"general settings</a> page"
-msgstr ""
-
 #: admin/class-wp-riotd-admin-settings-definitions.php:99
 msgid "Image aspect"
+msgstr ""
+
+#: admin/class-wp-riotd-admin-settings-definitions.php:89
+msgid "Image Cache"
+msgstr ""
+
+#: admin/class-wp-riotd-admin-settings-definitions.php:82
+msgid "Image Preferences"
 msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:243
@@ -496,7 +463,7 @@ msgstr ""
 msgid "minute"
 msgstr ""
 
-#: admin/class-wp-riotd-admin.php:521
+#: admin/class-wp-riotd-admin.php:518
 msgid "Minutes"
 msgstr ""
 
@@ -505,35 +472,16 @@ msgid "minutes"
 msgstr ""
 
 #. 1: minimum numeric value 2: maximum numeric value
-#: admin/class-wp-riotd-admin.php:436
+#: admin/class-wp-riotd-admin.php:433
 #, php-format
 msgid "must be between %1$s and %2$s"
 msgstr ""
 
-#: wp-reddit-iotd.php:24 includes/class-wp-riotd.php:16
-#: includes/class-wp-riotd-loader.php:19
-#: includes/class-wp-riotd-activator.php:13
-#: includes/class-wp-riotd-cache.php:16 includes/class-wp-riotd-scraper.php:17
-#: includes/class-wp-riotd-settings.php:16 includes/class-wp-riotd-i18n.php:16
-#: includes/class-wp-riotd-deactivator.php:13
-#: includes/class-wp-riotd-utility.php:16
-#: admin/class-wp-riotd-admin-settings-definitions.php:15
-#: admin/class-wp-riotd-admin.php:14 public/class-wp-riotd-public.php:15
-#: admin/partials/wp-riotd-admin-aboutus.php:1
-#: admin/partials/wp-riotd-admin-menu.php:1
-#: admin/partials/wp-riotd-admin-social-sharing.php:1
 #: public/partials/wp-riotd-public-empty.php:1
-#: public/partials/wp-riotd-public-minimal.php:1
-#: public/partials/wp-riotd-public-single.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-cache.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-section.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-welcome.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:1
-#: admin/partials/settings/wp-riotd-admin-settings-section-tabs.php:1
 msgid "No direct script access allowed!"
 msgstr ""
 
-#: public/class-wp-riotd-public.php:115
+#: public/class-wp-riotd-public.php:113
 msgid "No images availabe :("
 msgstr ""
 
@@ -588,7 +536,7 @@ msgid "Random"
 msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:287
-msgid "Reddit"
+msgid "Reddit Branding"
 msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:139
@@ -599,7 +547,7 @@ msgstr ""
 msgid "Reddit channel not specified"
 msgstr ""
 
-#: admin/class-wp-riotd-admin.php:159
+#: admin/class-wp-riotd-admin.php:156
 msgid "Reddit Image of The Day"
 msgstr ""
 
@@ -639,7 +587,7 @@ msgstr ""
 msgid "Reset All Settings"
 msgstr ""
 
-#: admin/class-wp-riotd-admin.php:160
+#: admin/class-wp-riotd-admin.php:157
 msgid "RIOTD"
 msgstr ""
 
@@ -669,9 +617,8 @@ msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:290
 msgid ""
-"Select which layout you prefer. Minimalistic will only show the image, full "
-"will show all the available information using an internal styling, Reddit "
-"will use a layout compliant with Reddit branding policies"
+"Select which layout you prefer. Minimialistic will only show the image, full "
+"will show all the available information"
 msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:159
@@ -684,7 +631,7 @@ msgstr ""
 msgid "Set a valid subreddit channel you want to download images from"
 msgstr ""
 
-#: admin/class-wp-riotd-admin.php:168 admin/class-wp-riotd-admin.php:169
+#: admin/class-wp-riotd-admin.php:165 admin/class-wp-riotd-admin.php:166
 msgid "Settings"
 msgstr ""
 
@@ -713,10 +660,6 @@ msgstr ""
 msgid "Styled Shortcode"
 msgstr ""
 
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:109
-msgid "Styling"
-msgstr ""
-
 #: admin/partials/wp-riotd-admin-aboutus.php:34
 msgid ""
 "Support is provided on best-effort basis, please upload screenshots to show "
@@ -725,7 +668,7 @@ msgid ""
 "resolution."
 msgstr ""
 
-#: public/class-wp-riotd-public.php:114
+#: public/class-wp-riotd-public.php:112
 msgid "Template not available :("
 msgstr ""
 
@@ -733,12 +676,8 @@ msgstr ""
 msgid "The author username of the post containing the image"
 msgstr ""
 
-#: admin/class-wp-riotd-admin.php:282
+#: admin/class-wp-riotd-admin.php:279
 msgid "The cache is empty"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:154
-msgid "the close button showing in the ligthbox"
 msgstr ""
 
 #. 1: is a link
@@ -769,16 +708,8 @@ msgstr ""
 msgid "The full resolution height in pixels of the image"
 msgstr ""
 
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:144
-msgid "the full resolution image styling"
-msgstr ""
-
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:75
 msgid "The full resolution width in pixels of the image"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:150
-msgid "the image caption and its author"
 msgstr ""
 
 #. 1: is a link
@@ -791,24 +722,6 @@ msgid ""
 "content</strong>) in the <a href=\"%1$s\">general settings</a> area"
 msgstr ""
 
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:166
-msgid "the lightbox containing the full-resolution image"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:160
-msgid ""
-"the link button showing in the lightbox, this will contain the link to the "
-"original subreddit post with the image"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:130
-msgid "the main box where the image is contained"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:134
-msgid "the main title area"
-msgstr ""
-
 #: admin/partials/settings/wp-riotd-admin-settings-welcome.php:19
 msgid ""
 "The plugin comes with some parameters pre-set, however we strongly recommend "
@@ -819,14 +732,6 @@ msgstr ""
 msgid ""
 "The plugin do not transfer or send any of the data collected (in its "
 "entirity or partially) anywhere outside your website."
-msgstr ""
-
-#. 1: is a link
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:142
-#, php-format
-msgid ""
-"the plugin name by default or a title of your choice as specified in the <a "
-"href=\"$1%s\">settings</a>"
 msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-welcome.php:47
@@ -852,23 +757,6 @@ msgid ""
 "%2$s=&quot;parameter&quot;]</code>"
 msgstr ""
 
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:162
-msgid "the style change on the mouseOver event of the link button"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:156
-msgid "the style change on the mouseOver of the close button"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:148
-msgid ""
-"the subtitle, containing the subreddit from which the image has been fetched"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:136
-msgid "the thumbnail image styling"
-msgstr ""
-
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:85
 msgid "The title or caption of the image as provided by the post's author"
 msgstr ""
@@ -885,6 +773,10 @@ msgstr ""
 msgid "The url pointing at the thumbnail version of the image"
 msgstr ""
 
+#: admin/class-wp-riotd-admin-settings-definitions.php:74
+msgid "Theme Layout"
+msgstr ""
+
 #. 1: is a link 2: is a link
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:13
 #, php-format
@@ -899,10 +791,6 @@ msgstr ""
 msgid ""
 "There are a couple of ways to display the image feed from the subreddit "
 "channel you have specified in the <a href=\"%1$s\">settings</a>"
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:128
-msgid "this is the main box that will contain the title, image, links, etc."
 msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-welcome.php:30
@@ -926,8 +814,8 @@ msgstr ""
 
 #: admin/partials/wp-riotd-admin-aboutus.php:19
 msgid ""
-"This work has been inspired, painstakingly tested, and refined with the help "
-"of my brother. Thanks for all your support and ideas!"
+"This work has been inspired, painstakingly tested, and refined by my brother."
+" Thanks for all your support and ideas!"
 msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:37
@@ -955,7 +843,7 @@ msgstr ""
 msgid "Update available, click to refresh"
 msgstr ""
 
-#: admin/class-wp-riotd-admin.php:176
+#: admin/class-wp-riotd-admin.php:173
 msgid "Usage instructions"
 msgstr ""
 
@@ -1003,6 +891,7 @@ msgstr ""
 msgid "we'll respond to that as soon as possible"
 msgstr ""
 
+#: admin/class-wp-riotd-admin-settings-definitions.php:66
 #: admin/partials/settings/wp-riotd-admin-settings-welcome.php:2
 msgid "Welcome"
 msgstr ""
@@ -1043,10 +932,6 @@ msgstr ""
 msgid ""
 "You can affect the information displayed by using the switches in the Theme "
 "Layout <a href=\"%1$s\">settings</a> tab."
-msgstr ""
-
-#: admin/partials/settings/wp-riotd-admin-settings-usage.php:117
-msgid "You can find below a summary of the classes used by the plugin:"
 msgstr ""
 
 #: admin/partials/wp-riotd-admin-menu.php:6

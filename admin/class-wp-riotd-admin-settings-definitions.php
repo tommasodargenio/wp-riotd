@@ -4,7 +4,7 @@
  *  
  *  Contains all definitions for the settings
  * 
- * @link       https://github.com/tommasodargenio/wp-riodt/admin/class-wp-riotd-admin-settings-definitions.php
+ * @link       https://github.com/tommasodargenio/wp-riotd/admin/class-wp-riotd-admin-settings-definitions.php
  * @since      1.0.1
  * 
  * @package    RIOTD
@@ -12,7 +12,7 @@
  * @author     Tommaso D'Argenio <dev@tommasodargenio.com>
  */
  // Prohibit direct script loading.
- defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
+ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!', 'wp-riotd' ));
 
  class WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS { 
      /**
@@ -63,30 +63,30 @@
         $this->settings_sections = array(
             array(
                 'uid'   => \WP_RIODT_SETTING_PREFIX.'_section_welcome',
-                'label' => esc_html__('Welcome','wp-riotd')
+                'label' => 'Welcome'
             ),
             array(
                 'uid'   => \WP_RIODT_SETTING_PREFIX.'_section_general',
-                'label' => esc_html__('General Settings', 'wp-riotd' )
+                'label' => 'General Settings'
             ),
             array(
                 'uid'   => \WP_RIODT_SETTING_PREFIX.'_section_layout',
-                'label' => esc_html__('Theme Layout', 'wp-riotd')
+                'label' => 'Theme Layout'
             ),
             array(
                 'uid'   => \WP_RIODT_SETTING_PREFIX.'_section_reddit_channel',
-                'label' => esc_html__('Configure Reddit Channel', 'wp-riotd' )
+                'label' => 'Configure Reddit Channel'
             ),
             array(
                 'uid'   => \WP_RIODT_SETTING_PREFIX.'_section_image_preferences',
-                'label' => esc_html__('Image Preferences', 'wp-riotd') 
+                'label' => 'Image Preferences'
             ),
         );
 
         $this->cache_definitions = array (
             array(
                 'uid'       =>  \WP_RIODT_SETTING_PREFIX.'_cache',
-                'label'     =>  esc_html__( 'Image Cache', 'wp-riotd' ),
+                'label'     =>  'Image Cache',
                 'default'   =>  '',
                 'payload'   =>  '',
             ),
@@ -96,217 +96,217 @@
         $this->settings_definitions = array (            
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_aspect_ratio',
-                'label'         => esc_html__( 'Image aspect', 'wp-riotd' ),
+                'label'         => 'Image aspect',
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_image_preferences',
                 'type'          => 'select',
                 'allowed'       => array('string' => array('landscape','portrait')),
-                'options'       => array( 'landscape' => esc_html__('Landscape', 'wp-riotd'), 'portrait'=> esc_html__('Portrait', 'wp-riotd') ),
+                'options'       => array( 'landscape' => 'Landscape', 'portrait'=> 'Portrait'),
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Select the preferred aspect ratio when selecting the image', 'wp-riotd'),
+                'supplemental'  => 'Select the preferred aspect ratio when selecting the image', 
                 'default'       => 'landscape',
                 'force_reload'  => true,
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_image_max_width',
-                'label'         => esc_html__( 'Max image width', 'wp-riotd' ),
+                'label'         => 'Max image width', 
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_image_preferences',
                 'type'          => 'text',
                 'allowed'       => array('integer'),
                 'options'       => '',
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Indicate the max width of the image', 'wp-riotd'),
+                'supplemental'  => 'Indicate the max width of the image',
                 'default'       => '1920',
                 'force_reload'  => true,
             ),       
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_image_max_height',
-                'label'         => esc_html__( 'Max image height', 'wp-riotd' ),
+                'label'         => 'Max image height',
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_image_preferences',
                 'type'          => 'text',
                 'allowed'       => array('integer'),
                 'options'       => '',
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Indicate the max height of the image', 'wp-riotd'),
+                'supplemental'  => 'Indicate the max height of the image', 
                 'default'       => '1080',
                 'force_reload'  => true,                
             ),                     
 
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_channel',
-                'label'         => esc_html__( 'Reddit Channel', 'wp-riotd' ),
+                'label'         => 'Reddit Channel', 
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_reddit_channel',
                 'type'          => 'text',
                 'allowed'       => array('string'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Set a valid subreddit channel you want to download images from', 'wp-riotd'),
+                'supplemental'  => 'Set a valid subreddit channel you want to download images from',
                 'default'       => 'images',
                 'force_reload'  => true,                
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_download_limit',
-                'label'         => esc_html__( 'Download limits', 'wp-riotd' ),
+                'label'         => 'Download limits',
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_reddit_channel',
                 'type'          => 'text',
                 'allowed'       => array('integer'),
                 'options'       => false,
                 'placeholder'   => '50',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Set a download limit, lower numbers results in less images but faster processing', 'wp-riotd'),
+                'supplemental'  => 'Set a download limit, lower numbers results in less images but faster processing', 
                 'default'       => '50',
                 'force_reload'  => false,
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_nsfw_switch',
-                'label'         => esc_html__( 'Allow NSFW content', 'wp-riotd' ),
+                'label'         => 'Allow NSFW content',
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_general',
                 'type'          => 'bool',
                 'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Allow to download and show images marked as Not Safe For Work (i.e.: adult content)', 'wp-riotd'),
+                'supplemental'  => 'Allow to download and show images marked as Not Safe For Work (i.e.: adult content)', 
                 'default'       => 0,
                 'force_reload'  => true,                
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_zoom_switch',
-                'label'         => esc_html__( 'Allow Zoom on mouse over', 'wp-riotd' ),
+                'label'         => 'Allow Zoom on mouse over',
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
                 'allowed'       => array('boolean'),                
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('If enabled, when the mouse is over the image it will overlay a window with the image in a bigger resolution.', 'wp-riotd'),
+                'supplemental'  => 'If enabled, when the mouse is over the image it will overlay a window with the image in a bigger resolution.', 
                 'default'       => 1,
                 'force_reload'  => false,
             ),            
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_author_switch',
-                'label'         => esc_html__( 'Display author\'s name', 'wp-riotd' ),
+                'label'         => 'Display author\'s name',
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
                 'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Display the author\'s name in the caption', 'wp-riotd'),
+                'supplemental'  => 'Display the author\'s name in the caption', 
                 'default'       => 1,
                 'force_reload'  => false,
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_channel_switch',
-                'label'         => esc_html__( 'Display channel\'s name', 'wp-riotd' ),
+                'label'         => 'Display channel\'s name', 
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
                 'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Display the subreddit channel\'s name in the header title?', 'wp-riotd'),
+                'supplemental'  => 'Display the subreddit channel\'s name in the header title?', 
                 'default'       => 1,
                 'force_reload'  => false,
             ),            
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_title_switch',
-                'label'         => esc_html__( 'Display image\'s title', 'wp-riotd' ),
+                'label'         => 'Display image\'s title', 
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
                 'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Display the image\'s title', 'wp-riotd'),
+                'supplemental'  => 'Display the image\'s title', 
                 'default'       => 1,
                 'force_reload'  => false,
             ),
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_link_switch',
-                'label'         => esc_html__( 'Add link to reddit post?', 'wp-riotd' ),
+                'label'         => 'Add link to reddit post?', 
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
                 'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('If enabled, the image will have a link to the related reddit post, this will open in a new tab', 'wp-riotd'),
+                'supplemental'  => 'If enabled, the image will have a link to the related reddit post, this will open in a new tab', 
                 'default'       => 1,
                 'force_reload'  => false,
             ),            
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_image_scraping',
-                'label'         => esc_html__( 'Image scraping mode', 'wp-riotd' ),
+                'label'         => 'Image scraping mode',
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_general',
                 'type'          => 'select',
                 'allowed'       => array('string' => array('daily_update','random_update','last_update')),
-                'options'       => array('daily_update'=>esc_html__('Same daily', 'wp-riotd'), 'random_update' => esc_html__('Random','wp-riotd'), 'last_update' => esc_html__('Last posted','wp-riotd') ),
+                'options'       => array('daily_update'=>'Same daily', 'random_update' => 'Random', 'last_update' => 'Last posted'),
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Indicate if you want to change image every load (random), or use the same daily, or always use the last uploaded (this may change throughout the day)', 'wp-riotd'),
+                'supplemental'  => 'Indicate if you want to change image every load (random), or use the same daily, or always use the last uploaded (this may change throughout the day)', 
                 'default'       => 'daily_update',
                 'force_reload'  => true,
             ),    
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_cache_lifetime',
-                'label'         => esc_html__( 'Cache duration', 'wp-riotd' ),
+                'label'         => 'Cache duration', 
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_general',
                 'type'          => 'seconds',
                 'allowed'       => array('integer'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__( '', 'wp-riotd' ),
+                'supplemental'  => '',
                 'default'       => DAY_IN_SECONDS,
                 'force_reload'  => false,
 
             ),            
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_css_switch',
-                'label'         => esc_html__( 'Use plugin\'s css?', 'wp-riotd' ),
+                'label'         => 'Use plugin\'s css?',
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'bool',
                 'allowed'       => array('boolean'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('If enabled the plugin will use its own CSS styling, otherwise you can override the css classes with your own styling', 'wp-riotd'),
+                'supplemental'  => 'If enabled the plugin will use its own CSS styling, otherwise you can override the css classes with your own styling', 
                 'default'       => 1,
                 'force_reload'  => false,
             ),                
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_layout',
-                'label'         => esc_html__( 'Layout mode', 'wp-riotd' ),
+                'label'         => 'Layout mode', 
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'select',
                 'allowed'       => array('string' => array('minimal','full','reddit')),
-                'options'       => array('minimal'=>esc_html__('Minimalistic', 'wp-riotd'), 'full' => esc_html__('Full','wp-riotd'), 'reddit'=>esc_html__('Reddit Branding','wp-riotd') ),
+                'options'       => array('minimal'=> 'Minimalistic', 'full' => 'Full', 'reddit'=>'Reddit' ),
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('Select which layout you prefer. Minimialistic will only show the image, full will show all the available information, Reddit Branding will use a layout compliant with Reddit branding policies', 'wp-riotd'),
+                'supplemental'  => 'Select which layout you prefer. Minimalistic will only show the image, full will show all the available information using an internal styling, Reddit will use a layout compliant with Reddit branding policies', 
                 'default'       => 'reddit',
                 'force_reload'  => false,
             ),                      
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_custom_css',
-                'label'         => esc_html__( 'Custom CSS', 'wp-riotd' ),
+                'label'         => 'Custom CSS', 
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_layout',
                 'type'          => 'textarea',
                 'allowed'       => array('css'),
                 'options'       => false,
                 'placeholder'   => '',
                 'helper'        => '',
-                'supplemental'  => esc_html__('The CSS codes indicated in this box will override the plugin\'s own CSS styling', 'wp-riotd'),
+                'supplemental'  => 'The CSS codes indicated in this box will override the plugin\'s own CSS styling', 
                 'default'       => '',
                 'force_reload'  => false,
             ),         
             array(
                 'uid'           => \WP_RIODT_SETTING_PREFIX.'_activation_date',
-                'label'         => esc_html__( 'Plugin Activation Date', 'wp-riotd' ),
+                'label'         => 'Plugin Activation Date', 
                 'section'       => \WP_RIODT_SETTING_PREFIX.'_section_private',
                 'type'          => 'private',
                 'allowed'       => array('date'),
@@ -317,7 +317,19 @@
                 'default'       => time(),
                 'force_reload'  => false,
             ),       
-
+            array(
+                'uid'           => \WP_RIODT_SETTING_PREFIX.'_last_scraping_execution_time',
+                'label'         => 'Last scraping execution time', 
+                'section'       => \WP_RIODT_SETTING_PREFIX.'_section_private',
+                'type'          => 'private',
+                'allowed'       => array('integer'),
+                'options'       => false,
+                'placeholder'   => '',
+                'helper'        => '',
+                'supplemental'  => '',
+                'default'       => 0,
+                'force_reload'  => false,
+            ),       
         );
     }
 
