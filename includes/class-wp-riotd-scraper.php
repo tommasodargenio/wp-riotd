@@ -5,7 +5,7 @@
  * Download images from a reddit channel if they exist via reddit JSON export of the channel
  * 
  * 
- * @link       https://github.com/tommasodargenio/wp-riodt/includes/class-wp-riotd-scraper.php
+ * @link       https://github.com/tommasodargenio/wp-riotd/includes/class-wp-riotd-scraper.php
  * @since      1.0.1
  * 
  * @package    RIOTD
@@ -14,7 +14,7 @@
  */
 
 // Prohibit direct script loading.
-defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ));
+defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ,'wp-riotd'));
 class WP_RIOTD_Scraper {
     /**
      * Contains all the plugin settings
@@ -95,6 +95,7 @@ class WP_RIOTD_Scraper {
         }
 
         $this->statistics = array('tot_posts' => 0, 'tot_images' => 0, 'tot_videos' => 0, 'tot_galleries' => 0, 'tot_nsfw' => 0, 'tot_viable_images'=>0 );
+        $this->scraped_content = array();
     }
     /**
      * Method to retrieve a reddit channel info via the about json export
@@ -148,6 +149,8 @@ class WP_RIOTD_Scraper {
      * @return  bool      $status               true if image was found, false otherwise
      */
     public function scrape() {
+        // calculate scraping time
+        $start_time = microtime(true);
         // download the json file from the reddit url if available
         if ( $this->reddit_json_url != null && $this->reddit_json_url != "" ) {
             // set the number of posts to download if defined
@@ -167,7 +170,7 @@ class WP_RIOTD_Scraper {
                 // retrieve the response body
                 $body   = wp_remote_retrieve_body( $response );
                 $content_type = wp_remote_retrieve_header( $response, 'content-type' );
-
+                update_option('wp_riotd_execution_before_image_processing', (microtime(true)-$start_time));
                 // make sure the response is in json format
                 if ( stristr( $content_type, 'application/json' ) ) {
                     // decode the json
@@ -192,7 +195,7 @@ class WP_RIOTD_Scraper {
                     $tot_results = $scrapes->data->dist;
                     
                     $data = $scrapes->data->children;
-
+                    $channel = $this->get_channel_info();
                     // iterate through each child / post to extract an image
                     foreach ($data as $post) {
                         $this->statistics['tot_posts']++;
@@ -229,12 +232,12 @@ class WP_RIOTD_Scraper {
 
                                     $this->statistics['tot_images']++;
                                     
-                                    $channel = $this->get_channel_info();
+                                    
                                     $img_found['channel_icon'] = $channel->icon_img;
 
                                     // check if image resolution is ok                                      
-                                    if ( $this->is_resolution_ok( $img_found['width'], $img_found['height'], true) ) {
-                                        // check if image is allowed due to adult content
+                                    if ( $this->is_resolution_ok( $img_found['width'], $img_found['height'], true) ) {                                        
+                                        // check if image is allowed due to adult content                                        
                                         if ( $this->is_nsfw_ok( $img_found['nsfw'] ) )
                                         {
                                             // add to the list of candidates
@@ -254,16 +257,21 @@ class WP_RIOTD_Scraper {
                             }
                         }
                     }              
-                    $this->scraper_status = true;         
+                    $this->scraper_status = true;   
+                    $end_time = microtime(true);
+                    update_option('wp_riotd_last_scraping_execution_time', ($end_time-$start_time));
                     return true;
                 } else {
-                    $this->scraper_status = false;
+                    $this->scraper_status = false;                    
+                    $end_time = microtime(true);
+                    update_option('wp_riotd_last_scraping_execution_time', ($end_time-$start_time));
                     return false;
                 }
             }            
-
         } else {
-            $this->scraper_status = false;
+            $this->scraper_status = false;            
+            $end_time = microtime(true);
+            update_option('wp_riotd_last_scraping_execution_time', ($end_time-$start_time));
             return false;
         }        
     }
@@ -281,8 +289,8 @@ class WP_RIOTD_Scraper {
             if ( $this->settings['wp_riotd_nsfw_switch'] === true )
             {
                 $test = true;
-            } else {
-                $test = $this->settings['wp_riotd_nsfw_switch'] === $this->settings['wp_riotd_nsfw_switch'];
+            } else {                
+                $test = !$image_nsfw_flag;
             }             
         }
 
@@ -335,7 +343,7 @@ class WP_RIOTD_Scraper {
     }
 
     public function get_image() {
-        if ( isset( $this->settings['wp_riotd_image_scraping'] ) ) {
+        if ( isset( $this->settings['wp_riotd_image_scraping'] ) && sizeof($this->scraped_content) > 0 ) {
             switch ( $this->settings['wp_riotd_image_scraping'] ) {
                 case 'daily_update':
                     srand( floor( time() / 86400 ) );
@@ -350,6 +358,7 @@ class WP_RIOTD_Scraper {
                     break;
             }
         }
+        return array();
     }
     /**
      * Return the currently set subreddit channel
