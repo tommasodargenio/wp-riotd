@@ -229,12 +229,16 @@ class WP_RIOTD_Scraper {
                                     $img_found['upvotes'] = $post_data->ups;
                                     $img_found['comments'] = $post_data->num_comments;
                                     $img_found['post_date'] = $post_data->created_utc;
+                                    
+                                    if ($channel->icon_img) {
+                                        $img_found['channel_icon'] = $channel->icon_img;
+                                    } else {
+                                        $img_found['channel_icon'] = plugin_dir_url( __DIR__ ).'public/images/Reddit_Mark_OnWhite.svg'; 
+                                    }
+                                    
 
                                     $this->statistics['tot_images']++;
-                                    
-                                    
-                                    $img_found['channel_icon'] = $channel->icon_img;
-
+                                        
                                     // check if image resolution is ok                                      
                                     if ( $this->is_resolution_ok( $img_found['width'], $img_found['height'], true) ) {                                        
                                         // check if image is allowed due to adult content                                        
@@ -248,7 +252,6 @@ class WP_RIOTD_Scraper {
                                             $this->statistics['tot_nsfw']++;
                                         }
                                     }
-
                                 } elseif ( property_exists($post_data, 'is_gallery') && $post_data->is_gallery == true ) {
                                     $this->statistics['tot_galleries']++;
                                 }
@@ -286,10 +289,10 @@ class WP_RIOTD_Scraper {
         $test = false;
 
         if ( isset($this->settings['wp_riotd_nsfw_switch']) ) {
-            if ( $this->settings['wp_riotd_nsfw_switch'] === true )
+            if ( $this->settings['wp_riotd_nsfw_switch'] == true )
             {
                 $test = true;
-            } else {                
+            } else {         
                 $test = !$image_nsfw_flag;
             }             
         }
