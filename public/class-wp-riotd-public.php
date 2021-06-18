@@ -68,9 +68,9 @@ class WP_RIOTD_Public {
 		$scraper = new WP_RIOTD_Scraper();
 		// check if cache exists, if not create and store scraped image in cache. If it exists take image from there
 		if( (class_exists( 'WP_RIOTD_Cache', false )) ) {
-			$cache = WP_RIOTD_Cache::get_cache('cache');
+			$cache = WP_RIOTD_Cache::get_cache('cache');			
 			
-			if ( false === $cache ) {
+			if ( false === $cache || (is_array($cache) && sizeof($cache) <= 0 ) ) {
 			// cache doesn't exist, download image and then store in cache				
 				$scraper->scrape();
 				// get an image based on the settings for selection/randomness/etc.
