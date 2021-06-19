@@ -241,7 +241,7 @@ jQuery(document).ready(function($) {
                 $('#reddit_iotd_icon_loading').hide();
                 let parsed_data = JSON.parse(data);
                 if (parsed_data.response_code == 200) {            
-                    $('#riotd_reset').after('<span id="reddit_iotd_icon_success"><i class="dashicons dashicons-yes-alt"></i>'+__('Settings reset successfully','wp-riotd')+'</span>');
+                    $('#riotd_response_messages').html('<span id="reddit_iotd_icon_success"><i class="dashicons dashicons-yes-alt"></i>'+__('Settings reset successfully','wp-riotd')+'</span>');
                     if (parsed_data.payload != null ) {
                         const settings = JSON.parse(parsed_data.payload);
                         if ( Object.keys(settings).length > 0 ) {
@@ -273,9 +273,9 @@ jQuery(document).ready(function($) {
                     }
 
                 } else if (parsed_data.response_code == 400) {
-                    $('#riotd_reset').after('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation aborted','wp-riotd')+'!</span>');
+                    $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation aborted','wp-riotd')+'!</span>');
                 } else if (parsed_data.response_code == 401) {
-                    $('#riotd_reset').after('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation non authorized','wp-riotd')+'!</span>');
+                    $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation non authorized','wp-riotd')+'!</span>');
                 }
 
                 setTimeout(function() {

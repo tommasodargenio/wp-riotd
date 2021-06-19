@@ -104,9 +104,12 @@ hr {
 }
 
 #reddit_iotd_icon_success {
-    position: absolute;  
-    color: #0a0;
+    position: relative;
+    color: #0a0;    
+    display: flex;
     margin: var(--icon-margin);
+    justify-content: flex-start;
+    align-content: center;
 }
 #reddit_iotd_icon_error {
     position: absolute;

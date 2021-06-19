@@ -48,6 +48,7 @@
                 <li>RIOTD Settings: <span class="settings_debug"><?php echo WP_RIOTD_Settings::to_base64(); ?></span></li>
                 <li>Plugin installed: <?php echo date( 'd/m/Y H:i:s', WP_RIOTD_Settings::get('activation_date') ); ?></li>
                 <li>Last scraping execution time: <?php echo round(WP_RIOTD_Settings::get('last_scraping_execution_time'), 2).' seconds'; ?></li>
+                <li>Last image was scraped on: <?php echo date_i18n('d M, Y H:i:s',WP_RIOTD_Settings::get('last_image_scraped_on')); ?></li>
                 <li>WordPress: <?php echo $GLOBALS['wp_version']; ?></li>
                 <li>Multisite: <?php echo is_multisite() ? 'yes' : 'no'; ?></li>
                 <li>PHP: <?php echo phpversion(); ?></li>

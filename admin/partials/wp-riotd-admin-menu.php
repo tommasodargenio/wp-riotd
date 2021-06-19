@@ -34,7 +34,7 @@
                             $this->do_cache();
                         }
                         ?>
-                        <table class="form-table" role="presentation" style="width:5%">
+                        <table class="form-table" role="presentation">
                             <tr>
                                 <td><?php submit_button( esc_html__( 'Save Settings', 'wp-riotd' ), 'primary', 'submit', false ); ?></td>
                                 <td>
@@ -46,8 +46,9 @@
                                 <td>
                                     <?php submit_button( esc_html__( 'View Cache Content', 'wp-riotd'), 'secondary', 'riotd_view_cache', false, 'data-action="cache_off" title="'.esc_html__('Click to see the content of the cache stored in the database', 'wp-riotd').'"'); ?>
                                 </td>
-                                <td>
-                                    <img src="<?php echo admin_url('/images/wpspin_light.gif') ?>" id="reddit_iotd_icon_loading" style="display:none" />                            
+                                <td style="width: 240px;">
+                                    <img src="<?php echo admin_url('/images/wpspin_light.gif') ?>" id="reddit_iotd_icon_loading" style="display:none" />    
+                                    <span id="riotd_response_messages"></span>                        
                                 </td>
 
             <?php  }  ?>
