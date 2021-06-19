@@ -41,6 +41,30 @@
         return "";
      }
      /**
+      * Given a key and a value, scans the setting definition array, if the key is a valid setting it will save the value to the database
+      * @since  1.0.1
+      * @param  string  $key        the key to save the setting for
+      * @param  mixed   $value      the value to set the key to      
+      */
+     public static function set($key, $value='') {
+        if ( defined( 'WP_RIODT_SETTING_PREFIX' ) ) {
+            // add SETTING_PREFIX to the key if not in it already
+            if ( !stristr( $key, \WP_RIODT_SETTING_PREFIX ) ) {
+                $key = \WP_RIODT_SETTING_PREFIX.'_'.$key;
+            }            
+        }
+        if ( class_exists('WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS', false) ) {
+			$settings_definitions = new WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS();
+            $settings = $settings_definitions->get_settings_definitions();            
+            foreach($settings as $field) { 
+                if ( $key != null && $key != "" && $field['uid'] == $key ) {
+                   update_option( $field['uid'], $value);
+                }                    
+            }           
+        }
+     }
+
+     /**
       * Return all the settings from the database
       * @since  1.0.1
       * @return array[]     $result     Associative array containing the settings read from the database in format setting_name => setting_value      
