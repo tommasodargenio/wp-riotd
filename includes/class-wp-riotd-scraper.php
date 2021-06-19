@@ -262,19 +262,19 @@ class WP_RIOTD_Scraper {
                     }              
                     $this->scraper_status = true;   
                     $end_time = microtime(true);
-                    update_option('wp_riotd_last_scraping_execution_time', ($end_time-$start_time));
+                    WP_RIOTD_Settings::set('last_scraping_execution_time', ($end_time-$start_time));
                     return true;
                 } else {
                     $this->scraper_status = false;                    
                     $end_time = microtime(true);
-                    update_option('wp_riotd_last_scraping_execution_time', ($end_time-$start_time));
+                    WP_RIOTD_Settings::set('last_scraping_execution_time', ($end_time-$start_time));
                     return false;
                 }
             }            
         } else {
             $this->scraper_status = false;            
             $end_time = microtime(true);
-            update_option('wp_riotd_last_scraping_execution_time', ($end_time-$start_time));
+            WP_RIOTD_Settings::set('last_scraping_execution_time', ($end_time-$start_time));
             return false;
         }        
     }
@@ -347,7 +347,8 @@ class WP_RIOTD_Scraper {
 
     public function get_image() {
         if ( isset( $this->settings['wp_riotd_image_scraping'] ) && sizeof($this->scraped_content) > 0 ) {
-            switch ( $this->settings['wp_riotd_image_scraping'] ) {
+            WP_RIOTD_Settings::set('last_image_scraped_on', time());
+            switch ( $this->settings['wp_riotd_image_scraping'] ) {                
                 case 'daily_update':
                     srand( floor( time() / 86400 ) );
                     return $this->scraped_content[rand(0, count($this->scraped_content)-1)];

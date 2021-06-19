@@ -329,7 +329,20 @@
                 'supplemental'  => '',
                 'default'       => 0,
                 'force_reload'  => false,
-            ),       
+            ),    
+            array(
+                'uid'           => \WP_RIODT_SETTING_PREFIX.'_last_image_scraped_on',
+                'label'         => 'Last image was scraped on', 
+                'section'       => \WP_RIODT_SETTING_PREFIX.'_section_private',
+                'type'          => 'private',
+                'allowed'       => array('date'),
+                'options'       => false,
+                'placeholder'   => '',
+                'helper'        => '',
+                'supplemental'  => '',
+                'default'       => 0,
+                'force_reload'  => false,
+            ),    
         );
     }
 
