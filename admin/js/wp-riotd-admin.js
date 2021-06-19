@@ -104,6 +104,12 @@ jQuery(document).ready(function($) {
         if (!countdown) {
             countdown = setInterval(ticker, 1000);           
         }
+        // there is a cache, activate the button to view it
+        $('#riotd_view_cache').prop("disabled",false);
+    }
+    // cache is probably empty, disabling the button to view it
+    if ( isNaN($('#expire_seconds').text()) ) {
+        $('#riotd_view_cache').prop("disabled",true);
     }
 
 
@@ -137,6 +143,9 @@ jQuery(document).ready(function($) {
                     const data = JSON.parse(response);
     
                     if ( data.payload != null && !isNaN(data.payload) && parseInt(data.payload) > 0 ) {
+                        // there is a cache, activate the button to view it
+                        $('#riotd_view_cache').prop("disabled",false);                        
+
                         $('#expire_seconds').text(data.payload)
                         timer = new Date()
                         timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()))
@@ -181,6 +190,8 @@ jQuery(document).ready(function($) {
                 // stop the countdown
                 clearInterval(countdown);
                 countdown = false;
+                // disable the button to view the cache
+                $('#riotd_view_cache').prop("disabled",true);
                 $('#cache_expires').text('');
                 $('#expire_seconds').text('');
                 $('#cache_purged_msg').show();
@@ -315,6 +326,9 @@ jQuery(document).ready(function($) {
                         $('#riotd_preview').attr('data-action', 'preview_on');
                     }
                     if ( data.cache_time != null ) {
+                        // there is a cache, activate the button to view it
+                        $('#riotd_view_cache').prop("disabled",false);
+                        
                         $('#expire_seconds').text(data.cache_time);
                         timer = new Date();
                         timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()));
