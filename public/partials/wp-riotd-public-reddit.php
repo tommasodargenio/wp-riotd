@@ -10,4 +10,3 @@
   <div class="comments bold bottom_row"><i class="dashicons dashicons-admin-comments"></i><?php printf(esc_html__('%1$s comments','wp-riotd'),$comments); ?></div>  
   <div class="regular bottom_row post_date"><?php echo $post_date; ?></div>
 </div>
-<!-- <?php echo '<pre>'; print_r($this->scraped); echo '</pre>'; ?> -->
