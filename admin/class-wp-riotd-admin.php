@@ -3,7 +3,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://github.com/tommasodargenio/wp-riotd/admin/class-wp-riotd-admin.php
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    RIOTD
  * @subpackage RIOTD/admin
@@ -17,7 +17,7 @@ class WP_RIOTD_Admin {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -26,7 +26,7 @@ class WP_RIOTD_Admin {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -34,7 +34,7 @@ class WP_RIOTD_Admin {
 
 	/**
 	 * The plugin shortname
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @access	private
 	 * @var		string		$plugin_shortname  The plugin shortname 
 	 */
@@ -42,7 +42,7 @@ class WP_RIOTD_Admin {
     /**
      *  All the configuration user's settings for this plugin loaded from the database
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  protected
      * @var     string[]            $settings               Associative array listing all settings (setting->value)
      */
@@ -51,7 +51,7 @@ class WP_RIOTD_Admin {
      /**
      *  All the configuration settings definitions for this plugin
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  protected
      * @var     WP_RIOTD_ADMIN_SETTINGS_DEFINITIONS     $settings_definitions               Associative array listing all settings (setting->value)
      */
@@ -59,14 +59,14 @@ class WP_RIOTD_Admin {
 
 	/**
 	 * Define the default tab to show when opening the setting page
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @access	protected
 	 * @var		string				$default_setting_tab				The default section associated with the tab to show, must be an existing section as defined in $settings_definitions
 	 */
 	protected $default_setting_tab;
 	/**
 	 * Define the menu slug to use in the admin page setup
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @access	protected
 	 * @var		string				$menu_slug							The slug to identify the admin page
 	 */
@@ -74,7 +74,7 @@ class WP_RIOTD_Admin {
 
 	/**
 	 * Base64 encoding of the plugin Icon SVG
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @access	protected
 	 * @var		string				$plugin_icon						Base64 encoding of the plugin SVG ICON stored in images, the filename must be icon.svg
 	 */
@@ -82,7 +82,7 @@ class WP_RIOTD_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
@@ -115,7 +115,7 @@ class WP_RIOTD_Admin {
     /**
 	 * Register the stylesheets for the admin area.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
 		wp_enqueue_style( $this->plugin_name.'_admin_css', plugin_dir_url( __FILE__ ) . 'css/wp-riotd-admin.css', array(), $this->version, 'all' );
@@ -126,7 +126,7 @@ class WP_RIOTD_Admin {
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name.'_admin_js', plugin_dir_url( __FILE__ ) . 'js/wp-riotd-admin.js', array( 'wp-i18n', 'jquery' ), $this->version, false );
@@ -151,7 +151,7 @@ class WP_RIOTD_Admin {
 	/**
 	 * Add a link in the WP admin menu to open the settings page for the plugin
 	 * 
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 */
 	public function create_admin_menu() {
 	
@@ -191,7 +191,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Create a link to access a specific tab within the admin section, if the requested tab exists in the defined sections
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @param	string		$tab_include	the tab to search for (this can be the full tab name or a portion of it)
 	 * @param	bool		$echo			if true it will echo the url otherwise not
 	 * @return	string		$tab_url		the admin url 
@@ -221,7 +221,7 @@ class WP_RIOTD_Admin {
 	/**
 	 * Used by create_admin_menu as callback to laod the view template
 	 * 
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @access	private
 	 */
 	public function load_admin_page() {		
@@ -235,7 +235,7 @@ class WP_RIOTD_Admin {
 
 	/**
 	 * Check if nonce is valid
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @return	int		HTTP response code 401 if nonce check fails
 	 */
 	public function check_nonce() {
@@ -246,7 +246,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Initialize all the configuration parameters and register them in the db
-	 * @since	1.0.1 
+	 * @since	1.0.0 
 	 */
 	public function register_admin_settings() {
 
@@ -271,7 +271,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 *  Method to show the cache content stored in the database to the admin web page
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @return	string		$payload	The cache content if any and HTTP response code 200 or response code 400/401 if error
 	 */
 	public function riotd_view_cache() {
@@ -293,7 +293,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Method to return the cache expiration time if requested by admin page JS on WP heartbeat tick usually
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @return	array[]		['payload' => the timer, 'response_code' => 200 if data is found otherwise 400/401]	 
 	 */
 	public function riotd_get_cache_expiration() {
@@ -308,7 +308,7 @@ class WP_RIOTD_Admin {
 	/**
 	 *  Method used in cron jobs to force a cache update, this method will re-download the image from reddit and save to cache
 	 *  It is triggered if the a field with a force_reload attribute set to true is being saved
-	 *  @since	1.0.1 	
+	 *  @since	1.0.0 	
 	 */
 	public function force_cache_update() {
 		if( class_exists( 'WP_RIOTD_Public', false ) ) {
@@ -320,7 +320,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Method to render the frontend in order to display the preview in the admin pages
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @return	array[]		['payload' => the rendered html page, 'response_code' => HTTP response code 200 or response code 400/401 if error, 'cache_time' => the refreshed cache timer]
 	 */
 	public function riotd_public_preview() {
@@ -343,7 +343,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Method to purge the cache via the button on the admin page
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @return	int		$result		Follow HTTP REST code standards. 200 operation successfull, 401 unathorized - security check failed, 400 general failure* 
 	 */
 	public function riotd_purge_cache() {
@@ -363,7 +363,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Method to reset all settings via the button on the admin page
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @return	int		$result		Follow HTTP REST code standards. 200 operation successfull, 401 unathorized - security check failed, 400 general failure
 	 */
 	public function riotd_reset_settings() {
@@ -384,7 +384,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Sanitisation callback to validate and sanitize data before saving to DB
-	 * @since	1.0.1	
+	 * @since	1.0.0	
 	 * @param	string	$value		value being submitted from the form
 	 * @return	string	$value		sanitized value	 
 	 */
@@ -471,7 +471,7 @@ class WP_RIOTD_Admin {
 
 	/**
 	 * Callback used to transform a time value from hours/minutes/days in seconds before being stored in the database
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @param	string		$value The value submitted through the option form
 	 * @return	int			$value The value converted in seconds (integer)	if time_unit was sent otherwise return the same value unchanged.
 	 */
@@ -494,7 +494,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Callback used to display configuration section information
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @access	private
 	 */
 	public function section_renderer( $args ) {
@@ -503,7 +503,7 @@ class WP_RIOTD_Admin {
 
 	/**
 	 * Callback used to render the channel input field
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @access	private
 	 */
 	public function fields_renderer( $args ) {
@@ -582,7 +582,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Render the cache information and clear cache button
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 */
 	public function do_cache() {
 		$cache = WP_RIOTD_Cache::get_cache( 'cache' );		
@@ -601,7 +601,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Render the various setting tabs
-	 * @since	1.0.1 
+	 * @since	1.0.0 
 	 */
 	public function do_tabs($active_tab) {		
 		foreach($this->settings_definitions->get_settings_sections() as $section) {
@@ -610,7 +610,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Render the welcome tab only
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 */
 	public function welcome_tab() {
 		include_once plugin_dir_path( __FILE__ ).'partials/settings/wp-riotd-admin-settings-welcome.php';
@@ -618,7 +618,7 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Render the usage page
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 */
 	public function load_usage_page() {
 		$shortcode = \WP_RIOTD_SHORTCODE;
@@ -627,14 +627,14 @@ class WP_RIOTD_Admin {
 	}
 	/**
 	 * Render the about us page
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 */
 	public function load_aboutus_page() {
 		include_once plugin_dir_path( __FILE__ ).'partials/wp-riotd-admin-aboutus.php';		
 	}
 	/**
 	 * Return the Github repository link
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @param	bool	$echo				True will echo the link to the screen
 	 * @return	string	WP_RIOTD_GITHUB		The value defined in the constant WP_RIOTD_GITHUB
 	 */

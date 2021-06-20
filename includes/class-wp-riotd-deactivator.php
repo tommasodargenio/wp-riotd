@@ -3,7 +3,7 @@
  * Fired during plugin deactivation
  *
  * @link       https://github.com/tommasodargenio/wp-riotd/includes/class-wp-riotd-deactivator.php
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    RIOTD
  * @subpackage RIOTD/includes

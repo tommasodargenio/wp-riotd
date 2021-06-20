@@ -5,7 +5,7 @@
  *  the core class
  * 
  * @link       https://github.com/tommasodargenio/wp-riotd/includes/class-wp-riotd.php
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    WP-RIOTD
  * @subpackage WP-RIOTD/includes
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
 	 *
-	 * @since   1.0.1
+	 * @since   1.0.0
 	 * @access  protected
 	 * @var     WP_RIOTD_Loader     $loader         Maintains and registers all hooks for the plugin.
 	 */
@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
     /**
      * Unique identifier of this plugin
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  protected
      * @var     string              $plugin_name    The string used to uniquely identify this plugin
      */
@@ -36,7 +36,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
     /**
      * The current version of this plugin
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  protected
      * @var     string              $plugin_version        The current version of this plugin
      */
@@ -44,7 +44,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
     /**
      * The shortcode to use in widgets and posts
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  protected
      * @var     string              $plugin_shortcode       The plugin shortcode to use in posts and widgets
      */
@@ -53,7 +53,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
     /**
      * The Reddit json export url to fetch the images from
      * 
-     * @since   1.0.1   
+     * @since   1.0.0   
      * @access  protected
      * @var     string              $reddit_url             The reddit json export url to fetch the images from
      */
@@ -62,7 +62,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
     /**
      * The list of class dependencies to load
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  protected
      * @var     string[]            $dependendcies          Associative array listing class to load (class->filepath)
      */
@@ -71,14 +71,14 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
     /**
      *  All the configuration settings for this plugin
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  protected
      * @var     string[]            $settings               Associative array listing all settings (setting->value)
      */
     protected $settings;
     /**
      *  The data shortcode
-     *  @since  1.0.1   
+     *  @since  1.0.0   
      *  @access protected
      *  @var    string              $plugin_shortcode_data  The plugin shortcode for data only extraction
      */
@@ -88,7 +88,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
      * 
      * set the plugin name and version, load dependencies, define local and set hooks
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      */
     public function __construct() {        
         if ( defined( '\WP_RIOTD_PLUGIN_NAME' ) ) {
@@ -100,7 +100,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
         if ( defined( '\WP_RIOTD_VERSION' ) ) {
             $this->plugin_version = \WP_RIOTD_VERSION;
         } else {
-            $this->plugin_version = '1.0.1';
+            $this->plugin_version = '1.0.0';
         }
 
         if ( defined( '\WP_RIOTD_SHORTCODE' ) ) {
@@ -162,7 +162,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
      *  WP_RIOT_Admin:      Defines all hooks for the admin area
      *  WP_RIOT_Public:     Defines all hooks for the public side of the site
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  private
      */
     private function load_dependencies() {
@@ -184,7 +184,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
     }
     /**
      *  Define the local for this plugin for internationalisation
-     *  @since  1.0.1
+     *  @since  1.0.0
      *  @access private
      */
     private function set_locale() {
@@ -195,7 +195,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
 
     /**
      * Register all of the hooks related to the admin area
-     * @since   1.0.1
+     * @since   1.0.0
      * @access private
      */
     private function define_admin_hooks() {
@@ -222,7 +222,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
 
     /**
      * Register all of the hooks related to the public area
-     * @since   1.0.1
+     * @since   1.0.0
      * @access private
      */
     private function define_public_hooks() {
@@ -241,7 +241,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
 
     /**
      * Validate if the loader exists and it's a valide instance of the WP_RIOTD_Loader class
-     * @since   1.0.1
+     * @since   1.0.0
      * @return  bool    true if the loader is valid, false if it's not
      */
     public function validate_loader() {
@@ -255,7 +255,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
     /**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 */
 	public function run() {
         if ( $this->validate_loader() ) {
@@ -267,7 +267,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     1.0.1
+	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
 	public function get_plugin_name() {
@@ -277,7 +277,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since     1.0.1
+	 * @since     1.0.0
 	 * @return    WP_RIOTD_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
@@ -287,7 +287,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.1
+	 * @since     1.0.0
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {

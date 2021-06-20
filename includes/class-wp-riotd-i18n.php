@@ -6,7 +6,7 @@
  * so that it is ready for translation.
  * 
  * @link       https://github.com/tommasodargenio/wp-riotd/includes/class-wp-riotd-i18n.php
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    RIOTD
  * @subpackage RIOTD/includes
@@ -21,7 +21,7 @@ class WP_RIOTD_i18n {
 	/**
 	 * Load the plugin text domain for translation.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 */
 	public function load_plugin_textdomain() {
 

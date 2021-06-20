@@ -6,7 +6,7 @@
  * 
  * 
  * @link       https://github.com/tommasodargenio/wp-riotd/includes/class-wp-riotd-scraper.php
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    RIOTD
  * @subpackage RIOTD/includes
@@ -19,7 +19,7 @@ class WP_RIOTD_Scraper {
     /**
      * Contains all the plugin settings
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  protected
      * @var     string      $settings     load all plugin settings
      */
@@ -27,14 +27,14 @@ class WP_RIOTD_Scraper {
 
     /**
      *  Store the url to be used to download the channel json export
-     *  @since  1.0.1
+     *  @since  1.0.0
      *  @access protected
      *  @var    string      $reddit_json_url    the reddit json export url 
      */
     protected $reddit_json_url;
     /**
      *  Store the url to retrieve the channel info json export
-     *  @since  1.0.1  
+     *  @since  1.0.0  
      *  @access protected
      *  @var    string      $reddit_channel_info_json_url  the reddit channel about json export url
      * 
@@ -42,7 +42,7 @@ class WP_RIOTD_Scraper {
     protected $reddit_channel_info_json_url;
     /**
      *  Contains the images scraped
-     *  @since  1.0.1  
+     *  @since  1.0.0  
      *  @access protected
      *  @var    array[][thumbnail_url: string, full_res_url: string, width:int, height: int, title: string, post_url: string, author: string, nsfw: bool ]    $scraped_content    array containing the images scraped 
      */
@@ -50,14 +50,14 @@ class WP_RIOTD_Scraper {
     
     /**
      *  Collect statistical information on downloaded posts
-     *  @since  1.0.1
+     *  @since  1.0.0
      *  @access protected
      *  @var    array[][tot_posts: int, tot_images: int, tot_videos: int, tot_galleries: int, tot_nsfw: int, tot_viable_images: int]      $statistics     array containing statistical information on collected data
      */
     protected $statistics;
     /**
      *  Status of scraper operation
-     *  @since  1.0.1
+     *  @since  1.0.0
      *  @access protected
      *  @var    bool        $scraper_status     True if scraper operation run successfully otherwise false if not or never ran
      */
@@ -65,7 +65,7 @@ class WP_RIOTD_Scraper {
     /**
      * Constructor to initialize the instanced object
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * 
      */
     public function __construct($channel = null) {    
@@ -100,7 +100,7 @@ class WP_RIOTD_Scraper {
     /**
      * Method to retrieve a reddit channel info via the about json export
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  private
      * @return  object     $channel_info   All properties returned by the json query
      */
@@ -145,7 +145,7 @@ class WP_RIOTD_Scraper {
      * Main method to fetch the json export of the channel and extract the image
      * all extracted images / titles / etc. are stored as properties
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @return  bool      $status               true if image was found, false otherwise
      */
     public function scrape() {
@@ -280,7 +280,7 @@ class WP_RIOTD_Scraper {
     }
     /**
      * Check if the given image is allowed based on the nsfw switch
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  private
      * @param   bool        $image_nsfw_flag    The flag indicating if the image has nsfw content or not
      * @return  bool                            true if test passed, otherwise false
@@ -302,7 +302,7 @@ class WP_RIOTD_Scraper {
 
     /**
      * Check if the given image resolution is correct based on the plugin settings
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  private
      * @param   int     $width          the width in pixels of the image to check
      * @param   int     $height         the height in pixels of the image to check
@@ -366,7 +366,7 @@ class WP_RIOTD_Scraper {
     }
     /**
      * Return the currently set subreddit channel
-     * @since   1.0.1
+     * @since   1.0.0
      * @return  string      $reddit_channel     the currently set subreddit channel
      */
     public function get_reddit_channel() {
@@ -374,7 +374,7 @@ class WP_RIOTD_Scraper {
     }
     /**
      * Return the scraped content if any
-     * @since   1.0.1
+     * @since   1.0.0
      * @return  string[]    $scraped_content    the scraped content
      */
     public function get_scraped_content() {
@@ -383,7 +383,7 @@ class WP_RIOTD_Scraper {
 
     /**
      * Return the requested statistic
-     * @since   1.0.1
+     * @since   1.0.0
      * @param   string  $request    The statistic to request. This must be a valid key based on the internal statistics property
      * @return  int     $stat       The figure requested if existeng
      */
@@ -397,7 +397,7 @@ class WP_RIOTD_Scraper {
     }
     /**
      * Return the scraper status variable
-     * @since   1.0.1
+     * @since   1.0.0
      * @return  bool    $scraper_status         True if scraper operation run successfully otherwise false if not or never ran
      */
     public function get_scraper_status() {

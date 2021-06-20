@@ -2,7 +2,7 @@
  * The JS functions used for the admin-specific area.
  *
  * @link       https://github.com/tommasodargenio/wp-riotd/admin/js/wp-riotd-admin.js
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    RIOTD
  * @subpackage RIOTD/admin

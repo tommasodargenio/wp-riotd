@@ -6,7 +6,7 @@
  * 
  * 
  * @link       https://github.com/tommasodargenio/wp-riotd/includes/class-wp-riotd-utility.php
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    RIOTD
  * @subpackage RIOTD/includes
@@ -18,7 +18,7 @@
  class WP_RIOTD_Utility {
      /**
       *  Convert a number in a human readable format if over or equal to 1000, adapted to php from a js source
-      *  @since     1.0.1
+      *  @since     1.0.0
       *  @author    https://stackoverflow.com/a/28608086/3310134
       *  @param     int     $number     Number to convert
       *  @param     int     $digits     Number of digits to appear after the decimal point   
@@ -41,7 +41,7 @@
      /**
       * Convert seconds in human readable format
       * @author https://stackoverflow.com/a/19680778/3310134
-      * @since  1.0.1
+      * @since  1.0.0
       * @param  int     $seconds        Seconds to convert
       * @return string  $human_str      Readable version of seconds in format: xx days, xx hours, xx minutes and xx seconds
       */
@@ -78,7 +78,7 @@
 
       /**
        * Dirty CSS minifier - may not cover all cases and could break css. Since this will be used to minify user's custom CSS should contain complicated CSS in theory
-       * @since     1.0.1
+       * @since     1.0.0
        * @author    Gary Jones (https://twitter.com/GaryJ)
        * @link      https://github.com/GaryJones/Simple-PHP-CSS-Minification/blob/master/minify.php
        * @param     string  $css    CSS to minify

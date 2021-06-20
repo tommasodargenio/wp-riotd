@@ -2,7 +2,7 @@
  * The JS functions used for the public facing area.
  *
  * @link       https://github.com/tommasodargenio/wp-riotd/public/js/wp-riotd-public.js
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    RIOTD
  * @subpackage RIOTD/public

@@ -5,7 +5,7 @@
  *  Contains all definitions for the settings
  * 
  * @link       https://github.com/tommasodargenio/wp-riotd/admin/class-wp-riotd-admin-settings-definitions.php
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    RIOTD
  * @subpackage RIOTD/admin
@@ -18,7 +18,7 @@
      /**
      *  All the configuration settings for this plugin
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  protected
      * @var     array[]['uid'             => Unique identifier, 
      *                'label'           => description, 
@@ -34,7 +34,7 @@
      /**
      *  All the cacheable data for this plugin
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  protected
      * @var     array[]['uid'       =>  Unique identifier
      *                'label'     =>  description
@@ -46,7 +46,7 @@
      /**
      *  All the settings sections for this plugin
      * 
-     * @since   1.0.1
+     * @since   1.0.0
      * @access  protected
      * @var     string[ 'uid'=> Unique identifier, 'label' => Description ]            $settings_sections               Array listing all sections
      */
@@ -57,7 +57,7 @@
      /**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 */
 	public function __construct() {
         $this->settings_sections = array(
@@ -348,7 +348,7 @@
 
     /**
      * Return the settings definitions array
-     * @since   1.0.1
+     * @since   1.0.0
      * @return  string[]         $settings_definitions              Array listing all settings 
      */
     public function get_settings_definitions() {
@@ -356,7 +356,7 @@
     }
     /**
      * Return the requested element from the setting definitions array if it exists
-     * @since   1.0.1
+     * @since   1.0.0
      * @param   string          $uid        Unique Idenfier of the setting definition to retrieve
      * @return  array           ['uid'             => Unique identifier, 
      *                'label'           => description, 
@@ -385,7 +385,7 @@
     }    
     /**
      * Return the settings sections array
-     * @since   1.0.1
+     * @since   1.0.0
      * @return  string[]         $settings_sections              Array listing all sections  
      */
     public function get_settings_sections() {
@@ -393,7 +393,7 @@
     }
     /**
      * Return the cache definitions array
-     * @since   1.0.1
+     * @since   1.0.0
      * @return  string[]['uid'       =>  Unique identifier
      *                'label'     =>  description
      *                'default'   =>  default value 
@@ -405,7 +405,7 @@
     }
     /**
      * Return the requested element from the cache definitions array if it exists
-     * @since   1.0.1
+     * @since   1.0.0
      * @param   string          $uid        Unique Idenfier of the cache definition to retrieve
      * @return  string[]['uid'       =>  Unique identifier
      *                'label'     =>  description

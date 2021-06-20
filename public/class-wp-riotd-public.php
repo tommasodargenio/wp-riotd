@@ -3,7 +3,7 @@
  * Public facing functionality of the plugin.
  *
  * @link       https://github.com/tommasodargenio/wp-riotd/public/class-wp-riotd-public.php
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    RIOTD
  * @subpackage RIOTD/public
@@ -19,7 +19,7 @@ class WP_RIOTD_Public {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -28,14 +28,14 @@ class WP_RIOTD_Public {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
 	/**
 	 * Image scraped from reddit
-	 * @since	1.0.1	
+	 * @since	1.0.0	
 	 * @access	protected
 	 * @var    array[][thumbnail_url: string, full_res_url: string, width:int, height: int, title: string, post_url: string, author: string, nsfw: bool ]    $scraped_content    array containing the images scraped 
 	 */
@@ -43,7 +43,7 @@ class WP_RIOTD_Public {
 	
 	/**
 	 * Reddit channel being scraped
-	 * @since 	1.0.1
+	 * @since 	1.0.0
 	 * @access	protected
 	 * @var		string	$reddit_channel		the reddit channel being scraped
 	 */
@@ -52,7 +52,7 @@ class WP_RIOTD_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
@@ -88,7 +88,7 @@ class WP_RIOTD_Public {
     /**
 	 * Register the stylesheets for the public area.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
 		wp_enqueue_style( $this->plugin_name.'_public_css', plugin_dir_url( __FILE__ ) . 'css/wp-riotd-public.css', array(), $this->version, 'all' );		
@@ -97,7 +97,7 @@ class WP_RIOTD_Public {
 	/**
 	 * Register the JavaScript for the public area.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name.'_public_js', plugin_dir_url( __FILE__ ) . 'js/wp-riotd-public.js', array( 'jquery' ), $this->version, false );
@@ -105,7 +105,7 @@ class WP_RIOTD_Public {
 	/**
 	 * Render the final view to be output on the public site
 	 * 
-	 * @since	1.0.1
+	 * @since	1.0.0
 	 * @return	string		$view		The html code that will be pasted in the public site where the plugin shortcut has been used
 	 */
 	public function render_view($admin_view = false) {
@@ -194,7 +194,7 @@ class WP_RIOTD_Public {
 
 	/**
 	 *  Return any key from the scraped image if any, this is used with the shortcode reddit-iotd-data
-	 * 	@since	1.0.1
+	 * 	@since	1.0.0
 	 *  @var	string	$attr	contains the key requested
 	 * 	@return	string	$value 	the value from the scraped image dataset corresponding to the requested key if it exists, otherwise an empty string
 	 */

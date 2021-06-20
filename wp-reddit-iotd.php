@@ -13,7 +13,7 @@
  * Plugin Name:         RIOTD Reddit Image Of The Day
  * Plugin URI:          https://github.com/tommasodargenio/wp-riotd/
  * Description:         Download a random image from any subreddit and display it in your WordPress site
- * Version:             1.0.1
+ * Version:             1.0.0
  * License:             GPLv3
  * License URI:         https://github.com/tommasodargenio/wp-riotd/gpl-3.0.txt
  * Author:              Tommaso D'Argenio
@@ -24,7 +24,7 @@
 defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!', 'wp-riotd'));
 
 // Plugin version
-define ( 'WP_RIOTD_VERSION', '1.0.1' );
+define ( 'WP_RIOTD_VERSION', '1.0.0' );
 
 // Plugin name
 define ( 'WP_RIOTD_PLUGIN_NAME', 'RIOTD-Reddit-Image-Of-The-Day' );

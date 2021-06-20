@@ -3,7 +3,7 @@
  * Fired during plugin activation
  *
  * @link       https://github.com/tommasodargenio/wp-riotd/includes/class-wp-riotd-activator.php
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    RIOTD
  * @subpackage RIOTD/includes

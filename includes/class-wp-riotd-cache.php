@@ -6,7 +6,7 @@
  * 
  * 
  * @link       https://github.com/tommasodargenio/wp-riotd/includes/class-wp-riotd-cache.php
- * @since      1.0.1
+ * @since      1.0.0
  * 
  * @package    RIOTD
  * @subpackage RIOTD/includes
@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ,'wp-
  class WP_RIOTD_Cache {
     /**
      *  Set the given entity in the WP Cache
-     *  @since  1.0.1
+     *  @since  1.0.0
      *  @param  array['uid' => Unique Identifier, 'payload' => the data to store]   $entity     Object / Array to store in cache
      */
     public static function set_cache($entity) {
@@ -52,7 +52,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ,'wp-
     }
     /**
      *  Retrieve a cached entity from the WP Cache
-     *  @since  1.0.1
+     *  @since  1.0.0
      *  @param  string  $uid        Unique identified of the entity to retrieve
      *  @return string  $payload    Cached data
      */
@@ -81,7 +81,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ,'wp-
 
     /**
      *  Delete a cached entity from the WP Cache
-     *  @since  1.0.1
+     *  @since  1.0.0
      *  @param  string  $uid        Unique identified of the entity to retrieve     
      *  @return boolean             false if failed, true if cache deleted
      */
@@ -109,7 +109,7 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!' ,'wp-
 
     /**
      *  Get the time left in seconds before expiration of the requested cache
-     *  @since  1.0.1
+     *  @since  1.0.0
      *  @param  string  $uid        Unique idenfitier of the chace to check the expiration time for
      *  @return int     $time_left  The time left in seconds before the cache expires
      */
