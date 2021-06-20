@@ -135,8 +135,12 @@ class WP_RIOTD_Public {
 		} 
 		
 		// If no images were found, load the empty template
-		if ( sizeof($this->scraped) <= 0 ) {			
-			$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-empty.php";
+		if ( sizeof($this->scraped) <= 0 ) {	
+			if (WP_RIOTD_Settings::get("wp_riotd_layout") == 'reddit') {
+				$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-empty-reddit.php";	
+			} else {
+				$view_template = plugin_dir_path( __FILE__ )."partials/wp-riotd-public-empty.php";
+			}
 		} else {			
 
 			// check which layout the user prefer, if not set we will use the full one			
