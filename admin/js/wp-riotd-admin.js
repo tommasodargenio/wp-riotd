@@ -86,7 +86,11 @@ jQuery(document).ready(function($) {
             
         }
         if ( seconds > 0 ) {
-            output += " "+__('and','wp-riotd')+" "+ seconds;
+            if (minutes > 0 || hours > 0 || days > 0)
+                output += " "+__('and','wp-riotd')+" "+ seconds;
+            else {
+                output += " " + seconds;
+            }
             if (seconds == 1) {
                 output += " "+__('second','wp-riotd');
             } else {
@@ -95,7 +99,12 @@ jQuery(document).ready(function($) {
 
         }
         $('#cache_expires').text(output);
-
+        if (output == "") {
+            // cache has expired, let's change the text
+            $('#cache_expire_msg').hide();
+            $('#cache_expired_msg').show();
+            $('#expire_seconds').text('');
+        }
     }
     // countdown timer for cache expiration or other timers
     if ( !isNaN($('#expire_seconds').text()) && parseInt($('#expire_seconds').text()) > 0 ) {
@@ -106,6 +115,9 @@ jQuery(document).ready(function($) {
         }
         // there is a cache, activate the button to view it
         $('#riotd_view_cache').prop("disabled",false);
+        // disable cache purge message and show cache expiration message
+        $('#cache_purged_msg').hide();
+        $('#cache_expire_msg').show();        
     }
     // cache is probably empty, disabling the button to view it
     if ( isNaN($('#expire_seconds').text()) ) {
@@ -145,6 +157,10 @@ jQuery(document).ready(function($) {
                     if ( data.payload != null && !isNaN(data.payload) && parseInt(data.payload) > 0 ) {
                         // there is a cache, activate the button to view it
                         $('#riotd_view_cache').prop("disabled",false);                        
+                        // disable cache purge message and show cache expiration message
+                        $('#cache_purged_msg').hide();
+                        $('#cache_expire_msg').show();      
+                        $('#cache_expired_msg').hide();      
 
                         $('#expire_seconds').text(data.payload)
                         timer = new Date()
@@ -152,6 +168,9 @@ jQuery(document).ready(function($) {
                         if (!countdown) {
                             countdown = setInterval(ticker, 1000);               
                         }
+                        // retrieve the new preview
+                        $('#riotd_preview').attr('data-action', 'preview_off');
+                        $('#riotd_preview').trigger('click')                    
                     }
                 }   
             });
@@ -196,6 +215,7 @@ jQuery(document).ready(function($) {
                 $('#expire_seconds').text('');
                 $('#cache_purged_msg').show();
                 $('#cache_expire_msg').hide();
+                $('#cache_expired_msg').hide();                    
                 if (data.expires_in != null) {                    
                     $('#cache_expires').text(data.expires_in);
                 }
@@ -204,9 +224,16 @@ jQuery(document).ready(function($) {
                 }, 2000);
             }
         });
-  
-            
     });
+
+    $('#update_preview').on('click', function(event) {
+        event.preventDefault();
+
+        // retrieve new preview
+        $('#riotd_preview').attr('data-action', 'preview_off');
+        $('#riotd_preview').trigger('click')     
+        $('#update_preview').hide();       
+    })
 
     // save setting
     $('#main-options-form').submit( function () {
@@ -226,7 +253,8 @@ jQuery(document).ready(function($) {
                 $('#alert-message-text').text(__('Settings saved successfully','wp-riotd'));
                 $('#alert-message').addClass('notice-success')
                 $('#alert-message').show();
-                $('#update_preview').show();            
+                $('#update_preview').show(); 
+                $('#update_preview').addClass('reddit_iotd_admin_update_preview_spin');
                 $('#update_cache_preview').show();    
 
                 setTimeout(function() {
@@ -256,7 +284,8 @@ jQuery(document).ready(function($) {
                     if (parsed_data.payload != null ) {
                         const settings = JSON.parse(parsed_data.payload);
                         if ( Object.keys(settings).length > 0 ) {
-                            $('#update_preview').show();           
+                            $('#update_preview').show();  
+                            $('#update_preview').addClass('reddit_iotd_admin_update_preview_spin');         
                             $('#update_cache_preview').show();                     
                             Object.keys(settings).forEach(function(uid) {                            
                                 // check if uid is wp_riotd_cache_lifetime this requires special treatment
@@ -328,7 +357,10 @@ jQuery(document).ready(function($) {
                     if ( data.cache_time != null ) {
                         // there is a cache, activate the button to view it
                         $('#riotd_view_cache').prop("disabled",false);
-                        
+                        // disable cache purge message and show cache expiration message
+                        $('#cache_purged_msg').hide();
+                        $('#cache_expire_msg').show();        
+                        $('#cache_expired_msg').hide();                            
                         $('#expire_seconds').text(data.cache_time);
                         timer = new Date();
                         timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()));

@@ -56,7 +56,7 @@
                         </table>
             </form>
             <div id="reddit_iotd_admin_preview" style="display:none">
-                    <h1><?php esc_html_e('Preview', 'wp-riotd' ); ?><span class="dashicons dashicons-update" id="update_preview" style="display:none" title="<?php esc_html_e('Update available, click to refresh', 'wp-riotd'); ?>"></span></h1>
+                    <h1><?php esc_html_e('Preview', 'wp-riotd' ); ?><span class="dashicons dashicons-update" id="update_preview" style="cursor:pointer;margin:3px 5px;display:none" title="<?php esc_html_e('Update available, click to refresh', 'wp-riotd'); ?>"></span></h1>
                     <hr />
                         <div id="reddit_iotd_public_view"></div>
             </div>

@@ -131,6 +131,15 @@ hr {
     max-width: 520px;
 }
 
+.reddit_iotd_admin_update_preview_spin {
+    -webkit-animation:spin 2s ease 3;
+    -moz-animation:spin 2s ease 3;
+    animation:spin 2s ease 3;
+}
+@-moz-keyframes spin { 50% {-webkit-transform: rotate(-360deg); color:#f00;} 100% { -moz-transform: rotate(360deg); color: #000;} }
+@-webkit-keyframes spin { 50% {-webkit-transform: rotate(-360deg); color:#f00;} 100% { -webkit-transform: rotate(360deg); color: #000; } }
+@keyframes spin { 50% {-webkit-transform: rotate(-360deg); transform:rotate(-360deg); color:#f00;} 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); color: #000;} }
+
 #reddit_iotd_admin_preview h1 {
     background-color: #bbb;
     font-size: large;

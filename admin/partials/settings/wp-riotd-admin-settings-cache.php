@@ -12,6 +12,10 @@
     <span class="dashicons dashicons-database-view"></span>
     <?php esc_html_e('Cache Expires in:','wp-riotd'); ?> 
 </span>
+<span id="cache_expired_msg" style="display:none">
+        <span class="dashicons dashicons-warning" style="color:#b00;"></span>
+        <?php esc_html_e('Cache expired','wp-riotd'); ?>
+</span>
 <?php if ($expired) {  ?>
     <span style="color:#b00;font-weight:bolder;" id="cache_expires"><?php echo $expires_in ?></span>
 <?php } else { ?>
@@ -20,8 +24,10 @@
     <?php submit_button( esc_html__( 'Purge Cache', 'wp-riotd'), 'secondary', 'riotd_purge_cache', false, 'style="position:relative;left:10px;top:-5px;" title="'.esc_html__('Click to clear the cache', 'wp-riotd').'"'); ?>
     <img src="<?php echo admin_url('/images/wpspin_light.gif') ?>" id="reddit_iotd_cache_loading" style="display:none" />                            
 <?php } else { ?>
-    <span class="dashicons dashicons-warning" style="color:#b00;"></span>
-    <?php esc_html_e('Cache not created yet or expired','wp-riotd'); ?>
+    <span id="cache_empty_msg">
+        <span class="dashicons dashicons-warning" style="color:#b00;"></span>
+        <?php esc_html_e('Cache not created yet or expired','wp-riotd'); ?>
+    </span>
 <?php } ?>
 </td>
 </tr>
