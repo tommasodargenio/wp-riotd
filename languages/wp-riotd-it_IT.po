@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RIOTD Reddit Image Of The Day\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-17 18:46+0000\n"
-"PO-Revision-Date: 2021-06-18 15:13+0000\n"
+"PO-Revision-Date: 2021-06-20 16:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: Italiano\n"
 "Language: it_IT\n"
@@ -15,11 +15,13 @@ msgstr ""
 "X-Loco-Version: 2.5.2; wp-5.7.2\n"
 "X-Domain: wp-riotd"
 
+#: public/partials/wp-riotd-public-empty-reddit.php:10
 #: public/partials/wp-riotd-public-reddit.php:10
 #, php-format
 msgid "%1$s comments"
 msgstr "%1$s commenti"
 
+#: public/partials/wp-riotd-public-empty-reddit.php:8
 #: public/partials/wp-riotd-public-reddit.php:8
 #, php-format
 msgid "%1$s upvotes"
@@ -80,7 +82,7 @@ msgstr "Riconoscimenti"
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:230
 msgid "Add link to reddit post?"
-msgstr "Aggiungi il link al post di reddit?"
+msgstr "Aggiungi il link al post su reddit?"
 
 #. 1: is a link
 #: admin/partials/settings/wp-riotd-admin-settings-welcome.php:55
@@ -105,7 +107,7 @@ msgid ""
 "Allow to download and show images marked as Not Safe For Work (i.e.: adult "
 "content)"
 msgstr ""
-"Consenti di scaricare e visualizzare immagini che sono marcate per adulti."
+"Consenti di scaricare e visualizzare immagini che sono marcate per adulti"
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:178
 msgid "Allow Zoom on mouse over"
@@ -122,7 +124,7 @@ msgstr ""
 "portare pazienza mentre apportiamo migliorie e risolviamo i probemi che ci "
 "riporterete"
 
-#: admin/js/wp-riotd-admin.js:89
+#: admin/js/wp-riotd-admin.js:90
 msgid "and"
 msgstr "e"
 
@@ -155,7 +157,7 @@ msgstr ""
 "dei post, ma solo nei post interi. Questo dipende da come il tuo tema di "
 "WordPress è stato sviluppato."
 
-#: admin/partials/wp-riotd-admin-menu.php:63
+#: admin/partials/wp-riotd-admin-menu.php:64
 msgid "Cache Content"
 msgstr "Contenuto della cache"
 
@@ -163,11 +165,15 @@ msgstr "Contenuto della cache"
 msgid "Cache duration"
 msgstr "Durata della cache"
 
+#: admin/partials/settings/wp-riotd-admin-settings-cache.php:17
+msgid "Cache expired"
+msgstr "Cache scaduta"
+
 #: admin/partials/settings/wp-riotd-admin-settings-cache.php:13
 msgid "Cache Expires in:"
 msgstr "La cache scadrà in:"
 
-#: admin/partials/settings/wp-riotd-admin-settings-cache.php:24
+#: admin/partials/settings/wp-riotd-admin-settings-cache.php:29
 msgid "Cache not created yet or expired"
 msgstr "Cache ancora non creata o scaduta"
 
@@ -183,7 +189,7 @@ msgstr "Stato della cache"
 msgid "Can't find the scraper class"
 msgstr "La classe scraper non può essere trovata"
 
-#: includes/class-wp-riotd-scraper.php:188
+#: includes/class-wp-riotd-scraper.php:191
 msgid "channel empty"
 msgstr "canale vuoto"
 
@@ -191,11 +197,11 @@ msgstr "canale vuoto"
 msgid "Click here or anywhere outside the window to close the image"
 msgstr "Clicca qui o ovunque fuori dalla finestra per chiudere l'immagine"
 
-#: admin/partials/settings/wp-riotd-admin-settings-cache.php:20
+#: admin/partials/settings/wp-riotd-admin-settings-cache.php:24
 msgid "Click to clear the cache"
 msgstr "Clicca qui per pulire la cache"
 
-#: admin/js/wp-riotd-admin.js:367
+#: admin/js/wp-riotd-admin.js:417
 msgid "Click to open in a new tab"
 msgstr "Clicca per aprire questa pagina in una nuova scheda del tuo browser"
 
@@ -221,6 +227,7 @@ msgid "Click to open the subreddit channel in a new tab"
 msgstr ""
 "Clicca per aprire questo canale di Reddit in una nuova scheda del tuo browser"
 
+#: public/partials/wp-riotd-public-empty-reddit.php:3
 #: public/partials/wp-riotd-public-reddit.php:3
 msgid "Click to open this reddit channel in a new tab"
 msgstr ""
@@ -237,6 +244,10 @@ msgstr "Clicca per vedere un'anteprima"
 #: admin/partials/wp-riotd-admin-menu.php:47
 msgid "Click to see the content of the cache stored in the database"
 msgstr "Clicca per vedere il contenuto della cache memorizzata nel database"
+
+#: admin/class-wp-riotd-admin-settings-definitions.php:78
+msgid "Configure Reddit Channel"
+msgstr "Configura il canale di Reddit"
 
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:36
 msgid ""
@@ -350,7 +361,7 @@ msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:152
 msgid "Download limits"
-msgstr "Limite di scarico"
+msgstr "Limite di download"
 
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:61
 msgid "Example"
@@ -372,6 +383,10 @@ msgstr "Pieno"
 msgid "Galleries and Videos will not be selected"
 msgstr "Gallerie e Video non verranno selezionati"
 
+#: admin/class-wp-riotd-admin-settings-definitions.php:70
+msgid "General Settings"
+msgstr "Settaggi Generali"
+
 #: admin/partials/wp-riotd-admin-aboutus.php:11
 msgid ""
 "Good ratings and constructive feedbacks encourages me to further develop the "
@@ -384,11 +399,11 @@ msgstr ""
 msgid "Help and Support"
 msgstr "Aiuto e Supporto"
 
-#: admin/js/wp-riotd-admin.js:383
+#: admin/js/wp-riotd-admin.js:433
 msgid "Hide Cache Content"
 msgstr "Nascondi Cache"
 
-#: admin/js/wp-riotd-admin.js:311
+#: admin/js/wp-riotd-admin.js:354
 msgid "Hide Preview"
 msgstr "Nascondi Anteprima"
 
@@ -478,6 +493,14 @@ msgstr ""
 msgid "Image aspect"
 msgstr "Formato immagine"
 
+#: admin/class-wp-riotd-admin-settings-definitions.php:89
+msgid "Image Cache"
+msgstr "Cache dell'immagine"
+
+#: admin/class-wp-riotd-admin-settings-definitions.php:82
+msgid "Image Preferences"
+msgstr "Settaggi Immagine"
+
 #: admin/class-wp-riotd-admin-settings-definitions.php:243
 msgid "Image scraping mode"
 msgstr "Modalità di selezione dell'immagine"
@@ -544,9 +567,17 @@ msgstr ""
 msgid "Landscape"
 msgstr "Panorama"
 
+#: admin/class-wp-riotd-admin-settings-definitions.php:335
+msgid "Last image was scraped on"
+msgstr "L'ultima immagine è stata selezionata il"
+
 #: admin/class-wp-riotd-admin-settings-definitions.php:247
 msgid "Last posted"
 msgstr "Postata ultimamente"
+
+#: admin/class-wp-riotd-admin-settings-definitions.php:322
+msgid "Last scraping execution time"
+msgstr "Tempo di selezione dell'ultima immagine"
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:283
 msgid "Layout mode"
@@ -609,19 +640,19 @@ msgstr "deve essere tra %1$s e %2$s"
 msgid "No direct script access allowed!"
 msgstr "Accesso diretto non consentito!"
 
-#: public/class-wp-riotd-public.php:115
+#: public/class-wp-riotd-public.php:113
 msgid "No images availabe :("
 msgstr "Nessuna immagine disponibile :("
 
-#: admin/js/wp-riotd-admin.js:273
+#: admin/js/wp-riotd-admin.js:316
 msgid "Operation aborted"
 msgstr "Operazione abortita"
 
-#: admin/js/wp-riotd-admin.js:275
+#: admin/js/wp-riotd-admin.js:318
 msgid "Operation non authorized"
 msgstr "Operazione non autorizzata"
 
-#: admin/js/wp-riotd-admin.js:167
+#: admin/js/wp-riotd-admin.js:197
 msgid "Operation not completed"
 msgstr "Operazione non completata"
 
@@ -657,11 +688,11 @@ msgstr "Data di attivazione del plugin"
 msgid "Portrait"
 msgstr "Ritratto"
 
-#: admin/partials/wp-riotd-admin-menu.php:58
+#: admin/partials/wp-riotd-admin-menu.php:59
 msgid "Preview"
 msgstr "Anteprima"
 
-#: admin/partials/settings/wp-riotd-admin-settings-cache.php:20
+#: admin/partials/settings/wp-riotd-admin-settings-cache.php:24
 msgid "Purge Cache"
 msgstr "Cancella la cache"
 
@@ -718,8 +749,8 @@ msgstr ""
 "pagina web del contratto utente di Reddit in una scheda del tuo browser\">"
 "Reddit</a>"
 
-#: includes/class-wp-riotd-scraper.php:129
-#: includes/class-wp-riotd-scraper.php:178
+#: includes/class-wp-riotd-scraper.php:130
+#: includes/class-wp-riotd-scraper.php:181
 msgid "Reddit returned an unexpected result, check your settings"
 msgstr ""
 "Reddit ha risposto con un risultato inaspettato, ricontrolla i tuoi settaggi"
@@ -749,11 +780,11 @@ msgstr "Stessa giornaliera"
 msgid "Save Settings"
 msgstr "Salva i settaggi"
 
-#: admin/js/wp-riotd-admin.js:91
+#: admin/js/wp-riotd-admin.js:95
 msgid "second"
 msgstr "secondo"
 
-#: admin/js/wp-riotd-admin.js:93
+#: admin/js/wp-riotd-admin.js:97
 msgid "seconds"
 msgstr "secondi"
 
@@ -762,11 +793,6 @@ msgid "Select the preferred aspect ratio when selecting the image"
 msgstr "Scegli il formato dell'immagine da selezionare"
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:290
-#, fuzzy
-#| msgid ""
-#| "Select which layout you prefer. Minimialistic will only show the image, "
-#| "full will show all the available information, Reddit Branding will use a "
-#| "layout compliant with Reddit branding policies"
 msgid ""
 "Select which layout you prefer. Minimalistic will only show the image, full "
 "will show all the available information using an internal styling, Reddit "
@@ -793,11 +819,11 @@ msgstr "Imposta un canale di reddit valido da cui vuoi scaricare le immagini"
 msgid "Settings"
 msgstr "Settaggi"
 
-#: admin/js/wp-riotd-admin.js:241
+#: admin/js/wp-riotd-admin.js:283
 msgid "Settings reset successfully"
 msgstr "Settaggi ripristinati con successo"
 
-#: admin/js/wp-riotd-admin.js:212
+#: admin/js/wp-riotd-admin.js:253
 msgid "Settings saved successfully"
 msgstr "Settaggi salvati con successo"
 
@@ -806,11 +832,11 @@ msgid "Shortcode key parameter"
 msgstr "Parametro"
 
 #: admin/partials/wp-riotd-admin-menu.php:44 admin/js/wp-riotd-admin.js:35
-#: admin/js/wp-riotd-admin.js:327
+#: admin/js/wp-riotd-admin.js:377
 msgid "Show Preview"
 msgstr "Mostra anteprima"
 
-#: admin/js/wp-riotd-admin.js:204
+#: admin/js/wp-riotd-admin.js:245
 msgid "Something went wrong while saving the settings, try again later"
 msgstr ""
 "Qualcosa non ha funzionato durante il salvataggio dei dati, riprova ancora"
@@ -836,7 +862,7 @@ msgstr ""
 "Diagnostiche, e ogni altra informazione pertinente per accelerare la "
 "risoluzione del problema."
 
-#: public/class-wp-riotd-public.php:114
+#: public/class-wp-riotd-public.php:112
 msgid "Template not available :("
 msgstr "Modello non disponibile :("
 
@@ -975,8 +1001,8 @@ msgstr ""
 "tuo sito.<strong>(controlla e rispetta sempre le regole di proprietà "
 "espresse dall'autore)</strong>"
 
-#: includes/class-wp-riotd-scraper.php:134
-#: includes/class-wp-riotd-scraper.php:183
+#: includes/class-wp-riotd-scraper.php:135
+#: includes/class-wp-riotd-scraper.php:186
 msgid ""
 "The reddit channel selected is empty or something went wrong during the "
 "download"
@@ -1031,6 +1057,10 @@ msgstr "L'indirizzo che punta al post su Reddit che contiene l'immagine"
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:65
 msgid "The url pointing at the thumbnail version of the image"
 msgstr "L'indirizzo che contiene la versione in miniatura dell'immagine"
+
+#: admin/class-wp-riotd-admin-settings-definitions.php:74
+msgid "Theme Layout"
+msgstr "Schema del tema"
 
 #. 1: is a link 2: is a link
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:13
@@ -1122,8 +1152,8 @@ msgid "Unable to load required dependency"
 msgstr ""
 "Impossibile caricare le librerie necessarie al funzionamento del plugin"
 
-#: admin/partials/wp-riotd-admin-menu.php:58
-#: admin/partials/wp-riotd-admin-menu.php:63
+#: admin/partials/wp-riotd-admin-menu.php:59
+#: admin/partials/wp-riotd-admin-menu.php:64
 msgid "Update available, click to refresh"
 msgstr "Aggiornamento disponibile, clicca per aggiornare"
 
@@ -1147,7 +1177,7 @@ msgstr ""
 "suo titolo, il canale Reddit da cui è stata prelevata"
 
 #: admin/partials/wp-riotd-admin-menu.php:47 admin/js/wp-riotd-admin.js:29
-#: admin/js/wp-riotd-admin.js:391
+#: admin/js/wp-riotd-admin.js:441
 msgid "View Cache Content"
 msgstr "Contenuto della cache"
 
@@ -1190,6 +1220,7 @@ msgstr ""
 msgid "we'll respond to that as soon as possible"
 msgstr "risponderemo al più presto possibile"
 
+#: admin/class-wp-riotd-admin-settings-definitions.php:66
 #: admin/partials/settings/wp-riotd-admin-settings-welcome.php:2
 msgid "Welcome"
 msgstr "Benvenuti"

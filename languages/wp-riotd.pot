@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RIOTD Reddit Image Of The Day\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-18 15:12+0000\n"
+"POT-Creation-Date: 2021-06-20 16:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,11 +16,13 @@ msgstr ""
 "X-Loco-Version: 2.5.2; wp-5.7.2\n"
 "X-Domain: wp-riotd"
 
+#: public/partials/wp-riotd-public-empty-reddit.php:10
 #: public/partials/wp-riotd-public-reddit.php:10
 #, php-format
 msgid "%1$s comments"
 msgstr ""
 
+#: public/partials/wp-riotd-public-empty-reddit.php:8
 #: public/partials/wp-riotd-public-reddit.php:8
 #, php-format
 msgid "%1$s upvotes"
@@ -97,7 +99,7 @@ msgid ""
 "bear with us while we improve and fix any issues that you will report."
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:89
+#: admin/js/wp-riotd-admin.js:90
 msgid "and"
 msgstr ""
 
@@ -124,7 +126,7 @@ msgid ""
 "full posts depending on how your wordpress theme has been developed."
 msgstr ""
 
-#: admin/partials/wp-riotd-admin-menu.php:63
+#: admin/partials/wp-riotd-admin-menu.php:64
 msgid "Cache Content"
 msgstr ""
 
@@ -132,11 +134,15 @@ msgstr ""
 msgid "Cache duration"
 msgstr ""
 
+#: admin/partials/settings/wp-riotd-admin-settings-cache.php:17
+msgid "Cache expired"
+msgstr ""
+
 #: admin/partials/settings/wp-riotd-admin-settings-cache.php:13
 msgid "Cache Expires in:"
 msgstr ""
 
-#: admin/partials/settings/wp-riotd-admin-settings-cache.php:24
+#: admin/partials/settings/wp-riotd-admin-settings-cache.php:29
 msgid "Cache not created yet or expired"
 msgstr ""
 
@@ -152,7 +158,7 @@ msgstr ""
 msgid "Can't find the scraper class"
 msgstr ""
 
-#: includes/class-wp-riotd-scraper.php:188
+#: includes/class-wp-riotd-scraper.php:191
 msgid "channel empty"
 msgstr ""
 
@@ -160,11 +166,11 @@ msgstr ""
 msgid "Click here or anywhere outside the window to close the image"
 msgstr ""
 
-#: admin/partials/settings/wp-riotd-admin-settings-cache.php:20
+#: admin/partials/settings/wp-riotd-admin-settings-cache.php:24
 msgid "Click to clear the cache"
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:367
+#: admin/js/wp-riotd-admin.js:417
 msgid "Click to open in a new tab"
 msgstr ""
 
@@ -186,6 +192,7 @@ msgstr ""
 msgid "Click to open the subreddit channel in a new tab"
 msgstr ""
 
+#: public/partials/wp-riotd-public-empty-reddit.php:3
 #: public/partials/wp-riotd-public-reddit.php:3
 msgid "Click to open this reddit channel in a new tab"
 msgstr ""
@@ -200,6 +207,10 @@ msgstr ""
 
 #: admin/partials/wp-riotd-admin-menu.php:47
 msgid "Click to see the content of the cache stored in the database"
+msgstr ""
+
+#: admin/class-wp-riotd-admin-settings-definitions.php:78
+msgid "Configure Reddit Channel"
 msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:36
@@ -328,6 +339,10 @@ msgstr ""
 msgid "Galleries and Videos will not be selected"
 msgstr ""
 
+#: admin/class-wp-riotd-admin-settings-definitions.php:70
+msgid "General Settings"
+msgstr ""
+
 #: admin/partials/wp-riotd-admin-aboutus.php:11
 msgid ""
 "Good ratings and constructive feedbacks encourages me to further develop the "
@@ -338,11 +353,11 @@ msgstr ""
 msgid "Help and Support"
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:383
+#: admin/js/wp-riotd-admin.js:433
 msgid "Hide Cache Content"
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:311
+#: admin/js/wp-riotd-admin.js:354
 msgid "Hide Preview"
 msgstr ""
 
@@ -418,6 +433,14 @@ msgstr ""
 msgid "Image aspect"
 msgstr ""
 
+#: admin/class-wp-riotd-admin-settings-definitions.php:89
+msgid "Image Cache"
+msgstr ""
+
+#: admin/class-wp-riotd-admin-settings-definitions.php:82
+msgid "Image Preferences"
+msgstr ""
+
 #: admin/class-wp-riotd-admin-settings-definitions.php:243
 msgid "Image scraping mode"
 msgstr ""
@@ -468,8 +491,16 @@ msgstr ""
 msgid "Landscape"
 msgstr ""
 
+#: admin/class-wp-riotd-admin-settings-definitions.php:335
+msgid "Last image was scraped on"
+msgstr ""
+
 #: admin/class-wp-riotd-admin-settings-definitions.php:247
 msgid "Last posted"
+msgstr ""
+
+#: admin/class-wp-riotd-admin-settings-definitions.php:322
+msgid "Last scraping execution time"
 msgstr ""
 
 #: admin/class-wp-riotd-admin-settings-definitions.php:283
@@ -533,19 +564,19 @@ msgstr ""
 msgid "No direct script access allowed!"
 msgstr ""
 
-#: public/class-wp-riotd-public.php:115
+#: public/class-wp-riotd-public.php:113
 msgid "No images availabe :("
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:273
+#: admin/js/wp-riotd-admin.js:316
 msgid "Operation aborted"
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:275
+#: admin/js/wp-riotd-admin.js:318
 msgid "Operation non authorized"
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:167
+#: admin/js/wp-riotd-admin.js:197
 msgid "Operation not completed"
 msgstr ""
 
@@ -575,11 +606,11 @@ msgstr ""
 msgid "Portrait"
 msgstr ""
 
-#: admin/partials/wp-riotd-admin-menu.php:58
+#: admin/partials/wp-riotd-admin-menu.php:59
 msgid "Preview"
 msgstr ""
 
-#: admin/partials/settings/wp-riotd-admin-settings-cache.php:20
+#: admin/partials/settings/wp-riotd-admin-settings-cache.php:24
 msgid "Purge Cache"
 msgstr ""
 
@@ -625,8 +656,8 @@ msgid ""
 "page in a new tab\">website</a> for further details"
 msgstr ""
 
-#: includes/class-wp-riotd-scraper.php:129
-#: includes/class-wp-riotd-scraper.php:178
+#: includes/class-wp-riotd-scraper.php:130
+#: includes/class-wp-riotd-scraper.php:181
 msgid "Reddit returned an unexpected result, check your settings"
 msgstr ""
 
@@ -655,11 +686,11 @@ msgstr ""
 msgid "Save Settings"
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:91
+#: admin/js/wp-riotd-admin.js:95
 msgid "second"
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:93
+#: admin/js/wp-riotd-admin.js:97
 msgid "seconds"
 msgstr ""
 
@@ -688,11 +719,11 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:241
+#: admin/js/wp-riotd-admin.js:283
 msgid "Settings reset successfully"
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:212
+#: admin/js/wp-riotd-admin.js:253
 msgid "Settings saved successfully"
 msgstr ""
 
@@ -701,11 +732,11 @@ msgid "Shortcode key parameter"
 msgstr ""
 
 #: admin/partials/wp-riotd-admin-menu.php:44 admin/js/wp-riotd-admin.js:35
-#: admin/js/wp-riotd-admin.js:327
+#: admin/js/wp-riotd-admin.js:377
 msgid "Show Preview"
 msgstr ""
 
-#: admin/js/wp-riotd-admin.js:204
+#: admin/js/wp-riotd-admin.js:245
 msgid "Something went wrong while saving the settings, try again later"
 msgstr ""
 
@@ -725,7 +756,7 @@ msgid ""
 "resolution."
 msgstr ""
 
-#: public/class-wp-riotd-public.php:114
+#: public/class-wp-riotd-public.php:112
 msgid "Template not available :("
 msgstr ""
 
@@ -836,8 +867,8 @@ msgid ""
 "<strong>(always read and respect the author's copyright terms)</strong>"
 msgstr ""
 
-#: includes/class-wp-riotd-scraper.php:134
-#: includes/class-wp-riotd-scraper.php:183
+#: includes/class-wp-riotd-scraper.php:135
+#: includes/class-wp-riotd-scraper.php:186
 msgid ""
 "The reddit channel selected is empty or something went wrong during the "
 "download"
@@ -883,6 +914,10 @@ msgstr ""
 
 #: admin/partials/settings/wp-riotd-admin-settings-usage.php:65
 msgid "The url pointing at the thumbnail version of the image"
+msgstr ""
+
+#: admin/class-wp-riotd-admin-settings-definitions.php:74
+msgid "Theme Layout"
 msgstr ""
 
 #. 1: is a link 2: is a link
@@ -950,8 +985,8 @@ msgstr ""
 msgid "Unable to load required dependency"
 msgstr ""
 
-#: admin/partials/wp-riotd-admin-menu.php:58
-#: admin/partials/wp-riotd-admin-menu.php:63
+#: admin/partials/wp-riotd-admin-menu.php:59
+#: admin/partials/wp-riotd-admin-menu.php:64
 msgid "Update available, click to refresh"
 msgstr ""
 
@@ -972,7 +1007,7 @@ msgid ""
 msgstr ""
 
 #: admin/partials/wp-riotd-admin-menu.php:47 admin/js/wp-riotd-admin.js:29
-#: admin/js/wp-riotd-admin.js:391
+#: admin/js/wp-riotd-admin.js:441
 msgid "View Cache Content"
 msgstr ""
 
@@ -1003,6 +1038,7 @@ msgstr ""
 msgid "we'll respond to that as soon as possible"
 msgstr ""
 
+#: admin/class-wp-riotd-admin-settings-definitions.php:66
 #: admin/partials/settings/wp-riotd-admin-settings-welcome.php:2
 msgid "Welcome"
 msgstr ""

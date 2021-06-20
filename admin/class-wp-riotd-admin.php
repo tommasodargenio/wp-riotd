@@ -256,14 +256,17 @@ class WP_RIOTD_Admin {
 		}
 		
 		// register fields
-		foreach($this->settings_definitions->get_settings_definitions() as $field) {
-			add_settings_field($field['uid'], esc_html__($field['label'],'wp-riotd'), array($this, 'fields_renderer'), $field['section'], $field['section'], $field );
-			// use a different callback if the field is of type seconds, as this would require some data post-processing
-			if ( $field['type'] == 'seconds' ) {
-				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => array($this, 'sanitize_time_field') ) );				
-			} else {
-				register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => array($this, 'sanitize_me') ) );			
-			}			
+		foreach($this->settings_definitions->get_settings_definitions() as $field) {			
+			if ($field['type'] != 'private') {
+				//echo '<pre> setting field'.$field['uid']; print_r(__($field['label'],'wp-riotd')); echo '</pre>';
+				add_settings_field($field['uid'], esc_html__($field['label'],'wp-riotd'), array($this, 'fields_renderer'), $field['section'], $field['section'], $field );
+				// use a different callback if the field is of type seconds, as this would require some data post-processing
+				if ( $field['type'] == 'seconds' ) {
+					register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => array($this, 'sanitize_time_field') ) );				
+				} else {
+					register_setting($field['section'], $field['uid'], array( 'sanitize_callback' => array($this, 'sanitize_me') ) );			
+				}			
+			}
 		}
 	}
 	/**
