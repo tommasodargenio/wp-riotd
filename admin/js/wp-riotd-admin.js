@@ -139,6 +139,11 @@ jQuery(document).ready(function($) {
         $('#wp_riotd_custom_css').prop( 'disabled', ! use_custom_css );
     });
 
+    // social sharing button area
+    $('#social-sharing-twitter-script').html('<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>');
+    $('#social-sharing-twitter-follow-script').html('<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>');
+    $('#social-sharing-linkedin-script').html('<script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script><script type="IN/Share" data-url="https://wordpress.org/plugins/riotd/"></script>');
+
 
     // check if we need to refresh the cache timer as the hearbeat might force a reload of the image in the cache
     $(document).on('heartbeat-tick', function(event, data) {        
