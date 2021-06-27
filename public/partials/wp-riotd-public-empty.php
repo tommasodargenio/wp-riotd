@@ -8,7 +8,7 @@
     <!-- Main display area -->
     <div id="ig-main">
         <!-- Main image -->       
-            <img id="ig-iotd" alt="<?php echo $scraped; ?>" title="<?php echo $scraped; ?>" src="https://via.placeholder.com/300x150/e5d2d3/000000?text=<?php echo $scraped; ?>"/>       
+            <img id="ig-iotd" alt="<?php echo $scraped; ?>" title="<?php echo $scraped; ?>" src="<?php echo plugin_dir_url( __DIR__ ).'/images/image_post_placeholder.png'; ?>"/>       
         <!-- Image title -->
         <p id="ig-title"><?php echo $scraped; ?></p>
     </div>
