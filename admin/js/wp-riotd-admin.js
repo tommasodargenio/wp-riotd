@@ -149,39 +149,35 @@ jQuery(document).ready(function($) {
     $(document).on('heartbeat-tick', function(event, data) {        
         if ( isNaN( parseInt( $('#expire_seconds').text() ) ) ) {
             // cache is currently showing as empty on the screen, get the timer again from the db and reset it if necessary
-            jQuery.ajax({
+            $.ajax({
                 url: ajaxurl,
                 type: 'POST',
                 data: {
                     action: 'riotd_get_cache_expiration',
                     wp_riotd_nonce:  wp_riotd_data.nonce
-                },
-                success: function (response) {
-                    const data = JSON.parse(response);
-    
-                    if ( data.payload != null && !isNaN(data.payload) && parseInt(data.payload) > 0 ) {
-                        // there is a cache, activate the button to view it
-                        $('#riotd_view_cache').prop("disabled",false);                        
-                        // disable cache purge message and show cache expiration message
-                        $('#cache_purged_msg').hide();
-                        $('#cache_expire_msg').show();      
-                        $('#cache_expired_msg').hide();      
+                }
+            })
+            .always( function (data, status) {    
+                if ( data.payload != null && !isNaN(data.payload) && parseInt(data.payload) > 0 ) {
+                    // there is a cache, activate the button to view it
+                    $('#riotd_view_cache').prop("disabled",false);                        
+                    // disable cache purge message and show cache expiration message
+                    $('#cache_purged_msg').hide();
+                    $('#cache_expire_msg').show();      
+                    $('#cache_expired_msg').hide();      
 
-                        $('#expire_seconds').text(data.payload)
-                        timer = new Date()
-                        timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()))
-                        if (!countdown) {
-                            countdown = setInterval(ticker, 1000);               
-                        }
-                        // retrieve the new preview
-                        $('#riotd_preview').attr('data-action', 'preview_off');
-                        $('#riotd_preview').trigger('click')                    
+                    $('#expire_seconds').text(data.payload)
+                    timer = new Date()
+                    timer.setSeconds(timer.getSeconds() + parseInt($('#expire_seconds').text()))
+                    if (!countdown) {
+                        countdown = setInterval(ticker, 1000);               
                     }
-                }   
+                    // retrieve the new preview
+                    $('#riotd_preview').attr('data-action', 'preview_off');
+                    $('#riotd_preview').trigger('click')                    
+                }
             });
-            
         }
-    
     });
     
 
@@ -190,22 +186,23 @@ jQuery(document).ready(function($) {
         event.preventDefault();
         
         $('#reddit_iotd_cache_loading').show();
-        jQuery.ajax({
+        $.ajax({
             url: ajaxurl,
             type: 'POST',
             data: {
                 action: 'riotd_purge_cache',
                 wp_riotd_nonce:  wp_riotd_data.nonce
             },
-            error: function(data) {
+        })
+        .fail( function(data) {
                 $('#reddit_iotd_cache_loading').hide();
                 $('#riotd_purge_cache').after('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation not completed','wp-riotd')+'</span>');
 
                 setTimeout(function() {
                     $('#reddit_iotd_icon_error').fadeOut('fast');
                 }, 2000);                
-            },
-            success: function (data) {        
+            })
+        .done( function (data, status) {        
                 $('#reddit_iotd_cache_loading').hide();
                 // if there is something in the preview window clear it and hide it
                 reset_public_preview();
@@ -227,8 +224,7 @@ jQuery(document).ready(function($) {
                 setTimeout(function() {
                     $('#reddit_iotd_icon_success').fadeOut('fast');
                 }, 2000);
-            }
-        });
+            });        
     });
 
     $('#update_preview').on('click', function(event) {
@@ -243,56 +239,58 @@ jQuery(document).ready(function($) {
     // save setting
     $('#main-options-form').submit( function () {
         $('#reddit_iotd_icon_loading').show();
-        var b =  $(this).serialize();        
-        $.post( 'options.php', b ).error( 
-            function() {
-                $('#reddit_iotd_icon_loading').hide();
-                $('#alert-message-text').text(__('Something went wrong while saving the settings, try again later','wp-riotd'));
-                $('#alert-message').addClass('notice-error')
-                $('#alert-message').show();
-                setTimeout(function() {
-                    $('#alert-message').fadeOut('fast');
-                }, 3000);
-            }).success( function() {
-                $('#reddit_iotd_icon_loading').hide();
-                $('#alert-message-text').text(__('Settings saved successfully','wp-riotd'));
-                $('#alert-message').addClass('notice-success')
-                $('#alert-message').show();
-                $('#update_preview').show(); 
-                $('#update_preview').addClass('reddit_iotd_admin_update_preview_spin');
-                $('#update_cache_preview').show();    
+        var b =  $(this).serialize();
+        $.ajax({
+            url: 'options.php',
+            type: 'POST',
+            data: b
+        })            
+        .fail( function() {
+            $('#reddit_iotd_icon_loading').hide();
+            $('#alert-message-text').text(__('Something went wrong while saving the settings, try again later','wp-riotd'));
+            $('#alert-message').addClass('notice-error')
+            $('#alert-message').show();
+            setTimeout(function() {
+                $('#alert-message').fadeOut('fast');
+            }, 3000);
+        })
+        .done ( function() {
+            $('#reddit_iotd_icon_loading').hide();
+            $('#alert-message-text').text(__('Settings saved successfully','wp-riotd'));
+            $('#alert-message').addClass('notice-success')
+            $('#alert-message').show();
+            $('#update_preview').show(); 
+            $('#update_preview').addClass('reddit_iotd_admin_update_preview_spin');
+            $('#update_cache_preview').show();    
 
-                setTimeout(function() {
-                    $('#alert-message').fadeOut('slow');
-                }, 3000);
-            });            
-            return false;    
-            
+            setTimeout(function() {
+                $('#alert-message').fadeOut('slow');
+            }, 3000);
+        })  
     });
     
     // reset all settings
     $('#riotd_reset').on('click',function(event) {   
         $('#reddit_iotd_icon_loading').show();
         event.preventDefault();
-        jQuery.ajax({
+        $.ajax({
             url: ajaxurl,
             type: 'POST',
             data: {
                 action: 'riotd_reset_settings',
                 wp_riotd_nonce:  wp_riotd_data.nonce
             },
-            success: function (data) {        
-                $('#reddit_iotd_icon_loading').hide();
-                let parsed_data = JSON.parse(data);
-                if (parsed_data.response_code == 200) {            
+        })
+        .done( function (data, status) {        
+                $('#reddit_iotd_icon_loading').hide();                     
                     $('#riotd_response_messages').html('<span id="reddit_iotd_icon_success"><i class="dashicons dashicons-yes-alt"></i>'+__('Settings reset successfully','wp-riotd')+'</span>');
-                    if (parsed_data.payload != null ) {
-                        const settings = JSON.parse(parsed_data.payload);
-                        if ( Object.keys(settings).length > 0 ) {
+                    if (data.payload != null ) {                        
+                        const settings = data.payload;
+                        if ( Object.keys(settings).length > 0 ) {                            
                             $('#update_preview').show();  
                             $('#update_preview').addClass('reddit_iotd_admin_update_preview_spin');         
                             $('#update_cache_preview').show();                     
-                            Object.keys(settings).forEach(function(uid) {                            
+                            Object.keys(settings).forEach(function(uid) {                                    
                                 // check if uid is wp_riotd_cache_lifetime this requires special treatment
                                 if (uid == 'wp_riotd_cache_lifetime') {
                                     if (settings[uid] >= 60 * 60 * 24 ) {
@@ -310,27 +308,31 @@ jQuery(document).ready(function($) {
                                     }
                                 } else {
                                     // update the uid element with the value from the database
-                                    $('#' + uid).val(settings[uid]);
+                                    // if the element is a checkbox set the checked flag appropriately
+                                    if ( $('#' + uid).is(':checkbox') ) {
+                                        $('#' + uid).prop('checked', settings[uid]);
+                                    } else {
+                                        $('#' + uid).val(settings[uid]);
+                                    }
                                 }
                             });
                         }
     
-                    }
-
-                } else if (parsed_data.response_code == 400) {
-                    $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation aborted','wp-riotd')+'!</span>');
-                } else if (parsed_data.response_code == 401) {
-                    $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation non authorized','wp-riotd')+'!</span>');
-                }
-
+                    }                
                 setTimeout(function() {
                     $('#reddit_iotd_icon_error').fadeOut('fast');
                 }, 2000);
                 setTimeout(function() {
                     $('#reddit_iotd_icon_success').fadeOut('fast');
                 }, 2000);                
-            }
-        });
+        })
+        .fail( function (jqXHR, status) {
+                if (status == 'badrequest') {
+                    $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation aborted','wp-riotd')+'!</span>');
+                } else if (status == 'unauthorized') {
+                    $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation non authorized','wp-riotd')+'!</span>');
+                }                
+        })        
     });
 
     // preview
@@ -338,21 +340,19 @@ jQuery(document).ready(function($) {
         event.preventDefault();
         $('#reddit_iotd_icon_loading').show();
         if ($('#riotd_preview').attr('data-action') == 'preview_off') {
-
-            jQuery.ajax({
+            $.ajax({
                 url: ajaxurl,
                 type: 'POST',
                 data: {
                     action: 'riotd_public_preview',
                     wp_riotd_nonce:  wp_riotd_data.nonce
                 },
-                success: function (response) {
+            })
+            .done( function (data, status) {
                     $('#reddit_iotd_icon_loading').hide();
                     
                     // if there is something in the cache window clear it and hide it
                     reset_cache_preview();                    
-
-                    const data = JSON.parse(response);
                     if ( data.payload != null ) {
                         $('#reddit_iotd_admin_preview').show();
                         $('#reddit_iotd_public_view').html(data.payload);
@@ -373,8 +373,7 @@ jQuery(document).ready(function($) {
                             countdown = setInterval(ticker, 1000);                           
                         }
                     }
-                }
-            });
+            })            
         } else {
             $('#reddit_iotd_icon_loading').hide();
             $('#reddit_iotd_admin_preview').hide();
@@ -390,55 +389,52 @@ jQuery(document).ready(function($) {
         event.preventDefault();
         $('#reddit_iotd_icon_loading').show();
         if ($('#riotd_view_cache').attr('data-action') == 'cache_off') {
-
-            jQuery.ajax({
+            $.ajax({
                 url: ajaxurl,
-                type: 'POST',
+                method: 'POST',
                 data: {
                     action: 'riotd_view_cache',
                     wp_riotd_nonce:  wp_riotd_data.nonce
                 },
-                success: function (data) {      
-                    $('#reddit_iotd_icon_loading').hide();
-                    // if there is something in the preview window clear it and hide it
-                    reset_public_preview();
-                    
-                    const parsed_data = JSON.parse(data);
-                    const cache = parsed_data.cache;
-                    let cache_out = "";                    
-                    if ( typeof cache === 'object') {
-                        if ( Object.keys(cache).length > 0 ) {
-                            cache_out = '<table id="reddit_iotd_admin_table">\
-                                                <tbody>\
-                                                    <tr valign="top">\
-                                                        <th scope="row">'+__('Data name','wp-riotd')+'</th>\
-                                                        <th scope="row">'+__('Content','wp-riotd')+'</th>\
-                                                    </tr>';
-                            Object.keys(cache).forEach(function(key) {   
-                                let content = "";
-                                
-                                if (cache[key].toString().split("http://").length > 1 || cache[key].toString().split("https://").length > 1)  {
-                                    // it's a url, create a link for it
-                                    content = '<a href="'+cache[key]+'" title="'+__('Click to open in a new tab','wp-riotd')+'" target="_blank">'+cache[key]+'</a>';
-                                } else {
-                                    content = cache[key];
-                                }
-                                cache_out += '<tr>\
-                                                <td>'+key+'</td>\
-                                                <td>'+content+'</td>\
-                                            </tr>';
-                            });
-                            cache_out += '</tbody></table>';
-                        }
-                    } else {
-                        cache_out = parsed_data.cache;
+            })
+            .always( function(data, status) {                    
+                $('#reddit_iotd_icon_loading').hide();
+                // if there is something in the preview window clear it and hide it
+                reset_public_preview();                    
+                const cache = data.cache;
+                let cache_out = "";                    
+                if ( typeof cache === 'object') {
+                    if ( Object.keys(cache).length > 0 ) {
+                        cache_out = '<table id="reddit_iotd_admin_table">\
+                                            <tbody>\
+                                                <tr valign="top">\
+                                                    <th scope="row">'+__('Data name','wp-riotd')+'</th>\
+                                                    <th scope="row">'+__('Content','wp-riotd')+'</th>\
+                                                </tr>';
+                        Object.keys(cache).forEach(function(key) {   
+                            let content = "";
+                            
+                            if (cache[key].toString().split("http://").length > 1 || cache[key].toString().split("https://").length > 1)  {
+                                // it's a url, create a link for it
+                                content = '<a href="'+cache[key]+'" title="'+__('Click to open in a new tab','wp-riotd')+'" target="_blank">'+cache[key]+'</a>';
+                            } else {
+                                content = cache[key];
+                            }
+                            cache_out += '<tr>\
+                                            <td>'+key+'</td>\
+                                            <td>'+content+'</td>\
+                                        </tr>';
+                        });
+                        cache_out += '</tbody></table>';
                     }
-                    $('#reddit_iotd_admin_cache_preview').show();
-                    $('#reddit_iotd_cache_view').html(cache_out);
-                    $('#riotd_view_cache').val(__('Hide Cache Content','wp-riotd'));
-                    $('#riotd_view_cache').attr('data-action', 'cache_on');
+                } else {
+                    cache_out = parsed_data.cache;
                 }
-            });
+                $('#reddit_iotd_admin_cache_preview').show();
+                $('#reddit_iotd_cache_view').html(cache_out);
+                $('#riotd_view_cache').val(__('Hide Cache Content','wp-riotd'));
+                $('#riotd_view_cache').attr('data-action', 'cache_on');
+            });         
         } else {
             $('#reddit_iotd_icon_loading').hide();
             $('#reddit_iotd_admin_cache_preview').hide();
