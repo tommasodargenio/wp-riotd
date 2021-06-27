@@ -240,8 +240,7 @@ class WP_RIOTD_Admin {
 	 */
 	public function check_nonce() {
 		if ( !isset( $_POST['wp_riotd_nonce'] ) || !wp_verify_nonce( $_POST['wp_riotd_nonce'], 'nonce' ) ) {
-			echo json_encode(['payload' => null, 'response_code' => '401']);
-			wp_die('','401');
+			wp_send_json(['payload' => null], 401 );			
 		}
 	}
 	/**
@@ -282,11 +281,9 @@ class WP_RIOTD_Admin {
 			$cache = WP_RIOTD_Cache::get_cache('cache');
 				
 			if ( false === $cache ) {			
-				echo json_encode( ['cache'=>esc_html__( 'The cache is empty', 'wp-riotd' ), 'response_code'=>204] );
-				wp_die('', '204');
+				wp_send_json( ['cache'=>esc_html__( 'The cache is empty', 'wp-riotd' )], 204 );				
 			} else {
-				echo json_encode( ['cache' => $cache, 'response_code'=> 200 ]);
-				wp_die('', '200');
+				wp_send_json( ['cache' => $cache], 200 );				
 			}
 		}
 		wp_die('', '400');
@@ -300,8 +297,7 @@ class WP_RIOTD_Admin {
 		$this->check_nonce();
 		if( class_exists('WP_RIOTD_Cache', false) ) {
 			$expires_in = WP_RIOTD_Cache::get_cache_expiration( 'cache' );			
-			echo json_encode(['payload' => $expires_in, 'response_code'=>200]);
-			wp_die('','200');
+			wp_send_json(['payload' => $expires_in], 200 );			
 		}
 		wp_die('','400');
 	}
@@ -335,8 +331,8 @@ class WP_RIOTD_Admin {
 				$expires_in = WP_RIOTD_Cache::get_cache_expiration( 'cache' );		
 			}
 
-			echo json_encode(['payload'=> $payload, 'response_code' => 200, 'cache_time' => $expires_in]);
-			wp_die('', '200');
+			wp_send_json( ['payload'=> $payload, 'cache_time' => $expires_in], 200) ;
+			
 		}
 
 		wp_die('', '400');
@@ -350,16 +346,13 @@ class WP_RIOTD_Admin {
 		$this->check_nonce();
 		if( class_exists('WP_RIOTD_Cache', false) ) {
 			if (WP_RIOTD_Cache::purge_cache('cache')) {
-				echo json_encode(['expires_in' => WP_RIOTD_Cache::get_cache_expiration('cache'), 'response_code' => '200']);
-				wp_die('','200');
+				wp_send_json( ['expires_in' => WP_RIOTD_Cache::get_cache_expiration('cache')], 200 );				
 			} else {
-				echo json_encode(['expires_in' => null, 'response_code' => '400']);
-				wp_die('','400');
+				wp_send_json( ['expires_in' => null], 400 );				
 			}
 		}
 
-		echo json_encode(['expires_in' => null, 'response_code' => '400']);
-		wp_die('','400');	
+		wp_send_json( ['expires_in' => null], 400 );		
 	}
 	/**
 	 * Method to reset all settings via the button on the admin page
@@ -372,15 +365,13 @@ class WP_RIOTD_Admin {
 			if ( true === WP_RIOTD_Settings::set_defaults() ) {
 				$all_settings = WP_RIOTD_Settings::get_all();
 				if ( is_array( $all_settings ) || ( sizeof( $all_settings ) > 0 ) ) {
-					echo json_encode(['payload' => json_encode($all_settings), 'response_code' => '200']);
+					wp_send_json(['payload' => $all_settings], 200 );
 				} else {
-					echo json_encode(['payload' => null, 'response_code' => '200']);
-				}
-				wp_die('','200');
+					wp_send_json(['payload' => null], 200 );
+				}		
 			}
 		}
-		echo json_encode(['payload' => null, 'response_code' => '400']);
-		wp_die('','400');
+		wp_send_json(['payload' => null], 400 );		
 	}
 	/**
 	 * Sanitisation callback to validate and sanitize data before saving to DB
