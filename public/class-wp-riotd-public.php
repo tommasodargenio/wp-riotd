@@ -62,7 +62,7 @@ class WP_RIOTD_Public {
 		$this->version = $version;
 		
 		if ( !class_exists( 'WP_RIOTD_Scraper', false ) ) {
-			trigger_error(esc_html__("Can't find the scraper class", "wp-riotd"), E_USER_ERROR);    
+			return new WP_Error( 'configuration_error', esc_html__("Can't find the scraper class", "wp-riotd"));    
 		}
 
 		$scraper = new WP_RIOTD_Scraper();
@@ -102,6 +102,35 @@ class WP_RIOTD_Public {
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name.'_public_js', plugin_dir_url( __FILE__ ) . 'js/wp-riotd-public.js', array( 'jquery' ), $this->version, false );
 	}
+
+	public function render_custom_css($admin_view = false) {
+		$custom_css = "";		
+		// add custom CSS if defined		
+		if ( "0" === WP_RIOTD_Settings::get( "css_switch" ) || 0 === WP_RIOTD_Settings::get( "css_switch" ) || false === WP_RIOTD_Settings::get( "css_switch" ) ) {
+			$custom_css = WP_RIOTD_Settings::get("custom_css");			
+		}
+		// check for imbalanced braces, brackets, and comments.
+		if ( preg_match( '#</?\w+#', $custom_css) ) {
+			return new WP_Error( 'css_markup_error', esc_html__("Markup is not allowed in custom CSS", "wp-riotd") ) ;
+		}
+		if ( preg_match('/expression|javascript|import|moz-binding|behavior/i', $custom_css) ) {	
+			return new WP_Error('css_forbidden_keywords',esc_html__("Use of the following keywords is not allowed in custom CSS: expression, javascript, import, moz-binding, and behavior","wp-riotd"));			
+		}
+
+		$custom_css = WP_RIOTD_Utility::simple_sanitize_css($custom_css);
+
+		 if ( ! empty( $custom_css ) ) {
+		 	$custom_css = "<style type=\"text/css\">\n$custom_css\n</style>\n";
+			if ( false === $admin_view) {
+				echo wp_kses($custom_css, array('style'=>array('type'=>array())));
+			} else {
+				ob_start();
+				echo wp_kses($custom_css, array('style'=>array('type'=>array())));
+				return ob_get_clean();   
+			}
+		 }
+	}
+
 	/**
 	 * Render the final view to be output on the public site
 	 * 

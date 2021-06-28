@@ -34,7 +34,7 @@
                 <div id="highlight_box">
                     <h3><span class="dashicons dashicons-admin-post" id="pin"></span>&nbsp;<?php esc_html_e('Display the feed','wp-riotd'); ?></h3>
                     <p><?php esc_html_e("Copy and paste this shortcode directly into the page, post or widget where you'd like to display the feed",'wp-riotd'); ?></p>
-                    <input type="text" value="[<?php echo $shortcode; ?>]" size="10" readonly="readonly" style="text-align:center" onClick="this.focus();this.select()" title="<?php esc_html_e('To copy, click the field than press Ctrl + C (PC) or Cmd + C (Mac)','wp-riotd'); ?>" />
+                    <input type="text" value="[<?php echo esc_attr($shortcode); ?>]" size="10" readonly="readonly" style="text-align:center" onClick="this.focus();this.select()" title="<?php esc_html_e('To copy, click the field than press Ctrl + C (PC) or Cmd + C (Mac)','wp-riotd'); ?>" />
                 </div>
             </p>
         </article>
@@ -47,7 +47,7 @@
                 <div id="highlight_box">
                     <h3><span class="dashicons dashicons-admin-post" id="pin"></span>&nbsp;<?php esc_html_e('Display a piece of data','wp-riotd'); ?></h3>
                     <p><?php esc_html_e("Copy and paste this shortcode directly into the page, post or widget where you'd like to display the requested data",'wp-riotd'); ?>
-                    <input type="text" value="[<?php echo $shortcode_data; ?> key=&quot;<?php esc_html_e('parameter','wp-riotd'); ?>&quot;]" size="32 " readonly="readonly" style="text-align:center" onClick="this.focus();this.select()" title="<?php esc_html_e('To copy, click the field than press Ctrl + C (PC) or Cmd + C (Mac)','wp-riotd'); ?>" />
+                    <input type="text" value="[<?php echo esc_attr($shortcode_data); ?> key=&quot;<?php esc_html_e('parameter','wp-riotd'); ?>&quot;]" size="32 " readonly="readonly" style="text-align:center" onClick="this.focus();this.select()" title="<?php esc_html_e('To copy, click the field than press Ctrl + C (PC) or Cmd + C (Mac)','wp-riotd'); ?>" />
                 </div>
             </p>
 
@@ -63,42 +63,42 @@
                         <tr>
                             <td>thumbnail_url</td>
                             <td><?php esc_html_e('The url pointing at the thumbnail version of the image','wp-riotd'); ?></td>
-                            <td><code>[<?php echo $shortcode_data; ?> key="thumbnail_url"]</code></td>
+                            <td><code>[<?php echo esc_attr($shortcode_data); ?> key="thumbnail_url"]</code></td>
                         </tr>
                         <tr>
                             <td>full_res_url</td>
                             <td><?php esc_html_e('The url pointing at the full resolution image','wp-riotd'); ?></td>
-                            <td><code>[<?php echo $shortcode_data; ?> key="full_res_url"]</code></td>
+                            <td><code>[<?php echo esc_attr($shortcode_data); ?> key="full_res_url"]</code></td>
                         </tr>
                         <tr>
                             <td>width</td>
                             <td><?php esc_html_e('The full resolution width in pixels of the image','wp-riotd'); ?></td>
-                            <td><code>[<?php echo $shortcode_data; ?> key="width"]</code></td>
+                            <td><code>[<?php echo esc_attr($shortcode_data); ?> key="width"]</code></td>
                         </tr>
                         <tr>
                             <td>height</td>
                             <td><?php esc_html_e('The full resolution height in pixels of the image','wp-riotd'); ?></td>
-                            <td><code>[<?php echo $shortcode_data; ?> key="height"]</code></td>
+                            <td><code>[<?php echo esc_attr($shortcode_data); ?> key="height"]</code></td>
                         </tr>
                         <tr>
                             <td>title</td>
                             <td><?php esc_html_e('The title or caption of the image as provided by the post\'s author','wp-riotd'); ?></td>
-                            <td><code>[<?php echo $shortcode_data; ?> key="title"]</code></td>
+                            <td><code>[<?php echo esc_attr($shortcode_data); ?> key="title"]</code></td>
                         </tr>
                         <tr>
                             <td>post_url</td>
                             <td><?php esc_html_e('The url pointing at the subreddit post containing the image','wp-riotd'); ?></td>
-                            <td><code>[<?php echo $shortcode_data; ?> key="post_url"]</code></td>
+                            <td><code>[<?php echo esc_attr($shortcode_data); ?> key="post_url"]</code></td>
                         </tr>
                         <tr>
                             <td>author</td>
                             <td><?php esc_html_e('The author username of the post containing the image','wp-riotd'); ?></td>
-                            <td><code>[<?php echo $shortcode_data; ?> key="author"]</code></td>
+                            <td><code>[<?php echo esc_attr($shortcode_data); ?> key="author"]</code></td>
                         </tr>
                         <tr>
                             <td>nsfw</td>
                             <td><?php esc_html_e('A boolean value (either true or false) indicating if the image is marked as NSFW (i.e.: adult content) or not','wp-riotd'); ?></td>
-                            <td><code>[<?php echo $shortcode_data; ?> key="nsfw"]</code></td>
+                            <td><code>[<?php echo esc_attr($shortcode_data); ?> key="nsfw"]</code></td>
                         </tr>
 
                     </tbody>

@@ -1,7 +1,10 @@
 <?php defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-riotd' )); // Prohibit direct script loading. ?>
 <div class="wrap">    
     <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>    
-    <?php if ( isset($_GET['settings-updated']) && $_GET['settings-updated'] ) {?>
+    <?php 
+    $settings_updated = filter_input(INPUT_GET, 'settings-updated', FILTER_CALLBACK, ['options'=>'esc_attr']);
+    if ( $settings_updated ) {
+    ?>
         <div class="notice notice-success is-dismissible">
             <p><?php esc_html_e('Your settings have been updated!', 'wp-riotd' ); ?></p>
         </div>
@@ -9,7 +12,10 @@
     <div id="alert-message" class="notice is-dismissible" style="display:none"><p id="alert-message-text"></p></div>
     <?php settings_errors(); ?>
 
-    <?php $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : $this->default_setting_tab; ?>
+    <?php 
+        $tab = filter_input(INPUT_GET, 'tab', FILTER_CALLBACK, ['options'=>'esc_attr']);
+        $active_tab = $tab ?: $this->default_setting_tab; 
+    ?>
 
     <h2 class="nav-tab-wrapper">
         <?php $this->do_tabs($active_tab); ?>

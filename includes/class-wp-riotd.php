@@ -172,10 +172,10 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
                 if ( file_exists($class_path) ) {
                     require_once $class_path;
                     if ( !class_exists($class, false) ) {
-                        trigger_error(esc_html__("Unable to load required dependency", "wp-riotd").": $class", E_USER_ERROR);
+                        return new WP_Error( 'configuration_error', esc_html__("Unable to load required dependency", "wp-riotd").": $class" );
                     }
                 } else {
-                    trigger_error(esc_html__("Unable to load required dependency", "wp-riotd").": $class", E_USER_ERROR);
+                    return new WP_Error( 'configuration_error', esc_html__("Unable to load required dependency", "wp-riotd").": $class" );
                 }
             }
         }
@@ -232,7 +232,9 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
             // load the css            
             $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
             // load the js            
-            $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );                
+            $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );    
+            // Load the custom css
+            $this->loader->add_action( 'wp_head', $plugin_public, 'render_custom_css');            
             // load the shortcodes
             add_shortcode( $this->plugin_shortcode, array($plugin_public, 'render_view') );
             add_shortcode( $this->plugin_shortcode_data, array($plugin_public, 'get_image_info')  );            

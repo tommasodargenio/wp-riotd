@@ -118,4 +118,18 @@
 
         return trim( $css );          
       }
+      
+      /**
+       *  Simple CSS sanitization method
+       *  @since    1.0.0
+       *  @param    string  $css    CSS code to sanitize
+       *  @return   string  sanitized CSS code
+       */
+
+      public static function simple_sanitize_css($css) {
+          $css = wp_strip_all_tags( $css );
+          $css = htmlspecialchars($css, ENT_HTML5 | ENT_NOQUOTES | ENT_SUBSTITUTE, 'utf-8');
+          
+          return $css;
+      }
  }

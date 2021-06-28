@@ -111,8 +111,7 @@ hr {
     justify-content: flex-start;
     align-content: center;
 }
-#reddit_iotd_icon_error {
-    position: absolute;
+#reddit_iotd_icon_error {    
     margin: var(--icon-margin);
     color: #a00;
 }

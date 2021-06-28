@@ -238,8 +238,9 @@ class WP_RIOTD_Admin {
 	 * @since	1.0.0
 	 * @return	int		HTTP response code 401 if nonce check fails
 	 */
-	public function check_nonce() {
-		if ( !isset( $_POST['wp_riotd_nonce'] ) || !wp_verify_nonce( $_POST['wp_riotd_nonce'], 'nonce' ) ) {
+	public function check_nonce() {				
+		$wp_riotd_nonce = filter_input(INPUT_POST, 'wp_riotd_nonce', FILTER_CALLBACK, ['options'=>'esc_attr']);
+		if ( !$wp_riotd_nonce  || !wp_verify_nonce( $wp_riotd_nonce, 'nonce' ) ) {
 			wp_send_json(['payload' => null], 401 );			
 		}
 	}
@@ -323,8 +324,8 @@ class WP_RIOTD_Admin {
 		$this->check_nonce();
 
 		if( class_exists( 'WP_RIOTD_Public', false ) ) {
-			$public = new WP_RIOTD_Public( $this->plugin_name, $this->version );
-			$payload = $public->render_view(true);
+			$public = new WP_RIOTD_Public( $this->plugin_name, $this->version );			
+			$payload = $public->render_custom_css(true).$public->render_view(true);
 			$expires_in = 0;
 			// this will force the cache to be created if it's not there yet. We should send the new cache expiration timer
 			if( class_exists('WP_RIOTD_Cache', false) ) {
@@ -393,7 +394,8 @@ class WP_RIOTD_Admin {
 		}
 
 		// check if admin has chosen to reset everything
-		if (isset($_POST['reset'])) {
+		$post_reset = filter_input(INPUT_POST, 'reset', FILTER_CALLBACK, ['options'=>'esc_attr']);
+		if ( $post_reset ) {
 				$value = $def['default'];								 	
 		}
 		
@@ -467,8 +469,9 @@ class WP_RIOTD_Admin {
 	 * @return	int			$value The value converted in seconds (integer)	if time_unit was sent otherwise return the same value unchanged.
 	 */
 	public function sanitize_time_field( $value ) {
-		if ( isset ( $_POST['time_unit'] ) ) {
-			switch($_POST['time_unit']) {
+		$time_unit = filter_input(INPUT_POST, 'time_unit', FILTER_CALLBACK, ['options'=>'esc_attr']);
+		if ( $time_unit ) {
+			switch( $time_unit ) {
 				case 'minutes':
 					$value *= MINUTE_IN_SECONDS;					
 					break;
@@ -632,10 +635,10 @@ class WP_RIOTD_Admin {
 	public function get_github_link($echo = false) {
 		if ( defined('WP_RIOTD_GITHUB') ) {
 			if ($echo) {
-				echo \WP_RIOTD_GITHUB;
+				echo esc_url(\WP_RIOTD_GITHUB);
 			}
 
-			return \WP_RIOTD_GITHUB;
+			return esc_url(\WP_RIOTD_GITHUB);
 		}
 	}
 }
