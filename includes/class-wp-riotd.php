@@ -169,8 +169,8 @@ defined( 'ABSPATH' ) || die( esc_html__('No direct script access allowed!','wp-r
         if ( count($this->dependencies) > 0 ) {
             foreach ($this->dependencies as $class => $path) {
                 $class_path = plugin_dir_path( dirname( __FILE__ ) ).$path;
-                if ( file_exists($class_path) ) {
-                    require_once $class_path;
+                if ( file_exists(realpath($class_path)) ) {
+                    require_once realpath($class_path);
                     if ( !class_exists($class, false) ) {
                         return new WP_Error( 'configuration_error', esc_html__("Unable to load required dependency", "wp-riotd").": $class" );
                     }
