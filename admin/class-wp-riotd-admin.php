@@ -324,8 +324,12 @@ class WP_RIOTD_Admin {
 		$this->check_nonce();
 
 		if( class_exists( 'WP_RIOTD_Public', false ) ) {
-			$public = new WP_RIOTD_Public( $this->plugin_name, $this->version );			
-			$payload = $public->render_custom_css(true).$public->render_view(true);
+			$public = new WP_RIOTD_Public( $this->plugin_name, $this->version );
+			$css = $public->render_custom_css(true);
+			if (is_wp_error($css)) {
+				wp_send_json(['payload'=>'', 'error'=>$css->get_error_message()], 500);
+			}			
+			$payload = $css.$public->render_view(true);
 			$expires_in = 0;
 			// this will force the cache to be created if it's not there yet. We should send the new cache expiration timer
 			if( class_exists('WP_RIOTD_Cache', false) ) {

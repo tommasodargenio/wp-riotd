@@ -332,6 +332,9 @@ jQuery(document).ready(function($) {
                 } else if (jqXHR.status == 401) {
                     $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation non authorized','wp-riotd')+'!</span>');
                 }                
+                setTimeout(function() {
+                    $('#riotd_response_messages').fadeOut('fast');
+                }, 2000); 
         })        
     });
 
@@ -348,13 +351,18 @@ jQuery(document).ready(function($) {
                     wp_riotd_nonce:  wp_riotd_data.nonce
                 },
             })
-            .fail( function (jqXHR) {
+            .fail( function (jqXHR) {                
                 $('#reddit_iotd_icon_loading').hide();                
                 if (jqXHR.status == 400) {
                     $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation aborted','wp-riotd')+'!</span>');
                 } else if (jqXHR.status == 401) {
                     $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation non authorized','wp-riotd')+'!</span>');
-                }                
+                } else if (jqXHR.status == 500) {
+                    $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+jqXHR.responseJSON.error+'!</span>');
+                }
+                setTimeout(function() {
+                    $('#riotd_response_messages').fadeOut('fast');
+                }, 5000);                 
             })        
             .done( function (data, status) {
                     $('#reddit_iotd_icon_loading').hide();
@@ -411,7 +419,10 @@ jQuery(document).ready(function($) {
                     $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation aborted','wp-riotd')+'!</span>');
                 } else if (jqXHR.status == 401) {
                     $('#riotd_response_messages').html('<span id="reddit_iotd_icon_error"><i class="dashicons dashicons-dismiss"></i>'+__('Operation non authorized','wp-riotd')+'!</span>');
-                }                
+                }
+                setTimeout(function() {
+                    $('#riotd_response_messages').fadeOut('fast');
+                }, 2000);                                 
             })        
             .done( function(data) {                    
                 $('#reddit_iotd_icon_loading').hide();
