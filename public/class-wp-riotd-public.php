@@ -208,12 +208,12 @@ class WP_RIOTD_Public {
 		}
 
 		// output the template
-		if ( file_exists( $view_template ) ) {
+		if ( file_exists( realpath($view_template) ) ) {
 			if (false === $admin_view) {
-				include_once $view_template;
+				include_once realpath($view_template);
 			} else {
 				ob_start();
-				include_once $view_template;
+				include_once realpath($view_template);
 				return ob_get_clean();
 			}
 		} else {
