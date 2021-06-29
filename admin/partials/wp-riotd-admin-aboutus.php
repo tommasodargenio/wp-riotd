@@ -44,12 +44,12 @@
             <?php $mysqli = ( isset( $GLOBALS['wpdb'] ) && isset( $GLOBALS['wpdb']->use_mysqli ) && $GLOBALS['wpdb']->use_mysqli && isset( $GLOBALS['wpdb']->dbh ) ); ?>
             <ul style="padding-left:10px;list-style-type: square;">
                 <li>Website: <?php echo site_url(); ?></li>
-                <li>RIOTD: <?php echo $this->version; ?></li>
-                <li>RIOTD Settings: <span class="settings_debug"><?php echo WP_RIOTD_Settings::to_base64(); ?></span></li>
-                <li>Plugin installed: <?php echo date( 'd/m/Y H:i:s', WP_RIOTD_Settings::get('activation_date') ); ?></li>
-                <li>Last scraping execution time: <?php echo round(WP_RIOTD_Settings::get('last_scraping_execution_time'), 2).' seconds'; ?></li>
-                <li>Last image was scraped on: <?php echo date_i18n('d M, Y H:i:s',WP_RIOTD_Settings::get('last_image_scraped_on')); ?></li>
-                <li>WordPress: <?php echo $GLOBALS['wp_version']; ?></li>
+                <li>RIOTD: <?php echo esc_attr($this->version); ?></li>
+                <li>RIOTD Settings: <span class="settings_debug"><?php echo esc_attr(WP_RIOTD_Settings::to_base64()); ?></span></li>
+                <li>Plugin installed: <?php echo esc_attr(date( 'd/m/Y H:i:s', WP_RIOTD_Settings::get('activation_date') ) ); ?></li>
+                <li>Last scraping execution time: <?php echo esc_attr(round(WP_RIOTD_Settings::get('last_scraping_execution_time'), 2).' seconds'); ?></li>
+                <li>Last image was scraped on: <?php echo esc_attr(date_i18n('d M, Y H:i:s',WP_RIOTD_Settings::get('last_image_scraped_on'))); ?></li>
+                <li>WordPress: <?php echo esc_attr($GLOBALS['wp_version']); ?></li>
                 <li>Multisite: <?php echo is_multisite() ? 'yes' : 'no'; ?></li>
                 <li>PHP: <?php echo phpversion(); ?></li>
                 <li>mysqli Extension: <?php echo $mysqli ? 'true' : 'false'; ?></li>
