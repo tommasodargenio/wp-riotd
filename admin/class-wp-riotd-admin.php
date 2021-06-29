@@ -105,7 +105,7 @@ class WP_RIOTD_Admin {
 		}
 
 		if ( file_exists( plugin_dir_path(__FILE__) . 'images/icon.svg' ) ) {
-			$this->plugin_icon = 'data:image/svg+xml;base64,'.base64_encode(file_get_contents( plugin_dir_path(__FILE__) . 'images/riotd_admin_icon_bw.svg' ));
+			$this->plugin_icon = 'data:image/svg+xml;base64,'.base64_encode(file_get_contents( plugin_dir_path(__FILE__) . 'images/icon.svg' ));
 		} else {
 			$this->plugin_icon = '';
 		}
