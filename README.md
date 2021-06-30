@@ -13,6 +13,9 @@ Image of The Day from any sub/Reddit in your WordPress widgets and posts
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Deploy to WordPress.org](https://github.com/tommasodargenio/wp-riotd/actions/workflows/deploy.yml/badge.svg)](https://github.com/tommasodargenio/wp-riotd/actions/workflows/deploy.yml)
+[![](https://img.shields.io/badge/Plugin-Directory-brightgreen)](https://wordpress.org/plugins/riotd-reddit-image-of-the-day)
+[![](https://img.shields.io/badge/Plugin-Discussion%20Forum-orange)](https://wordpress.org/support/plugin/riotd-reddit-image-of-the-day)
+
 ## Description
 
 Whether you own a subreddit channel and wants to showcase the images posted, or you are passionate about some of the many topics discussed in a subreddit and wants to show some images from there in your posts or your website, 

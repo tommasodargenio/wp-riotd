@@ -142,7 +142,7 @@ jQuery(document).ready(function($) {
     // social sharing button area
     $('#social-sharing-twitter-script').html('<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>');
     $('#social-sharing-twitter-follow-script').html('<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>');
-    $('#social-sharing-linkedin-script').html('<script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script><script type="IN/Share" data-url="https://wordpress.org/plugins/riotd/"></script>');
+    $('#social-sharing-linkedin-script').html('<script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script><script type="IN/Share" data-url="https://wordpress.org/plugins/riotd-reddit-image-of-the-day"></script>');
 
 
     // check if we need to refresh the cache timer as the hearbeat might force a reload of the image in the cache
