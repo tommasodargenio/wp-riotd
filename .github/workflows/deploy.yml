@@ -3,6 +3,7 @@ env:
   PUBLISH_PATH: '${{ github.workspace }}/publish'
   PLUGIN_NAME: riotd-reddit-image-of-the-day
 on:
+  workflow_dispatch:
   release:
     types: [published]
 jobs:
