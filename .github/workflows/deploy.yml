@@ -4,6 +4,11 @@ env:
   PLUGIN_NAME: riotd-reddit-image-of-the-day
 on:
   workflow_dispatch:
+    inputs:
+      runtpye:
+        description: 'Full or Artifact'
+        required: false
+        default: 'Full'
   release:
     types: [published]
 jobs:
@@ -13,6 +18,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    if: ${{github.event.inputs.runtype == 'Full'}}
     - name: WordPress Plugin Deploy
       id: deploy
       uses: 10up/action-wordpress-plugin-deploy@stable
@@ -22,6 +28,7 @@ jobs:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: riotd-reddit-image-of-the-day
+    if: ${{github.event.inputs.runtype != 'Full'}}          
     - name: 'Get last release tag'
       id: releasetag
       uses: "WyriHaximus/github-action-get-previous-tag@v1"
