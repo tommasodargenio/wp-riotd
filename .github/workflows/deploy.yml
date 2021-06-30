@@ -17,19 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
-    if: ${{github.event.inputs.runtype == 'Full'}}
-    - name: WordPress Plugin Deploy
-      id: deploy
-      uses: 10up/action-wordpress-plugin-deploy@stable
-      with:
-        generate-zip: true
-      env:
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-          SLUG: riotd-reddit-image-of-the-day
-    if: ${{github.event.inputs.runtype != 'Full'}}          
-    - name: 'Get last release tag'
+      uses: actions/checkout@v2    
+    - name: 'Get last release tag'      
       id: releasetag
       uses: "WyriHaximus/github-action-get-previous-tag@v1"
       with:
@@ -49,3 +38,13 @@ jobs:
           args: '${{env.PUBLISH_PATH}}/${{env.PLUGIN_NAME}}-${{ needs.tag.outputs.release-tag }}.zip'
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}                  
+    - name: WordPress Plugin Deploy
+      if: github.event.inputs.runtype == 'Full'
+      id: deploy
+      uses: 10up/action-wordpress-plugin-deploy@stable
+      with:
+        generate-zip: true
+      env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: riotd-reddit-image-of-the-day                
