@@ -1,4 +1,7 @@
 name: Deploy to WordPress.org
+env:  
+  PUBLISH_PATH: '${{ github.workspace }}/publish'
+  PLUGIN_NAME: riotd-reddit-image-of-the-day
 on:
   release:
     types: [published]
@@ -18,12 +21,23 @@ jobs:
         SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
         SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
         SLUG: riotd-reddit-image-of-the-day
-    - name: Upload release asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: 'Get last release tag'
+      id: releasetag
+      uses: "WyriHaximus/github-action-get-previous-tag@v1"
       with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ${{github.workspace}}/${{ github.event.repository.name }}.zip
-        asset_name: ${{ github.event.repository.name }}.zip
-        asset_content_type: application/zip
+          fallback: 1.0.0   
+    - name: Create artifact
+      uses: montudor/action-zip@v0.1.0
+      with:
+        args: zip -X -r '${{env.PUBLISH_PATH}}/${{env.PLUGIN_NAME}}-${{ needs.tag.outputs.release-tag }}.zip' . -x *.git* node_modules/\* .* "*/\.*" ISSUE_TEMPLATE.md PULL_REQUEST_TEMPLATE.md *.dist composer.* dev-helpers** build**
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+          name: '${{env.PLUGIN_NAME}}-${{ needs.tag.outputs.release-tag }}'
+          path: '${{env.PUBLISH_PATH}}/${{env.PLUGIN_NAME}}-${{ needs.tag.outputs.release-tag }}.zip'
+    - name: Upload to release
+      uses: JasonEtco/upload-to-release@master
+      with:
+        args: '${{env.PUBLISH_PATH}}/${{env.PLUGIN_NAME}}-${{ needs.tag.outputs.release-tag }}.zip' application/zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}                  
