@@ -26,12 +26,12 @@ jobs:
     - name: Create artifact      
       run:                
         zip -X -r '${{ github.workspace }}/${{env.PLUGIN_NAME}}-${{ steps.releasetag.outputs.tag }}.zip' . -x *.git* node_modules/\* .* "*/\.*" ISSUE_TEMPLATE.md PULL_REQUEST_TEMPLATE.md *.dist composer.* dev-helpers** build**
-    - name: Upload to release
-      uses: JasonEtco/upload-to-release@master
-      with:
-          args: '${{ github.workspace }}/${{env.PLUGIN_NAME}}-${{ steps.releasetag.outputs.tag }}.zip'
+    - name: Upload the Package to Release
+      uses: skx/github-action-publish-binaries@master
       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}                  
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}            
+      with:
+        args: '${{ github.workspace }}/${{env.PLUGIN_NAME}}-${{ steps.releasetag.outputs.tag }}.zip'
     - name: WordPress Plugin Deploy
       if: github.event.inputs.runtype == 'Full'
       id: deploy
