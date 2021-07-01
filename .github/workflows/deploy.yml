@@ -16,6 +16,9 @@ jobs:
     name: New release
     runs-on: ubuntu-latest
     steps:
+    - name: Create Publish Directory
+    - run:
+        mkdir ${{env.PUBLISH_PATH}}
     - name: Checkout code
       uses: actions/checkout@v2    
     - name: 'Get last release tag'      
