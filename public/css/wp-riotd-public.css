@@ -136,9 +136,6 @@
   margin:auto;
   max-width: 500px;
   }
-  .reddit-branding .post_image img {
-      max-width: 480px;
-  }
 
   .reddit-branding .reddit_logo {
     display:grid;    
